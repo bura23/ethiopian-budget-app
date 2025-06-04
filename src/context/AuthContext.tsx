@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
+import type { ReactNode } from "react";
 import { auth } from "../services/api";
 
 interface User {
@@ -10,61 +11,75 @@ interface User {
 
 interface AuthResponse {
   success: boolean;
-  message?: string;
-  token?: string;
+  data?: User;
   user?: User;
+  message?: string;
 }
 
 interface AuthContextType {
   user: User | null;
   isAuthenticated: boolean;
+  isLoading: boolean;
   login: (email: string, password: string) => Promise<void>;
   register: (name: string, email: string, password: string) => Promise<void>;
   logout: () => void;
   updateProfile: (updates: Partial<User>) => void;
+  refreshReports: () => void;
+  reportsRefreshTrigger: number;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
-  children,
-}) => {
+interface AuthProviderProps {
+  children: ReactNode;
+}
+
+export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [reportsRefreshTrigger, setReportsRefreshTrigger] = useState(0);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      fetchUser();
-    }
-  }, []);
-
-  const fetchUser = async () => {
-    try {
-      const response = (await auth.getProfile()) as AuthResponse;
-      if (response.success && response.user) {
-        setUser(response.user);
-        setIsAuthenticated(true);
+    const checkAuthStatus = async () => {
+      const token = localStorage.getItem("token");
+      if (token) {
+        try {
+          const response = (await auth.getProfile()) as AuthResponse;
+          if (response.success) {
+            const userData = response.data || response.user;
+            if (userData) {
+              setUser(userData);
+              setIsAuthenticated(true);
+            }
+          } else {
+            localStorage.removeItem("token");
+          }
+        } catch (error) {
+          console.error("Auth check failed:", error);
+          localStorage.removeItem("token");
+        }
       }
-    } catch (error) {
-      console.error("Error fetching user:", error);
-      logout();
-    }
-  };
+      setIsLoading(false);
+    };
+
+    checkAuthStatus();
+  }, []);
 
   const login = async (email: string, password: string) => {
     try {
       const response = (await auth.login({ email, password })) as AuthResponse;
-      if (response.success && response.token && response.user) {
-        localStorage.setItem("token", response.token);
-        setUser(response.user);
-        setIsAuthenticated(true);
+      if (response.success) {
+        const userData = response.data || response.user;
+        if (userData) {
+          setUser(userData);
+          setIsAuthenticated(true);
+        }
       } else {
         throw new Error(response.message || "Login failed");
       }
-    } catch (error: any) {
-      console.error("Login error:", error);
-      throw new Error(error.response?.data?.message || "Failed to login");
+    } catch (error) {
+      throw error;
     }
   };
 
@@ -75,17 +90,24 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
         email,
         password,
       })) as AuthResponse;
-      if (response.success && response.token && response.user) {
-        localStorage.setItem("token", response.token);
-        setUser(response.user);
-        setIsAuthenticated(true);
+      if (response.success) {
+        const userData = response.data || response.user;
+        if (userData) {
+          setUser(userData);
+          setIsAuthenticated(true);
+        }
       } else {
         throw new Error(response.message || "Registration failed");
       }
-    } catch (error: any) {
-      console.error("Register error:", error);
-      throw new Error(error.response?.data?.message || "Failed to register");
+    } catch (error) {
+      throw error;
     }
+  };
+
+  const logout = () => {
+    setUser(null);
+    setIsAuthenticated(false);
+    localStorage.removeItem("token");
   };
 
   const updateProfile = (updates: Partial<User>) => {
@@ -94,17 +116,24 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     }
   };
 
-  const logout = () => {
-    localStorage.removeItem("token");
-    setUser(null);
-    setIsAuthenticated(false);
+  const refreshReports = () => {
+    setReportsRefreshTrigger((prev) => prev + 1);
+  };
+
+  const value = {
+    user,
+    isAuthenticated,
+    isLoading,
+    login,
+    register,
+    logout,
+    updateProfile,
+    refreshReports,
+    reportsRefreshTrigger,
   };
 
   return (
-    <AuthContext.Provider
-      value={{ user, isAuthenticated, login, register, logout, updateProfile }}
-      data-oid="9e8-z_r"
-    >
+    <AuthContext.Provider value={value} data-oid="9e8-z_r">
       {children}
     </AuthContext.Provider>
   );

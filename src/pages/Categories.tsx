@@ -179,58 +179,58 @@ const Categories = () => {
         borderWidth="1px"
         borderColor={borderColor}
         shadow="sm"
-        data-oid="3mru1nk"
+        data-oid="8a722z6"
       >
-        <VStack spacing={3} align="stretch" data-oid="50vg-_k">
-          <HStack justify="space-between" data-oid="b:rpoxf">
+        <VStack spacing={3} align="stretch" data-oid="hsnehk6">
+          <HStack justify="space-between" data-oid="rb47i9t">
             <Badge
               colorScheme={category.type === "income" ? "green" : "red"}
               size="sm"
-              data-oid="e8mvz7q"
+              data-oid="9bhwirf"
             >
               {category.type}
             </Badge>
-            <HStack data-oid="xz3tdzj">
+            <HStack data-oid="7jnuler">
               {!isEditing ? (
                 <>
                   <IconButton
-                    icon={<FiEdit2 data-oid="p9bmaih" />}
+                    icon={<FiEdit2 data-oid="x.m8tv8" />}
                     aria-label="Edit category"
                     size="sm"
                     variant="ghost"
                     onClick={() => setEditingId(category.id)}
-                    data-oid="laxrl8f"
+                    data-oid="lhphsrt"
                   />
 
                   <IconButton
-                    icon={<FiTrash2 data-oid="t7pchux" />}
+                    icon={<FiTrash2 data-oid=":ox5wm." />}
                     aria-label="Delete category"
                     size="sm"
                     variant="ghost"
                     colorScheme="red"
                     onClick={() => handleDeleteCategory(category.id)}
-                    data-oid="v80tphe"
+                    data-oid="z3kge03"
                   />
                 </>
               ) : (
                 <>
                   <IconButton
-                    icon={<FiSave data-oid="p9o-0ce" />}
+                    icon={<FiSave data-oid="0cr6_bb" />}
                     aria-label="Save changes"
                     size="sm"
                     variant="ghost"
                     colorScheme="green"
                     onClick={() => handleUpdateCategory(category.id, editData)}
-                    data-oid="i6oyqaj"
+                    data-oid="p4c7.8r"
                   />
 
                   <IconButton
-                    icon={<FiX data-oid="am_5hsk" />}
+                    icon={<FiX data-oid="gr4oi34" />}
                     aria-label="Cancel editing"
                     size="sm"
                     variant="ghost"
                     onClick={() => setEditingId(null)}
-                    data-oid="0k2lj_w"
+                    data-oid="6d1-.sx"
                   />
                 </>
               )}
@@ -238,9 +238,9 @@ const Categories = () => {
           </HStack>
 
           {isEditing ? (
-            <VStack spacing={2} data-oid="d.uq2j:">
-              <FormControl data-oid="-iwyc_2">
-                <FormLabel size="sm" data-oid=".kpcm8v">
+            <VStack spacing={2} data-oid="wutsncx">
+              <FormControl data-oid="g:cf:c8">
+                <FormLabel size="sm" data-oid="1y4b_5:">
                   Name
                 </FormLabel>
                 <Input
@@ -249,12 +249,12 @@ const Categories = () => {
                   onChange={(e) =>
                     setEditData({ ...editData, name: e.target.value })
                   }
-                  data-oid=".hz7p3v"
+                  data-oid="cekt:4q"
                 />
               </FormControl>
               {category.type === "expense" && (
-                <FormControl data-oid="4nr80v7">
-                  <FormLabel size="sm" data-oid="rqbqf7c">
+                <FormControl data-oid="89wo-vv">
+                  <FormLabel size="sm" data-oid=".55.gj5">
                     Budget (ETB)
                   </FormLabel>
                   <Input
@@ -267,18 +267,18 @@ const Categories = () => {
                         budget: Number(e.target.value),
                       })
                     }
-                    data-oid="1a89ka-"
+                    data-oid="sbw2k62"
                   />
                 </FormControl>
               )}
             </VStack>
           ) : (
-            <VStack spacing={1} align="start" data-oid="kn4z-pf">
-              <Text fontWeight="medium" data-oid="wu9:3ww">
+            <VStack spacing={1} align="start" data-oid="1ko6su4">
+              <Text fontWeight="medium" data-oid="djks:nc">
                 {category.name}
               </Text>
               {category.type === "expense" && category.budget > 0 && (
-                <Text fontSize="sm" color="gray.500" data-oid="coa:.9d">
+                <Text fontSize="sm" color="gray.500" data-oid="c6:1gkt">
                   Budget: ETB {category.budget.toLocaleString()}
                 </Text>
               )}
@@ -291,11 +291,11 @@ const Categories = () => {
 
   if (isLoading) {
     return (
-      <Container maxW="container.xl" py={8} data-oid="wdk_g:g">
-        <VStack spacing={8} align="stretch" data-oid="bdpuh7l">
-          <Heading data-oid="ptbfbg0">Categories</Heading>
-          <Box textAlign="center" py={10} data-oid="blaj59i">
-            <Text data-oid=".zwxq6.">Loading categories...</Text>
+      <Container maxW="container.xl" py={8} data-oid="iqjen6e">
+        <VStack spacing={8} align="stretch" data-oid="l3te9_9">
+          <Heading data-oid="glniudp">Categories</Heading>
+          <Box textAlign="center" py={10} data-oid="qgl20ak">
+            <Text data-oid="8avye3h">Loading categories...</Text>
           </Box>
         </VStack>
       </Container>
@@ -303,9 +303,9 @@ const Categories = () => {
   }
 
   return (
-    <Container maxW="container.xl" py={8} data-oid="a_c309m">
-      <VStack spacing={8} align="stretch" data-oid="mclf.22">
-        <Heading data-oid="ifmod9y">Manage Categories</Heading>
+    <Container maxW="container.xl" py={8} data-oid="8gh8z0q">
+      <VStack spacing={8} align="stretch" data-oid="ekzxput">
+        <Heading data-oid=":ulinzv">Manage Categories</Heading>
 
         {/* Add New Category */}
         <Box
@@ -315,30 +315,30 @@ const Categories = () => {
           borderWidth="1px"
           borderColor={borderColor}
           shadow="sm"
-          data-oid="vy6pyvm"
+          data-oid="ncfohog"
         >
-          <VStack spacing={4} align="stretch" data-oid="jo6meqm">
-            <Heading size="md" data-oid="m83_dq9">
+          <VStack spacing={4} align="stretch" data-oid="u0zuqyf">
+            <Heading size="md" data-oid="oxp_uhe">
               Add New Category
             </Heading>
             <SimpleGrid
               columns={{ base: 1, md: 4 }}
               spacing={4}
-              data-oid="p-qed3w"
+              data-oid="s_kn3wa"
             >
-              <FormControl data-oid="71v.zm5">
-                <FormLabel data-oid="y82fn_.">Name</FormLabel>
+              <FormControl data-oid="q-a9z1.">
+                <FormLabel data-oid="4npbwi8">Name</FormLabel>
                 <Input
                   value={newCategory.name}
                   onChange={(e) =>
                     setNewCategory({ ...newCategory, name: e.target.value })
                   }
                   placeholder="Category name"
-                  data-oid="0zly_qp"
+                  data-oid="lkd.lxr"
                 />
               </FormControl>
-              <FormControl data-oid="56h3nwo">
-                <FormLabel data-oid="g92cj9k">Type</FormLabel>
+              <FormControl data-oid="3dex704">
+                <FormLabel data-oid="_a9a.jh">Type</FormLabel>
                 <select
                   value={newCategory.type}
                   onChange={(e) =>
@@ -355,19 +355,19 @@ const Categories = () => {
                     borderRadius: "6px",
                     backgroundColor: "inherit",
                   }}
-                  data-oid=":4jw6pm"
+                  data-oid="ktwgelx"
                 >
-                  <option value="expense" data-oid="pcv.xcf">
+                  <option value="expense" data-oid="-w-ou38">
                     Expense
                   </option>
-                  <option value="income" data-oid="di3q6a3">
+                  <option value="income" data-oid="qo4hun7">
                     Income
                   </option>
                 </select>
               </FormControl>
               {newCategory.type === "expense" && (
-                <FormControl data-oid="avai30l">
-                  <FormLabel data-oid=":fxfd1:">Budget (ETB)</FormLabel>
+                <FormControl data-oid="p-fqiq3">
+                  <FormLabel data-oid="erzqe7n">Budget (ETB)</FormLabel>
                   <Input
                     type="number"
                     value={newCategory.budget}
@@ -378,16 +378,16 @@ const Categories = () => {
                       })
                     }
                     placeholder="0"
-                    data-oid="yu-re7:"
+                    data-oid="6uxp.l6"
                   />
                 </FormControl>
               )}
               <Button
-                leftIcon={<FiPlus data-oid="f2on05f" />}
+                leftIcon={<FiPlus data-oid="pvrwlso" />}
                 colorScheme="teal"
                 onClick={handleCreateCategory}
                 alignSelf="end"
-                data-oid="6kkjnnq"
+                data-oid="cb3i6q1"
               >
                 Add Category
               </Button>
@@ -395,24 +395,24 @@ const Categories = () => {
           </VStack>
         </Box>
 
-        <Divider data-oid="kjlu:1w" />
+        <Divider data-oid="ug0mfpu" />
 
         {/* Categories Lists */}
-        <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={8} data-oid="4e_2zaq">
+        <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={8} data-oid=".uxpjc3">
           {/* Income Categories */}
-          <Box data-oid=":zwhozi">
-            <Heading size="lg" mb={4} color="green.500" data-oid="vs8z1o5">
+          <Box data-oid="8zwvpxe">
+            <Heading size="lg" mb={4} color="green.500" data-oid="005oxtz">
               Income Categories (
               {categories.filter((cat) => cat.type === "income").length})
             </Heading>
-            <SimpleGrid columns={1} spacing={4} data-oid="p.3a1sa">
+            <SimpleGrid columns={1} spacing={4} data-oid="u44nemw">
               {categories
                 .filter((cat) => cat.type === "income")
                 .map((category) => (
                   <CategoryCard
                     key={category.id}
                     category={category}
-                    data-oid="331q.fr"
+                    data-oid="h3zu51l"
                   />
                 ))}
               {categories.filter((cat) => cat.type === "income").length ===
@@ -424,9 +424,9 @@ const Categories = () => {
                   borderStyle="dashed"
                   borderColor={borderColor}
                   borderRadius="lg"
-                  data-oid="zl4alov"
+                  data-oid="5g.t5gt"
                 >
-                  <Text color="gray.500" data-oid="3xp4jy6">
+                  <Text color="gray.500" data-oid=":kkg09i">
                     No income categories yet
                   </Text>
                 </Box>
@@ -435,19 +435,19 @@ const Categories = () => {
           </Box>
 
           {/* Expense Categories */}
-          <Box data-oid="t3ulc5j">
-            <Heading size="lg" mb={4} color="red.500" data-oid="5j1n0lz">
+          <Box data-oid="ks0wff0">
+            <Heading size="lg" mb={4} color="red.500" data-oid="j.xrrb3">
               Expense Categories (
               {categories.filter((cat) => cat.type === "expense").length})
             </Heading>
-            <SimpleGrid columns={1} spacing={4} data-oid="94w4m:h">
+            <SimpleGrid columns={1} spacing={4} data-oid="2dfbfsn">
               {categories
                 .filter((cat) => cat.type === "expense")
                 .map((category) => (
                   <CategoryCard
                     key={category.id}
                     category={category}
-                    data-oid="edpbwdn"
+                    data-oid="c9aux5z"
                   />
                 ))}
               {categories.filter((cat) => cat.type === "expense").length ===
@@ -459,9 +459,9 @@ const Categories = () => {
                   borderStyle="dashed"
                   borderColor={borderColor}
                   borderRadius="lg"
-                  data-oid="m-kppr9"
+                  data-oid="4bees4s"
                 >
-                  <Text color="gray.500" data-oid="1wcwgqn">
+                  <Text color="gray.500" data-oid="psk67be">
                     No expense categories yet
                   </Text>
                 </Box>

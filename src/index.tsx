@@ -10,10 +10,10 @@ const root = ReactDOM.createRoot(
 );
 
 root.render(
-  <React.StrictMode data-oid="1vzcl13">
-    <BrowserRouter data-oid="9h4p.j8">
-      <ChakraProvider theme={theme} data-oid="z53v2iq">
-        <App data-oid="bcukfeq" />
+  <React.StrictMode data-oid="827wrtk">
+    <BrowserRouter data-oid="b0ay4te">
+      <ChakraProvider theme={theme} data-oid="gp2tckt">
+        <App data-oid="ptixp1x" />
       </ChakraProvider>
     </BrowserRouter>
   </React.StrictMode>,

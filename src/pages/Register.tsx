@@ -58,72 +58,72 @@ const Register = () => {
   };
 
   return (
-    <Container maxW="container.sm" py={10} data-oid="ti53l5l">
+    <Container maxW="container.sm" py={10} data-oid="zv5km9s">
       <Box
         p={8}
         borderWidth={1}
         borderRadius="lg"
         boxShadow="lg"
         bg={useColorModeValue("white", "gray.700")}
-        data-oid="z.4p04h"
+        data-oid="l:nd2m5"
       >
-        <VStack spacing={8} data-oid="3vpz3_r">
-          <Heading size="xl" data-oid="9:y-il4">
+        <VStack spacing={8} data-oid="xn:3r_3">
+          <Heading size="xl" data-oid="5epa-gf">
             Create an Account
           </Heading>
-          <Box w="100%" as="form" onSubmit={handleSubmit} data-oid="iwqkl20">
-            <VStack spacing={4} data-oid="9fc97qy">
-              <FormControl isRequired data-oid="ix2:6t5">
-                <FormLabel data-oid="e4bsqvo">Name</FormLabel>
+          <Box w="100%" as="form" onSubmit={handleSubmit} data-oid="urrw0tv">
+            <VStack spacing={4} data-oid="-1gsfsh">
+              <FormControl isRequired data-oid="wz:5:hh">
+                <FormLabel data-oid=":qy3-i_">Name</FormLabel>
                 <Input
                   type="text"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="Enter your name"
                   size="lg"
-                  data-oid="05sxfcb"
+                  data-oid="t6p78c."
                 />
               </FormControl>
 
-              <FormControl isRequired data-oid="q7o:rdr">
-                <FormLabel data-oid="yjpn3e1">Email</FormLabel>
+              <FormControl isRequired data-oid="ye761-u">
+                <FormLabel data-oid="b-73tt4">Email</FormLabel>
                 <Input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your email"
                   size="lg"
-                  data-oid="lcwekc3"
+                  data-oid="sdcw:s8"
                 />
               </FormControl>
 
-              <FormControl isRequired data-oid="g06hinq">
-                <FormLabel data-oid="nrui6h_">Password</FormLabel>
-                <InputGroup data-oid="st3h-ql">
+              <FormControl isRequired data-oid="_-cnp77">
+                <FormLabel data-oid="h_mv53w">Password</FormLabel>
+                <InputGroup data-oid="28kqahi">
                   <Input
                     type={showPassword ? "text" : "password"}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="Enter your password"
                     size="lg"
-                    data-oid="jzsqao6"
+                    data-oid="fwf7_.y"
                   />
 
-                  <InputRightElement h="full" data-oid="aq-u.cl">
+                  <InputRightElement h="full" data-oid="x874bw6">
                     <IconButton
                       aria-label={
                         showPassword ? "Hide password" : "Show password"
                       }
                       icon={
                         showPassword ? (
-                          <ViewOffIcon data-oid="bv97uic" />
+                          <ViewOffIcon data-oid="mf129nm" />
                         ) : (
-                          <ViewIcon data-oid=":oesa.:" />
+                          <ViewIcon data-oid="10i4o5g" />
                         )
                       }
                       variant="ghost"
                       onClick={() => setShowPassword(!showPassword)}
-                      data-oid="lhw0105"
+                      data-oid="-pnb4io"
                     />
                   </InputRightElement>
                 </InputGroup>
@@ -136,21 +136,21 @@ const Register = () => {
                 width="100%"
                 isLoading={isLoading}
                 mt={4}
-                data-oid="cjpirq5"
+                data-oid="12-hc5k"
               >
                 Register
               </Button>
             </VStack>
           </Box>
 
-          <Text fontSize="md" data-oid="ar3u98a">
+          <Text fontSize="md" data-oid="9tb-:em">
             Already have an account?{" "}
             <Link
               as={RouterLink}
               to="/login"
               color="teal.500"
               fontWeight="semibold"
-              data-oid="misp_9j"
+              data-oid="-t8qryv"
             >
               Login here
             </Link>

@@ -37,6 +37,7 @@ import {
   getCategoryBreakdown,
   getSavingsTrend,
 } from "../services/api";
+import { useAuth } from "../context/AuthContext";
 
 ChartJS.register(
   CategoryScale,
@@ -80,6 +81,7 @@ interface SavingsData {
 }
 
 const Reports = () => {
+  const { reportsRefreshTrigger } = useAuth();
   const [timeRange, setTimeRange] = useState("month");
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -110,7 +112,7 @@ const Reports = () => {
 
   useEffect(() => {
     loadData();
-  }, [timeRange]);
+  }, [timeRange, reportsRefreshTrigger]);
 
   const loadData = async () => {
     setIsLoading(true);
@@ -399,27 +401,27 @@ const Reports = () => {
 
   if (isLoading) {
     return (
-      <Container maxW="container.xl" py={8} data-oid="ozmrted">
-        <VStack spacing={8} align="stretch" data-oid="lcvet4:">
+      <Container maxW="container.xl" py={8} data-oid="lg:h5k3">
+        <VStack spacing={8} align="stretch" data-oid="wpfnrqu">
           <Heading
             size="2xl"
             bgGradient="linear(to-r, teal.400, blue.500)"
             bgClip="text"
             textAlign="center"
-            data-oid=".dgevou"
+            data-oid="s983_a2"
           >
             Financial Reports
           </Heading>
-          <Flex justify="center" align="center" py={20} data-oid="g067teu">
+          <Flex justify="center" align="center" py={20} data-oid="25uovul">
             <Box
               p={8}
               borderRadius="lg"
               bg={cardBg}
               shadow="lg"
               textAlign="center"
-              data-oid="u7qio_y"
+              data-oid="8tygaop"
             >
-              <Text fontSize="lg" color="gray.500" data-oid="jsz8kim">
+              <Text fontSize="lg" color="gray.500" data-oid="h0_eed.">
                 Loading reports...
               </Text>
             </Box>
@@ -431,14 +433,14 @@ const Reports = () => {
 
   if (error) {
     return (
-      <Container maxW="container.xl" py={8} data-oid="iadrgak">
-        <VStack spacing={8} align="stretch" data-oid="vvmq4wk">
+      <Container maxW="container.xl" py={8} data-oid="f_jtdq3">
+        <VStack spacing={8} align="stretch" data-oid="rxtanq8">
           <Heading
             size="2xl"
             bgGradient="linear(to-r, teal.400, blue.500)"
             bgClip="text"
             textAlign="center"
-            data-oid="bj9x10s"
+            data-oid="hb52jfz"
           >
             Financial Reports
           </Heading>
@@ -448,13 +450,13 @@ const Reports = () => {
             bg="red.50"
             border="1px"
             borderColor="red.200"
-            data-oid="bz:6t7q"
+            data-oid="lujvbhi"
           >
             <Text
               color="red.600"
               fontSize="lg"
               fontWeight="medium"
-              data-oid="4hgv_ew"
+              data-oid="ep9w60l"
             >
               {error}
             </Text>
@@ -465,20 +467,20 @@ const Reports = () => {
   }
 
   return (
-    <Container maxW="container.xl" py={8} data-oid="juvns.4">
-      <VStack spacing={8} align="stretch" data-oid="h0owzin">
+    <Container maxW="container.xl" py={8} data-oid="g1a1-7e">
+      <VStack spacing={8} align="stretch" data-oid="tf7vbx1">
         <Flex
           justify="space-between"
           align="center"
           wrap="wrap"
           gap={4}
-          data-oid="006.r92"
+          data-oid="mled47p"
         >
           <Heading
             size="2xl"
             bgGradient="linear(to-r, teal.400, blue.500)"
             bgClip="text"
-            data-oid="17gca2t"
+            data-oid="ga1l6n4"
           >
             Financial Reports
           </Heading>
@@ -489,15 +491,15 @@ const Reports = () => {
             bg={cardBg}
             borderColor={borderColor}
             _hover={{ borderColor: "teal.400" }}
-            data-oid="6i6c01_"
+            data-oid="rhj-cf7"
           >
-            <option value="week" data-oid="bftizgv">
+            <option value="week" data-oid="g1ajoro">
               This Week
             </option>
-            <option value="month" data-oid="2.759sm">
+            <option value="month" data-oid="3xjw0i-">
               This Month
             </option>
-            <option value="year" data-oid="dm.-99u">
+            <option value="year" data-oid="zv_.j5o">
               This Year
             </option>
           </Select>
@@ -506,7 +508,7 @@ const Reports = () => {
         <SimpleGrid
           columns={{ base: 1, md: 2, lg: 3 }}
           spacing={6}
-          data-oid="h5loyad"
+          data-oid="nge_zxm"
         >
           <Box
             p={6}
@@ -518,7 +520,7 @@ const Reports = () => {
             overflow="hidden"
             _hover={{ transform: "translateY(-4px)" }}
             transition="all 0.3s ease"
-            data-oid="we21ub-"
+            data-oid="dof8u_u"
           >
             <Box
               position="absolute"
@@ -528,7 +530,7 @@ const Reports = () => {
               h="20"
               bg="whiteAlpha.200"
               borderRadius="full"
-              data-oid="pbjwi07"
+              data-oid="ms90v5k"
             />
 
             <VStack
@@ -536,26 +538,26 @@ const Reports = () => {
               spacing={3}
               position="relative"
               zIndex={1}
-              data-oid="wvb9_ep"
+              data-oid="toh5.xd"
             >
               <Text
                 fontSize="sm"
                 color="whiteAlpha.800"
                 fontWeight="medium"
-                data-oid="29qrtco"
+                data-oid="o45ymw6"
               >
                 Total Income
               </Text>
-              <Text fontSize="3xl" fontWeight="bold" data-oid="k52lif1">
+              <Text fontSize="3xl" fontWeight="bold" data-oid="g..2:ow">
                 ETB {stats.totalIncome.toLocaleString()}
               </Text>
-              <HStack data-oid="pqwpa.q">
+              <HStack data-oid="xoi66qg">
                 <Badge
                   colorScheme={stats.incomeChange >= 0 ? "green" : "red"}
                   fontSize="xs"
                   borderRadius="full"
                   px={2}
-                  data-oid="q1l:frp"
+                  data-oid="_e54gxq"
                 >
                   {stats.incomeChange >= 0 ? "↗" : "↘"}{" "}
                   {Math.abs(stats.incomeChange).toFixed(1)}%
@@ -574,7 +576,7 @@ const Reports = () => {
             overflow="hidden"
             _hover={{ transform: "translateY(-4px)" }}
             transition="all 0.3s ease"
-            data-oid="qnyxa81"
+            data-oid="a5irfnq"
           >
             <Box
               position="absolute"
@@ -584,7 +586,7 @@ const Reports = () => {
               h="20"
               bg="whiteAlpha.200"
               borderRadius="full"
-              data-oid="tac8unc"
+              data-oid="lyw4u7l"
             />
 
             <VStack
@@ -592,26 +594,26 @@ const Reports = () => {
               spacing={3}
               position="relative"
               zIndex={1}
-              data-oid="1bbgj_s"
+              data-oid="x80.eyb"
             >
               <Text
                 fontSize="sm"
                 color="whiteAlpha.800"
                 fontWeight="medium"
-                data-oid="zzwwfz_"
+                data-oid="1ez1:v6"
               >
                 Total Expenses
               </Text>
-              <Text fontSize="3xl" fontWeight="bold" data-oid="_5:t.ll">
+              <Text fontSize="3xl" fontWeight="bold" data-oid="tc58jro">
                 ETB {stats.totalExpenses.toLocaleString()}
               </Text>
-              <HStack data-oid="19auk8n">
+              <HStack data-oid="p4ulzn2">
                 <Badge
                   colorScheme={stats.expenseChange <= 0 ? "green" : "red"}
                   fontSize="xs"
                   borderRadius="full"
                   px={2}
-                  data-oid="kpf.n-p"
+                  data-oid="kem7u1v"
                 >
                   {stats.expenseChange <= 0 ? "↗" : "↘"}{" "}
                   {Math.abs(stats.expenseChange).toFixed(1)}%
@@ -630,7 +632,7 @@ const Reports = () => {
             overflow="hidden"
             _hover={{ transform: "translateY(-4px)" }}
             transition="all 0.3s ease"
-            data-oid="9xwe-m5"
+            data-oid="67dzn6c"
           >
             <Box
               position="absolute"
@@ -640,7 +642,7 @@ const Reports = () => {
               h="20"
               bg="whiteAlpha.200"
               borderRadius="full"
-              data-oid="gr_dzhm"
+              data-oid="k-paaxg"
             />
 
             <VStack
@@ -648,26 +650,26 @@ const Reports = () => {
               spacing={3}
               position="relative"
               zIndex={1}
-              data-oid="n9vjcp_"
+              data-oid="1t9-v9j"
             >
               <Text
                 fontSize="sm"
                 color="whiteAlpha.800"
                 fontWeight="medium"
-                data-oid="tu4-npv"
+                data-oid="l8..xbc"
               >
                 Net Savings
               </Text>
-              <Text fontSize="3xl" fontWeight="bold" data-oid="7z-084h">
+              <Text fontSize="3xl" fontWeight="bold" data-oid="bppi7ay">
                 ETB {stats.netSavings.toLocaleString()}
               </Text>
-              <HStack data-oid="zg3ucvo">
+              <HStack data-oid="vn7plii">
                 <Badge
                   colorScheme={stats.savingsChange >= 0 ? "green" : "red"}
                   fontSize="xs"
                   borderRadius="full"
                   px={2}
-                  data-oid="bx.gw80"
+                  data-oid="g1d-tu8"
                 >
                   {stats.savingsChange >= 0 ? "↗" : "↘"}{" "}
                   {Math.abs(stats.savingsChange).toFixed(1)}%
@@ -684,60 +686,60 @@ const Reports = () => {
           overflow="hidden"
           border="1px"
           borderColor={borderColor}
-          data-oid=":87toxi"
+          data-oid="x:g4vsz"
         >
-          <Tabs colorScheme="teal" variant="enclosed" data-oid="lsahe7.">
-            <TabList bg="gray.50" px={4} data-oid="5nfjbty">
+          <Tabs colorScheme="teal" variant="enclosed" data-oid="qxh5_ra">
+            <TabList bg="gray.50" px={4} data-oid="jvejc4c">
               <Tab
                 fontWeight="medium"
                 _selected={{ bg: "teal.500", color: "white" }}
-                data-oid="xn3t1wf"
+                data-oid="cs_15te"
               >
                 Income vs Expenses
               </Tab>
               <Tab
                 fontWeight="medium"
                 _selected={{ bg: "teal.500", color: "white" }}
-                data-oid="94hnop7"
+                data-oid="k2g26.2"
               >
                 Expense Categories
               </Tab>
               <Tab
                 fontWeight="medium"
                 _selected={{ bg: "teal.500", color: "white" }}
-                data-oid="4iqfx.t"
+                data-oid="uogffum"
               >
                 Savings Trend
               </Tab>
             </TabList>
 
-            <TabPanels data-oid="j1vm5ws">
-              <TabPanel p={6} data-oid="e73d8_5">
-                <Box h="400px" position="relative" data-oid="cfquouh">
+            <TabPanels data-oid="v9_0usc">
+              <TabPanel p={6} data-oid="brpxhhy">
+                <Box h="400px" position="relative" data-oid="zi70fau">
                   <Bar
                     data={monthlyData}
                     options={chartOptions}
-                    data-oid="dfyfg8j"
+                    data-oid="sg7y.ov"
                   />
                 </Box>
               </TabPanel>
 
-              <TabPanel p={6} data-oid="w-eln-r">
-                <Box h="400px" position="relative" data-oid="v0g.l0e">
+              <TabPanel p={6} data-oid="4f8lo21">
+                <Box h="400px" position="relative" data-oid="bsaelbk">
                   <Doughnut
                     data={categoryData}
                     options={doughnutOptions}
-                    data-oid="60ktf7d"
+                    data-oid="n5l8arg"
                   />
                 </Box>
               </TabPanel>
 
-              <TabPanel p={6} data-oid="3zu2bbt">
-                <Box h="400px" position="relative" data-oid=".eeqlpb">
+              <TabPanel p={6} data-oid="fsiinwd">
+                <Box h="400px" position="relative" data-oid="6wsz0lo">
                   <Line
                     data={savingsData}
                     options={lineOptions}
-                    data-oid="kbyqtdv"
+                    data-oid="gkildyv"
                   />
                 </Box>
               </TabPanel>

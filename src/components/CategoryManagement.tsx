@@ -113,61 +113,61 @@ const CategoryManagement = () => {
   };
 
   return (
-    <Box data-oid="ng2r_go">
-      <VStack spacing={4} align="stretch" data-oid="3oqp817">
+    <Box data-oid="gx0zej5">
+      <VStack spacing={4} align="stretch" data-oid="xm7614-">
         <Box
           display="flex"
           justifyContent="space-between"
           alignItems="center"
-          data-oid="h.sfgee"
+          data-oid="ozkwv83"
         >
-          <Heading size="md" data-oid="cg1magi">
+          <Heading size="md" data-oid="2hlyh7a">
             Budget Categories
           </Heading>
           <Button
-            leftIcon={<FiPlus data-oid=":si6w6o" />}
+            leftIcon={<FiPlus data-oid="we.ruwt" />}
             colorScheme="teal"
             onClick={openAddModal}
-            data-oid="wpl2dcz"
+            data-oid="wco50g5"
           >
             Add Category
           </Button>
         </Box>
 
-        <Table variant="simple" data-oid="4uk70_g">
-          <Thead data-oid="84mvgg:">
-            <Tr data-oid="v-.0aof">
-              <Th data-oid="48h64t6">Name</Th>
-              <Th isNumeric data-oid="3ipgh2k">
+        <Table variant="simple" data-oid="y:_isi6">
+          <Thead data-oid="vaq8wd0">
+            <Tr data-oid="twm2ox7">
+              <Th data-oid="xf6-v_y">Name</Th>
+              <Th isNumeric data-oid="t-6rq40">
                 Budget
               </Th>
-              <Th data-oid="7dg6812">Actions</Th>
+              <Th data-oid="901ixeb">Actions</Th>
             </Tr>
           </Thead>
-          <Tbody data-oid="fr-2rve">
+          <Tbody data-oid="x59:u46">
             {categories.map((category) => (
-              <Tr key={category.id} data-oid="-4v25.8">
-                <Td data-oid="hn5tqoj">{category.name}</Td>
-                <Td isNumeric data-oid="1kkryfa">
+              <Tr key={category.id} data-oid="3qktqk4">
+                <Td data-oid="3us17zm">{category.name}</Td>
+                <Td isNumeric data-oid="q3:92lf">
                   {formatETB(category.budget)}
                 </Td>
-                <Td data-oid="otwo.nu">
+                <Td data-oid="9csa70b">
                   <IconButton
                     aria-label="Edit category"
-                    icon={<FiEdit2 data-oid="eqbej9x" />}
+                    icon={<FiEdit2 data-oid="zywfd5-" />}
                     size="sm"
                     mr={2}
                     onClick={() => openEditModal(category)}
-                    data-oid="_vd8uq-"
+                    data-oid="5rcgol5"
                   />
 
                   <IconButton
                     aria-label="Delete category"
-                    icon={<FiTrash2 data-oid="70qufz9" />}
+                    icon={<FiTrash2 data-oid="ort6ry2" />}
                     size="sm"
                     colorScheme="red"
                     onClick={() => handleDeleteCategory(category.id)}
-                    data-oid="5oa4_dj"
+                    data-oid="ikohexl"
                   />
                 </Td>
               </Tr>
@@ -176,23 +176,23 @@ const CategoryManagement = () => {
         </Table>
       </VStack>
 
-      <Modal isOpen={isOpen} onClose={onClose} data-oid="15ueqy0">
-        <ModalOverlay data-oid="11lvwks" />
-        <ModalContent data-oid="uwgoyre">
-          <ModalHeader data-oid="vw6mhs:">
+      <Modal isOpen={isOpen} onClose={onClose} data-oid="qsn23.6">
+        <ModalOverlay data-oid="qcw90im" />
+        <ModalContent data-oid="z4pz:4e">
+          <ModalHeader data-oid="_e0zybv">
             {editingCategory?.id ? "Edit Category" : "Add Category"}
           </ModalHeader>
-          <ModalCloseButton data-oid="eghxmie" />
-          <ModalBody pb={6} data-oid="s52dsbx">
+          <ModalCloseButton data-oid=":cnzvuo" />
+          <ModalBody pb={6} data-oid="tshwkh6">
             <form
               onSubmit={
                 editingCategory?.id ? handleUpdateCategory : handleAddCategory
               }
-              data-oid="s_140:1"
+              data-oid="mvvbm95"
             >
-              <VStack spacing={4} data-oid="25ypay4">
-                <FormControl isRequired data-oid="ib602b_">
-                  <FormLabel data-oid="k:wla2d">Name</FormLabel>
+              <VStack spacing={4} data-oid="1j7-hlk">
+                <FormControl isRequired data-oid="tznr4.3">
+                  <FormLabel data-oid="ff3jd-8">Name</FormLabel>
                   <Input
                     value={editingCategory?.name || ""}
                     onChange={(e) =>
@@ -201,12 +201,12 @@ const CategoryManagement = () => {
                         name: e.target.value,
                       }))
                     }
-                    data-oid="v1yx1c6"
+                    data-oid=".60y7-a"
                   />
                 </FormControl>
 
-                <FormControl isRequired data-oid="g-av_46">
-                  <FormLabel data-oid="57scemg">Budget (ETB)</FormLabel>
+                <FormControl isRequired data-oid="o4iq_el">
+                  <FormLabel data-oid="vtbqx70">Budget (ETB)</FormLabel>
                   <NumberInput
                     value={editingCategory?.budget || 0}
                     onChange={(value) =>
@@ -215,9 +215,9 @@ const CategoryManagement = () => {
                         budget: parseFloat(value) || 0,
                       }))
                     }
-                    data-oid="8bn6s4x"
+                    data-oid="pnwky8e"
                   >
-                    <NumberInputField data-oid="ukd4m.3" />
+                    <NumberInputField data-oid="zb1kd_s" />
                   </NumberInput>
                 </FormControl>
 
@@ -225,7 +225,7 @@ const CategoryManagement = () => {
                   type="submit"
                   colorScheme="blue"
                   width="full"
-                  data-oid=".s7cnho"
+                  data-oid="6r9h6dv"
                 >
                   {editingCategory?.id ? "Update Category" : "Add Category"}
                 </Button>

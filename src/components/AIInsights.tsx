@@ -127,31 +127,31 @@ export default function AiInsights({ financialData }: AiInsightsProps) {
       border="1px solid"
       borderColor={borderColor}
       h="100%"
-      data-oid="gqbh-20"
+      data-oid="a9myqh_"
     >
-      <Heading size="lg" mb={4} data-oid="t4wq.kd">
+      <Heading size="lg" mb={4} data-oid="2bejxs-">
         AI Financial Insights
       </Heading>
-      <Text color={textColor} mb={6} data-oid="e1t_82r">
+      <Text color={textColor} mb={6} data-oid="l0m3vxr">
         Personalized recommendations based on your financial patterns
       </Text>
 
       {loading ? (
-        <Box textAlign="center" py={8} data-oid=":61vtc7">
+        <Box textAlign="center" py={8} data-oid="xuaj11a">
           <Spinner
             size="xl"
             color="teal.500"
             thickness="3px"
-            data-oid="t1sx8:r"
+            data-oid="arl355i"
           />
 
-          <Text mt={4} color={textColor} data-oid="mqrmkxe">
+          <Text mt={4} color={textColor} data-oid="-ouwofy">
             Analyzing your financial data...
           </Text>
         </Box>
       ) : (
-        <VStack align="stretch" spacing={4} data-oid="-n9-5iq">
-          <List spacing={4} data-oid="4vnfh6h">
+        <VStack align="stretch" spacing={4} data-oid="s61e_:7">
+          <List spacing={4} data-oid="-a::6l9">
             {insights.map((insight, index) => (
               <ListItem
                 key={index}
@@ -161,7 +161,7 @@ export default function AiInsights({ financialData }: AiInsightsProps) {
                 borderRadius="md"
                 bg={listItemBg}
                 _hover={{ bg: listItemHoverBg }}
-                data-oid="mqnav1t"
+                data-oid="u_313rv"
               >
                 <ListIcon
                   as={
@@ -174,10 +174,10 @@ export default function AiInsights({ financialData }: AiInsightsProps) {
                   color="teal.500"
                   boxSize={5}
                   mt={1}
-                  data-oid="h.1wpm7"
+                  data-oid="uw1kff6"
                 />
 
-                <Text ml={2} data-oid="6.t_73m">
+                <Text ml={2} data-oid="rxvlcjo">
                   {insight}
                 </Text>
               </ListItem>

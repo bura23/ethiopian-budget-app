@@ -70,87 +70,87 @@ export default function TransactionForm({
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} data-oid="4zx08p2">
-      <ModalOverlay data-oid="kz8-b_y" />
-      <ModalContent data-oid="0ypvwt:">
-        <ModalHeader data-oid="xzakjnr">
+    <Modal isOpen={isOpen} onClose={onClose} data-oid="-bmh3fp">
+      <ModalOverlay data-oid="ru3h3g2" />
+      <ModalContent data-oid="pd_fxsl">
+        <ModalHeader data-oid="gwew9js">
           {transaction ? "Edit Transaction" : "Add New Transaction"}
         </ModalHeader>
-        <ModalCloseButton data-oid="3c8ne4u" />
-        <form onSubmit={handleSubmit} data-oid="e9f.3i7">
-          <ModalBody data-oid="w08619c">
-            <VStack spacing={4} data-oid="ofepgv9">
-              <FormControl isRequired data-oid="xq8lkz2">
-                <FormLabel data-oid="y03f1ih">Date</FormLabel>
+        <ModalCloseButton data-oid="scyn9as" />
+        <form onSubmit={handleSubmit} data-oid="pryj.l8">
+          <ModalBody data-oid="mppjav7">
+            <VStack spacing={4} data-oid="0hwooa8">
+              <FormControl isRequired data-oid="b2c-1q2">
+                <FormLabel data-oid="h7fmnzq">Date</FormLabel>
                 <Input
                   type="date"
                   value={formData.date}
                   onChange={(e) =>
                     setFormData({ ...formData, date: e.target.value })
                   }
-                  data-oid="zvwng:c"
+                  data-oid="v50zsc1"
                 />
               </FormControl>
 
-              <FormControl isRequired data-oid="lu3oqbd">
-                <FormLabel data-oid="5qmb4qj">Description</FormLabel>
+              <FormControl isRequired data-oid="vr92_.w">
+                <FormLabel data-oid="n-rd:m0">Description</FormLabel>
                 <Input
                   value={formData.description}
                   onChange={(e) =>
                     setFormData({ ...formData, description: e.target.value })
                   }
                   placeholder="Enter description"
-                  data-oid="zrpft0u"
+                  data-oid="us1vs0_"
                 />
               </FormControl>
 
-              <FormControl isRequired data-oid="lr_72a0">
-                <FormLabel data-oid="6vwcmf7">Amount (ETB)</FormLabel>
-                <NumberInput min={0} data-oid="2jerlk1">
+              <FormControl isRequired data-oid="ne36imo">
+                <FormLabel data-oid="ufat_f6">Amount (ETB)</FormLabel>
+                <NumberInput min={0} data-oid="n2e20st">
                   <NumberInputField
                     value={formData.amount}
                     onChange={(e) =>
                       setFormData({ ...formData, amount: e.target.value })
                     }
                     placeholder="Enter amount"
-                    data-oid="nnfcx51"
+                    data-oid="z4ra.8t"
                   />
                 </NumberInput>
               </FormControl>
 
-              <FormControl isRequired data-oid="q4af0xk">
-                <FormLabel data-oid="l5h9v7u">Category</FormLabel>
+              <FormControl isRequired data-oid="88:9vk:">
+                <FormLabel data-oid="5obn5ac">Category</FormLabel>
                 <Select
                   value={formData.category}
                   onChange={(e) =>
                     setFormData({ ...formData, category: e.target.value })
                   }
                   placeholder="Select category"
-                  data-oid="hh8mxgf"
+                  data-oid="l7j70uf"
                 >
-                  <option value="Food" data-oid="afktodv">
+                  <option value="Food" data-oid="en9hsqe">
                     Food
                   </option>
-                  <option value="Transport" data-oid="np01h64">
+                  <option value="Transport" data-oid="tdk898f">
                     Transport
                   </option>
-                  <option value="Utilities" data-oid="thg1s7r">
+                  <option value="Utilities" data-oid="47vngkr">
                     Utilities
                   </option>
-                  <option value="Entertainment" data-oid="xcvv2n_">
+                  <option value="Entertainment" data-oid="bvp_qsw">
                     Entertainment
                   </option>
-                  <option value="Shopping" data-oid="-.s5e9w">
+                  <option value="Shopping" data-oid="y_vltts">
                     Shopping
                   </option>
-                  <option value="Others" data-oid="68z5go9">
+                  <option value="Others" data-oid="rafh6-6">
                     Others
                   </option>
                 </Select>
               </FormControl>
 
-              <FormControl isRequired data-oid="5_ql:fi">
-                <FormLabel data-oid="ihsr3a4">Type</FormLabel>
+              <FormControl isRequired data-oid="hoe8my_">
+                <FormLabel data-oid="hatp438">Type</FormLabel>
                 <Select
                   value={formData.type}
                   onChange={(e) =>
@@ -159,12 +159,12 @@ export default function TransactionForm({
                       type: e.target.value as "income" | "expense",
                     })
                   }
-                  data-oid="l76dl6a"
+                  data-oid="gtz8be-"
                 >
-                  <option value="income" data-oid="wdfz2ms">
+                  <option value="income" data-oid="4lzcbwl">
                     Income
                   </option>
-                  <option value="expense" data-oid="y5vk-ls">
+                  <option value="expense" data-oid="kx9t1kn">
                     Expense
                   </option>
                 </Select>
@@ -172,16 +172,16 @@ export default function TransactionForm({
             </VStack>
           </ModalBody>
 
-          <ModalFooter data-oid=".1c7.xa">
+          <ModalFooter data-oid="etroe2l">
             <Button
               colorScheme="gray"
               mr={3}
               onClick={onClose}
-              data-oid="odfy7s1"
+              data-oid="vvbwtm2"
             >
               Cancel
             </Button>
-            <Button colorScheme="teal" type="submit" data-oid="0f78h80">
+            <Button colorScheme="teal" type="submit" data-oid="u227zbb">
               {transaction ? "Save Changes" : "Add Transaction"}
             </Button>
           </ModalFooter>

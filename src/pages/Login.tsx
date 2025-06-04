@@ -59,60 +59,60 @@ const Login = () => {
   };
 
   return (
-    <Container maxW="container.sm" py={10} data-oid="w33ck85">
+    <Container maxW="container.sm" py={10} data-oid="lytvnpw">
       <Box
         p={8}
         borderWidth={1}
         borderRadius="lg"
         boxShadow="lg"
         bg={useColorModeValue("white", "gray.700")}
-        data-oid="xvaxp3."
+        data-oid="00.q4hg"
       >
-        <VStack spacing={8} data-oid="jlsvcjn">
-          <Heading size="xl" data-oid="wv.fsit">
+        <VStack spacing={8} data-oid="8bywcgc">
+          <Heading size="xl" data-oid="mrgstz8">
             Welcome Back
           </Heading>
-          <Box w="100%" as="form" onSubmit={handleSubmit} data-oid="3tk.pjg">
-            <VStack spacing={4} data-oid="hwva78d">
-              <FormControl isRequired data-oid="jdqjb1r">
-                <FormLabel data-oid="m7wgzvy">Email</FormLabel>
+          <Box w="100%" as="form" onSubmit={handleSubmit} data-oid="s7tx2e6">
+            <VStack spacing={4} data-oid="uwskncv">
+              <FormControl isRequired data-oid="7u996fl">
+                <FormLabel data-oid="3omigy_">Email</FormLabel>
                 <Input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your email"
                   size="lg"
-                  data-oid="ihnyp8k"
+                  data-oid="csql_jw"
                 />
               </FormControl>
 
-              <FormControl isRequired data-oid="5l-0hsn">
-                <FormLabel data-oid="d3.ry:o">Password</FormLabel>
-                <InputGroup data-oid="yxhm:uv">
+              <FormControl isRequired data-oid="tk3fsaj">
+                <FormLabel data-oid="pb94rfn">Password</FormLabel>
+                <InputGroup data-oid="1_vj:be">
                   <Input
                     type={showPassword ? "text" : "password"}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="Enter your password"
                     size="lg"
-                    data-oid="-3m7h5x"
+                    data-oid="t_ctzkn"
                   />
 
-                  <InputRightElement h="full" data-oid="yx-6lsu">
+                  <InputRightElement h="full" data-oid="3_w6zdo">
                     <IconButton
                       aria-label={
                         showPassword ? "Hide password" : "Show password"
                       }
                       icon={
                         showPassword ? (
-                          <ViewOffIcon data-oid="vlhaul:" />
+                          <ViewOffIcon data-oid="e4mgtjf" />
                         ) : (
-                          <ViewIcon data-oid="xrwdtre" />
+                          <ViewIcon data-oid="_1fbu9w" />
                         )
                       }
                       variant="ghost"
                       onClick={() => setShowPassword(!showPassword)}
-                      data-oid="cf1-fg4"
+                      data-oid="mvrc8y."
                     />
                   </InputRightElement>
                 </InputGroup>
@@ -125,21 +125,21 @@ const Login = () => {
                 width="100%"
                 isLoading={isLoading}
                 mt={4}
-                data-oid="b:h_.ta"
+                data-oid=":3eptbd"
               >
                 Login
               </Button>
             </VStack>
           </Box>
 
-          <Text fontSize="md" data-oid="iu3lvjj">
+          <Text fontSize="md" data-oid="n:p:km3">
             Don't have an account?{" "}
             <Link
               as={RouterLink}
               to="/register"
               color="teal.500"
               fontWeight="semibold"
-              data-oid="j:g5d3x"
+              data-oid="qiiftjd"
             >
               Register here
             </Link>

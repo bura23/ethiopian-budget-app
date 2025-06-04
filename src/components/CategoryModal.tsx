@@ -69,47 +69,47 @@ export default function CategoryModal({
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} data-oid="kq_akqa">
-      <ModalOverlay data-oid="48hdgnr" />
-      <ModalContent data-oid="gy6c1qv">
-        <form onSubmit={handleSubmit} data-oid="a.0:foz">
-          <ModalHeader data-oid="5byqdvq">
+    <Modal isOpen={isOpen} onClose={onClose} data-oid="lujdvy0">
+      <ModalOverlay data-oid="8vpe66a" />
+      <ModalContent data-oid="ajfthb-">
+        <form onSubmit={handleSubmit} data-oid="2zrz___">
+          <ModalHeader data-oid="_7t9_y5">
             {category ? "Edit Category" : "Create Category"}
           </ModalHeader>
-          <ModalCloseButton data-oid="jz21wcu" />
+          <ModalCloseButton data-oid="sjp8num" />
 
-          <ModalBody data-oid="qtz5i:8">
-            <VStack spacing={4} data-oid="qi6wy3u">
-              <FormControl isRequired data-oid="ba58.0r">
-                <FormLabel data-oid="ag69-ik">Name</FormLabel>
+          <ModalBody data-oid="7ozonbz">
+            <VStack spacing={4} data-oid="icca:t_">
+              <FormControl isRequired data-oid="jot4q5r">
+                <FormLabel data-oid="y0nsgl3">Name</FormLabel>
                 <Input
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="Enter category name"
-                  data-oid="q:styvr"
+                  data-oid="60n6ozc"
                 />
               </FormControl>
 
-              <FormControl isRequired data-oid="z3a_j7z">
-                <FormLabel data-oid="an-2hfi">Type</FormLabel>
+              <FormControl isRequired data-oid="--a:4pz">
+                <FormLabel data-oid="w_zdpnp">Type</FormLabel>
                 <Select
                   value={type}
                   onChange={(e) =>
                     setType(e.target.value as "income" | "expense")
                   }
-                  data-oid="eh9rmvm"
+                  data-oid=":yalkcp"
                 >
-                  <option value="expense" data-oid="g.gto4u">
+                  <option value="expense" data-oid="k:ek6ww">
                     Expense
                   </option>
-                  <option value="income" data-oid=":3vft_a">
+                  <option value="income" data-oid="ysgxqr0">
                     Income
                   </option>
                 </Select>
               </FormControl>
 
-              <FormControl isRequired data-oid="o3gyvs5">
-                <FormLabel data-oid="do5m017">Budget</FormLabel>
+              <FormControl isRequired data-oid="s3e.kqg">
+                <FormLabel data-oid="lqmxhqw">Budget</FormLabel>
                 <Input
                   type="number"
                   value={budget}
@@ -117,21 +117,21 @@ export default function CategoryModal({
                   placeholder="Enter budget amount"
                   min="0"
                   step="0.01"
-                  data-oid="j_:roox"
+                  data-oid="qi:xeek"
                 />
               </FormControl>
             </VStack>
           </ModalBody>
 
-          <ModalFooter data-oid="ws7-15.">
-            <Button variant="ghost" mr={3} onClick={onClose} data-oid="5zmp_58">
+          <ModalFooter data-oid="y40_wck">
+            <Button variant="ghost" mr={3} onClick={onClose} data-oid="5-pdl_0">
               Cancel
             </Button>
             <Button
               type="submit"
               colorScheme="teal"
               isLoading={isLoading}
-              data-oid="5r8e41y"
+              data-oid="guef5kj"
             >
               Save
             </Button>

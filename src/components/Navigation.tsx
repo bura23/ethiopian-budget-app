@@ -41,7 +41,7 @@ const NavItem = ({ item, isActive }: { item: any; isActive: boolean }) => {
   const hoverBg = useColorModeValue("gray.100", "gray.600");
 
   return (
-    <Tooltip label={item.name} placement="bottom" data-oid="-fr08:-">
+    <Tooltip label={item.name} placement="bottom" data-oid="1kjil6m">
       <Link
         as={RouterLink}
         to={item.path}
@@ -59,9 +59,9 @@ const NavItem = ({ item, isActive }: { item: any; isActive: boolean }) => {
           transform: "translateY(-2px)",
         }}
         transition="all 0.2s"
-        data-oid=":fefh.v"
+        data-oid="5j8fotn"
       >
-        <Box as={item.icon} mr={2} data-oid="8twvdez" />
+        <Box as={item.icon} mr={2} data-oid="vhx26lh" />
         {item.name}
       </Link>
     </Tooltip>
@@ -117,22 +117,22 @@ const Navigation: React.FC = () => {
       h="16"
       backdropFilter="blur(10px)"
       backgroundColor={navBgColor}
-      data-oid="940ygt5"
+      data-oid="niznjhs"
     >
       <Flex
         h="100%"
         alignItems="center"
         justifyContent="space-between"
-        data-oid="qmt7-fg"
+        data-oid=".-8r:-v"
       >
-        <HStack spacing={8} alignItems="center" data-oid="ve:tyia">
+        <HStack spacing={8} alignItems="center" data-oid="g-0y-di">
           <Link
             as={RouterLink}
             to="/"
             display="flex"
             alignItems="center"
             _hover={{ textDecoration: "none" }}
-            data-oid="rn.64lm"
+            data-oid="jm_u1ku"
           >
             <Image
               src="/logo.svg"
@@ -140,14 +140,14 @@ const Navigation: React.FC = () => {
               h="40px"
               mr={2}
               fallbackSrc="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' fill='%23319795'/%3E%3Ctext x='20' y='25' text-anchor='middle' fill='white' font-family='Arial' font-size='16' font-weight='bold'%3EYB%3C/text%3E%3C/svg%3E"
-              data-oid="yxadi7_"
+              data-oid="tdudxqn"
             />
 
             <Box
               fontSize="xl"
               fontWeight="bold"
               color={logoColor}
-              data-oid="hcd9-ho"
+              data-oid="a7xx7a2"
             >
               Yene Birr
             </Box>
@@ -158,27 +158,27 @@ const Navigation: React.FC = () => {
               as="nav"
               spacing={2}
               display={{ base: "none", md: "flex" }}
-              data-oid="4xaixf7"
+              data-oid="p_iv4ak"
             >
               {navItems.map((item) => (
                 <NavItem
                   key={item.path}
                   item={item}
                   isActive={location.pathname === item.path}
-                  data-oid="8pnxajw"
+                  data-oid="oe7c9.d"
                 />
               ))}
             </HStack>
           )}
         </HStack>
 
-        <HStack spacing={4} data-oid="qze:oum">
+        <HStack spacing={4} data-oid="2wzgadf">
           <IconButton
             icon={
               colorMode === "light" ? (
-                <MoonIcon data-oid="3w4ojsi" />
+                <MoonIcon data-oid="w32rd1r" />
               ) : (
-                <SunIcon data-oid="5cluzw7" />
+                <SunIcon data-oid="2n91ok-" />
               )
             }
             onClick={toggleColorMode}
@@ -190,16 +190,16 @@ const Navigation: React.FC = () => {
               bg: hoverBg,
             }}
             transition="all 0.2s"
-            data-oid="2nvi_p2"
+            data-oid="u019v2s"
           />
 
           {isAuthenticated && (
             <>
-              <Tooltip label="Settings" data-oid="nwr0-:i">
+              <Tooltip label="Settings" data-oid="n-yk407">
                 <IconButton
                   as={RouterLink}
                   to="/settings"
-                  icon={<FiSettings data-oid="80bj6-w" />}
+                  icon={<FiSettings data-oid="clwpiz1" />}
                   aria-label="Settings"
                   variant="ghost"
                   rounded="full"
@@ -208,11 +208,11 @@ const Navigation: React.FC = () => {
                     bg: hoverBg,
                   }}
                   transition="all 0.2s"
-                  data-oid="i1kbx.."
+                  data-oid="v2e85dt"
                 />
               </Tooltip>
 
-              <Menu data-oid="u_4_-b2">
+              <Menu data-oid="0y418ur">
                 <MenuButton
                   as={Button}
                   rounded="full"
@@ -223,25 +223,25 @@ const Navigation: React.FC = () => {
                     transform: "translateY(-2px)",
                   }}
                   transition="all 0.2s"
-                  data-oid=":x.ks5f"
+                  data-oid="j:xvu3_"
                 >
                   <Avatar
                     size="sm"
                     name={user?.name}
                     src={user?.photo_url}
-                    data-oid="mtue.f8"
+                    data-oid="krqoy4w"
                   />
                 </MenuButton>
-                <MenuList rounded="xl" shadow="lg" data-oid="yk7pqde">
+                <MenuList rounded="xl" shadow="lg" data-oid="h73tl2d">
                   <MenuItem
                     as={RouterLink}
                     to="/profile"
-                    icon={<FiUser data-oid=".m:_nzi" />}
-                    data-oid="dpl1_b0"
+                    icon={<FiUser data-oid=".avn5ad" />}
+                    data-oid="exk-1jv"
                   >
                     Profile
                   </MenuItem>
-                  <MenuItem onClick={handleLogout} data-oid="b_h8v_d">
+                  <MenuItem onClick={handleLogout} data-oid="rodfaf4">
                     Logout
                   </MenuItem>
                 </MenuList>
@@ -250,7 +250,7 @@ const Navigation: React.FC = () => {
           )}
 
           {!isAuthenticated && (
-            <HStack spacing={4} data-oid="i15lvo7">
+            <HStack spacing={4} data-oid="y5rj.1u">
               <Button
                 as={RouterLink}
                 to="/login"
@@ -260,7 +260,7 @@ const Navigation: React.FC = () => {
                   transform: "translateY(-2px)",
                 }}
                 transition="all 0.2s"
-                data-oid="qyoky8p"
+                data-oid="og5iygx"
               >
                 Login
               </Button>
@@ -273,7 +273,7 @@ const Navigation: React.FC = () => {
                   transform: "translateY(-2px)",
                 }}
                 transition="all 0.2s"
-                data-oid="so1hl_e"
+                data-oid="ponf:eh"
               >
                 Register
               </Button>

@@ -15,14 +15,14 @@ const Dashboard: React.FC = () => {
   const borderColor = useColorModeValue("gray.200", "gray.700");
 
   return (
-    <Box maxW="container.xl" mx="auto" py={8} data-oid="yy19cu_">
-      <VStack spacing={8} align="stretch" data-oid="augd4xh">
-        <Heading data-oid="evv94d6">Welcome, {user?.name}!</Heading>
+    <Box maxW="container.xl" mx="auto" py={8} data-oid="::tqld1">
+      <VStack spacing={8} align="stretch" data-oid="zsy2fuj">
+        <Heading data-oid="lvrt-kq">Welcome, {user?.name}!</Heading>
 
         <Grid
           templateColumns={{ base: "1fr", md: "repeat(2, 1fr)" }}
           gap={6}
-          data-oid="e98r:hb"
+          data-oid="vj_ujh."
         >
           <Box
             p={6}
@@ -30,12 +30,12 @@ const Dashboard: React.FC = () => {
             borderRadius="lg"
             borderWidth={1}
             borderColor={borderColor}
-            data-oid="jdas_4w"
+            data-oid="wpkx_76"
           >
-            <Heading size="md" mb={4} data-oid="rz5eezr">
+            <Heading size="md" mb={4} data-oid="x56569q">
               Recent Transactions
             </Heading>
-            <Text data-oid="h_iuds3">No transactions yet.</Text>
+            <Text data-oid="pfo0s.0">No transactions yet.</Text>
           </Box>
 
           <Box
@@ -44,12 +44,12 @@ const Dashboard: React.FC = () => {
             borderRadius="lg"
             borderWidth={1}
             borderColor={borderColor}
-            data-oid="57j1vky"
+            data-oid="s5jlrw."
           >
-            <Heading size="md" mb={4} data-oid="::2912g">
+            <Heading size="md" mb={4} data-oid="2oog08l">
               Budget Overview
             </Heading>
-            <Text data-oid="6uje8i7">
+            <Text data-oid=":_oho8:">
               Start by adding your budget categories.
             </Text>
           </Box>

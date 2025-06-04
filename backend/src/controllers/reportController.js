@@ -32,8 +32,8 @@ const getFinancialStats = async (req, res) => {
         COALESCE(SUM(CASE WHEN type = 'income' THEN amount ELSE 0 END), 0) as total_income,
         COALESCE(SUM(CASE WHEN type = 'expense' THEN amount ELSE 0 END), 0) as total_expenses
        FROM transactions 
-       WHERE user_id = ? AND date >= DATE_SUB(CURDATE(), INTERVAL ${intervalValue} ${intervalUnit})`,
-      [userId]
+       WHERE user_id = ? AND date >= DATE_SUB(CURDATE(), INTERVAL ? ${intervalUnit})`,
+      [userId, intervalValue]
     );
 
     // Get previous period stats for comparison - Fixed SQL syntax
@@ -43,9 +43,9 @@ const getFinancialStats = async (req, res) => {
         COALESCE(SUM(CASE WHEN type = 'expense' THEN amount ELSE 0 END), 0) as prev_expenses
        FROM transactions 
        WHERE user_id = ? 
-       AND date >= DATE_SUB(CURDATE(), INTERVAL ${intervalValue * 2} ${intervalUnit}) 
-       AND date < DATE_SUB(CURDATE(), INTERVAL ${intervalValue} ${intervalUnit})`,
-      [userId]
+       AND date >= DATE_SUB(CURDATE(), INTERVAL ? ${intervalUnit}) 
+       AND date < DATE_SUB(CURDATE(), INTERVAL ? ${intervalUnit})`,
+      [userId, intervalValue * 2, intervalValue]
     );
 
     // Calculate percentages
@@ -67,10 +67,10 @@ const getFinancialStats = async (req, res) => {
         SUM(CASE WHEN type = 'income' THEN amount ELSE 0 END) as income,
         SUM(CASE WHEN type = 'expense' THEN amount ELSE 0 END) as expense
        FROM transactions 
-       WHERE user_id = ? AND date >= DATE_SUB(CURDATE(), INTERVAL ${intervalValue} ${intervalUnit})
+       WHERE user_id = ? AND date >= DATE_SUB(CURDATE(), INTERVAL ? ${intervalUnit})
        GROUP BY DATE_FORMAT(date, '%Y-%m-%d') 
        ORDER BY date ASC`,
-      [userId]
+      [userId, intervalValue]
     );
 
     const timeline = timelineData.map(row => row.date);
@@ -132,8 +132,8 @@ const getCategoryBreakdown = async (req, res) => {
        FROM transactions 
        WHERE user_id = ? 
        AND type = 'expense' 
-       AND date >= DATE_SUB(CURDATE(), INTERVAL ${intervalValue} ${intervalUnit})`,
-      [userId]
+       AND date >= DATE_SUB(CURDATE(), INTERVAL ? ${intervalUnit})`,
+      [userId, intervalValue]
     );
 
     const totalExpenses = totalResult[0].total_expenses;
@@ -147,12 +147,12 @@ const getCategoryBreakdown = async (req, res) => {
        LEFT JOIN transactions t ON c.id = t.category_id 
          AND t.user_id = ? 
          AND t.type = 'expense' 
-         AND t.date >= DATE_SUB(CURDATE(), INTERVAL ${intervalValue} ${intervalUnit})
+         AND t.date >= DATE_SUB(CURDATE(), INTERVAL ? ${intervalUnit})
        WHERE c.user_id = ? AND c.type = 'expense' 
        GROUP BY c.id, c.name 
        HAVING total > 0 
        ORDER BY total DESC`,
-      [totalExpenses || 1, userId, userId]
+      [totalExpenses || 1, userId, intervalValue, userId]
     );
 
     res.json({
@@ -208,10 +208,10 @@ const getSavingsTrend = async (req, res) => {
         DATE_FORMAT(date, ?) as period,
         SUM(CASE WHEN type = 'income' THEN amount ELSE -amount END) as net_amount
        FROM transactions 
-       WHERE user_id = ? AND date >= DATE_SUB(CURDATE(), INTERVAL ${intervalValue} ${intervalUnit})
+       WHERE user_id = ? AND date >= DATE_SUB(CURDATE(), INTERVAL ? ${intervalUnit})
        GROUP BY period 
        ORDER BY period ASC`,
-      [dateFormat, userId]
+      [dateFormat, userId, intervalValue]
     );
 
     let runningTotal = 0;

@@ -11,7 +11,15 @@ const PORT = 5001;
 // CORS configuration
 const corsOptions = {
   origin: function(origin, callback) {
-    const allowedOrigins = ['http://localhost:3000', 'http://localhost:3001', 'http://localhost:3002'];
+    // Allow all localhost ports for development
+    const allowedOrigins = [
+      'http://localhost:3000', 
+      'http://localhost:3001', 
+      'http://localhost:3002',
+      'http://localhost:3003',
+      'http://localhost:3004',
+      'http://localhost:3005'
+    ];
     console.log('Request origin:', origin);
     // Allow requests with no origin (like mobile apps or curl requests)
     if (!origin || allowedOrigins.indexOf(origin) !== -1) {
