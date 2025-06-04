@@ -129,21 +129,21 @@ const Budget = () => {
   };
 
   return (
-    <Box p={8} data-oid="zrf-sg8">
-      <VStack spacing={6} align="stretch" data-oid="9_.60q2">
-        <Flex justify="space-between" align="center" data-oid="eb4-weg">
-          <Heading size="lg" data-oid="wlu1j4t">
+    <Box p={8} data-oid="-30o23n">
+      <VStack spacing={6} align="stretch" data-oid="7cian-5">
+        <Flex justify="space-between" align="center" data-oid="_m04pzw">
+          <Heading size="lg" data-oid="vwoiibr">
             Budget Management
           </Heading>
           <Button
-            leftIcon={<FiPlus data-oid="ew9r_-3" />}
+            leftIcon={<FiPlus data-oid="u2j9_em" />}
             colorScheme="teal"
             onClick={() => {
               setEditingCategory(null);
               setFormData({ name: "", budget: 0 });
               onOpen();
             }}
-            data-oid="r11q-rs"
+            data-oid="qqohruo"
           >
             Add Category
           </Button>
@@ -153,53 +153,53 @@ const Budget = () => {
           templateColumns={{ base: "1fr", md: "repeat(3, 1fr)" }}
           gap={6}
           mb={6}
-          data-oid="_txildv"
+          data-oid=":k1_dqf"
         >
-          <Card bg="white" shadow="sm" data-oid="o42r-a4">
-            <CardBody data-oid="abqr-8v">
-              <Stat data-oid="k15ar0g">
-                <StatLabel color="gray.500" data-oid="4nhejmb">
+          <Card bg="white" shadow="sm" data-oid="57h09mq">
+            <CardBody data-oid="mgyh568">
+              <Stat data-oid="nvkbi9i">
+                <StatLabel color="gray.500" data-oid=".4qllw7">
                   Total Budget
                 </StatLabel>
-                <StatNumber color="teal.500" data-oid="kln2le2">
+                <StatNumber color="teal.500" data-oid=":x_33sg">
                   ETB {totalBudget.toLocaleString()}
                 </StatNumber>
-                <StatHelpText data-oid="xpehww_">
+                <StatHelpText data-oid="u4pz1.h">
                   Monthly allocation
                 </StatHelpText>
               </Stat>
             </CardBody>
           </Card>
 
-          <Card bg="white" shadow="sm" data-oid="6n94tqc">
-            <CardBody data-oid="b.rm5pg">
-              <Stat data-oid="wzatn5-">
-                <StatLabel color="gray.500" data-oid="ifu3ogu">
+          <Card bg="white" shadow="sm" data-oid="d.me.:1">
+            <CardBody data-oid="0xx9.i5">
+              <Stat data-oid="zwbl4j5">
+                <StatLabel color="gray.500" data-oid="c653_bi">
                   Total Spent
                 </StatLabel>
-                <StatNumber color="blue.500" data-oid="lctmlgh">
+                <StatNumber color="blue.500" data-oid="nw.4ux7">
                   ETB {totalSpent.toLocaleString()}
                 </StatNumber>
-                <StatHelpText data-oid="56yho_0">
+                <StatHelpText data-oid="sgptqc1">
                   {((totalSpent / totalBudget) * 100).toFixed(1)}% of budget
                 </StatHelpText>
               </Stat>
             </CardBody>
           </Card>
 
-          <Card bg="white" shadow="sm" data-oid="98-xgu7">
-            <CardBody data-oid="o.7nza7">
-              <Stat data-oid="01me985">
-                <StatLabel color="gray.500" data-oid="abv-sy0">
+          <Card bg="white" shadow="sm" data-oid="40nwe3s">
+            <CardBody data-oid="i:nz.3w">
+              <Stat data-oid="rg13ga0">
+                <StatLabel color="gray.500" data-oid="rkrpst:">
                   Remaining Budget
                 </StatLabel>
                 <StatNumber
                   color={remainingBudget >= 0 ? "green.500" : "red.500"}
-                  data-oid="jwt2t-:"
+                  data-oid="8yh72uw"
                 >
                   ETB {remainingBudget.toLocaleString()}
                 </StatNumber>
-                <StatHelpText data-oid="4a7-zf6">
+                <StatHelpText data-oid="-zfoe2-">
                   Available to spend
                 </StatHelpText>
               </Stat>
@@ -210,41 +210,41 @@ const Budget = () => {
         <Grid
           templateColumns={{ base: "1fr", md: "repeat(2, 1fr)" }}
           gap={6}
-          data-oid="q5xumd5"
+          data-oid="6pry.i:"
         >
           {categories.map((category) => {
             const percentage = (category.spent / category.budget) * 100;
             return (
-              <Card key={category.id} p={4} data-oid="fwg61b4">
-                <CardBody data-oid="rolvrvf">
-                  <VStack spacing={4} align="stretch" data-oid=".tefnpr">
+              <Card key={category.id} p={4} data-oid="fj8ctci">
+                <CardBody data-oid="w7vcya7">
+                  <VStack spacing={4} align="stretch" data-oid="cx21m6q">
                     <Flex
                       justify="space-between"
                       align="center"
-                      data-oid="u71bnrz"
+                      data-oid="k.1063u"
                     >
-                      <Heading size="md" data-oid="c8.mdt:">
+                      <Heading size="md" data-oid="fd5h9er">
                         {category.name}
                       </Heading>
-                      <HStack data-oid="e8qieg8">
+                      <HStack data-oid="ptfp_4y">
                         <IconButton
                           aria-label="Edit category"
-                          icon={<FiEdit2 data-oid="54iwvn3" />}
+                          icon={<FiEdit2 data-oid="vzo-wn0" />}
                           size="sm"
                           colorScheme="blue"
                           variant="ghost"
                           onClick={() => handleEdit(category)}
-                          data-oid="ivwpexd"
+                          data-oid="1e4yhow"
                         />
 
                         <IconButton
                           aria-label="Delete category"
-                          icon={<FiTrash2 data-oid="rz0.07q" />}
+                          icon={<FiTrash2 data-oid="._g58ig" />}
                           size="sm"
                           colorScheme="red"
                           variant="ghost"
                           onClick={() => handleDelete(category.id)}
-                          data-oid="e1qap4q"
+                          data-oid="4ztc.mu"
                         />
                       </HStack>
                     </Flex>
@@ -252,12 +252,12 @@ const Budget = () => {
                     <Flex
                       justify="space-between"
                       align="center"
-                      data-oid="il10ih_"
+                      data-oid="d-b9qer"
                     >
-                      <Box flex="1" mr={4} data-oid="yp62pm8">
+                      <Box flex="1" mr={4} data-oid="9_9i37v">
                         <Tooltip
                           label={`${percentage.toFixed(1)}% spent`}
-                          data-oid="u7sza_k"
+                          data-oid="e6.n3fb"
                         >
                           <Progress
                             value={percentage}
@@ -270,7 +270,7 @@ const Budget = () => {
                             }
                             height="8px"
                             rounded="full"
-                            data-oid="6hk4wbk"
+                            data-oid="jz9h0h4"
                           />
                         </Tooltip>
                       </Box>
@@ -284,9 +284,9 @@ const Budget = () => {
                               : "green.400"
                         }
                         size="50px"
-                        data-oid="3rd3dyj"
+                        data-oid="2fjvuo4"
                       >
-                        <CircularProgressLabel data-oid=":r728_u">
+                        <CircularProgressLabel data-oid="s2:n522">
                           {percentage.toFixed(0)}%
                         </CircularProgressLabel>
                       </CircularProgress>
@@ -295,12 +295,12 @@ const Budget = () => {
                     <Flex
                       justify="space-between"
                       color="gray.600"
-                      data-oid="o_f1qs5"
+                      data-oid="fs5lht-"
                     >
-                      <Text data-oid="0hpwx5f">
+                      <Text data-oid="yl8:y13">
                         Spent: ETB {category.spent.toLocaleString()}
                       </Text>
-                      <Text data-oid="rcpc8ze">
+                      <Text data-oid="1qq.17:">
                         Budget: ETB {category.budget.toLocaleString()}
                       </Text>
                     </Flex>
@@ -312,40 +312,40 @@ const Budget = () => {
         </Grid>
       </VStack>
 
-      <Modal isOpen={isOpen} onClose={handleClose} size="md" data-oid="0w530q:">
-        <ModalOverlay data-oid="-yg89dy" />
-        <ModalContent data-oid="l41.i.w">
-          <ModalHeader data-oid="cnqp2:-">
+      <Modal isOpen={isOpen} onClose={handleClose} size="md" data-oid="_n6w6rl">
+        <ModalOverlay data-oid="wzllvt_" />
+        <ModalContent data-oid="y:.jmk9">
+          <ModalHeader data-oid="amdcopq">
             {editingCategory ? "Edit Category" : "Add Budget Category"}
           </ModalHeader>
-          <ModalCloseButton data-oid="xeh2..w" />
-          <ModalBody pb={6} data-oid="z6e7hc3">
-            <VStack spacing={4} data-oid="chgjvie">
-              <FormControl data-oid="azi.37m">
-                <FormLabel data-oid="uuhwjb_">Category Name</FormLabel>
+          <ModalCloseButton data-oid="faw2chk" />
+          <ModalBody pb={6} data-oid="lf0pa7s">
+            <VStack spacing={4} data-oid="id.me5o">
+              <FormControl data-oid="2496bxg">
+                <FormLabel data-oid="olixiw5">Category Name</FormLabel>
                 <Input
                   placeholder="Enter category name"
                   value={formData.name}
                   onChange={(e) =>
                     setFormData({ ...formData, name: e.target.value })
                   }
-                  data-oid="5z.aio_"
+                  data-oid="x4dovy3"
                 />
               </FormControl>
 
-              <FormControl data-oid="qrtihdi">
-                <FormLabel data-oid="lb3k3k2">Budget Amount (ETB)</FormLabel>
+              <FormControl data-oid="x._plpr">
+                <FormLabel data-oid="1:ojyj7">Budget Amount (ETB)</FormLabel>
                 <NumberInput
                   min={0}
                   value={formData.budget}
                   onChange={(_, value) =>
                     setFormData({ ...formData, budget: value })
                   }
-                  data-oid="v-mk5go"
+                  data-oid=".o0vmy8"
                 >
                   <NumberInputField
                     placeholder="Enter budget amount"
-                    data-oid="las530d"
+                    data-oid="hlk-hye"
                   />
                 </NumberInput>
               </FormControl>
@@ -354,7 +354,7 @@ const Budget = () => {
                 colorScheme="teal"
                 width="full"
                 onClick={handleSubmit}
-                data-oid="e22mrhi"
+                data-oid="idj0zoa"
               >
                 {editingCategory ? "Update Category" : "Save Category"}
               </Button>

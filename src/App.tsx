@@ -13,68 +13,70 @@ import ProtectedRoute from "./components/ProtectedRoute";
 
 const App: React.FC = () => {
   return (
-    <Box data-oid="6z:qd3m">
-      <Navigation data-oid="8w49mh4" />
-      <Box p={4} mt={16} data-oid="n1m-7m7">
-        <Routes data-oid="kiro:9f">
+    <Box data-oid="3qq_5.p">
+      <Navigation data-oid="_7j8eqz" />
+      <Box p={4} mt={16} data-oid="gxbqp8_">
+        <Routes data-oid="f25f_jt">
           <Route
             path="/"
             element={
-              <ProtectedRoute data-oid="hb..8tf">
-                <Dashboard data-oid="8pbhdsh" />
+              <ProtectedRoute data-oid="4b4dx97">
+                <Dashboard data-oid="9kb1-i9" />
               </ProtectedRoute>
             }
-            data-oid="-987vtl"
+            data-oid="8ey5nhw"
           />
 
           <Route
             path="/login"
-            element={<Login data-oid="fw8w-om" />}
-            data-oid="ki_33qv"
+            element={<Login data-oid="nbio30w" />}
+            data-oid="as9yjq3"
           />
+
           <Route
             path="/register"
-            element={<Register data-oid="qx_ihjr" />}
-            data-oid="t:2yw03"
+            element={<Register data-oid="2o2ghl1" />}
+            data-oid="cjj34n5"
           />
+
           <Route
             path="/transactions"
             element={
-              <ProtectedRoute data-oid="_cjqcim">
-                <Transactions data-oid="t20_:3c" />
+              <ProtectedRoute data-oid="cd::490">
+                <Transactions data-oid="yo1l9u_" />
               </ProtectedRoute>
             }
-            data-oid="iobhy8x"
+            data-oid="yjqfyql"
           />
 
           <Route
             path="/categories"
             element={
-              <ProtectedRoute data-oid="4pb4fvk">
-                <Categories data-oid="04de98l" />
+              <ProtectedRoute data-oid="c.yyr9y">
+                <Categories data-oid="8ukdj1:" />
               </ProtectedRoute>
             }
-            data-oid="hruc6iw"
+            data-oid=":jpz0.8"
           />
 
           <Route
             path="/reports"
             element={
-              <ProtectedRoute data-oid="t5sium3">
-                <Reports data-oid="8x2qr6x" />
+              <ProtectedRoute data-oid=".zh_rk2">
+                <Reports data-oid="t3yqdj0" />
               </ProtectedRoute>
             }
-            data-oid="9e_-47d"
+            data-oid="s1jpne1"
           />
 
           <Route
             path="/settings"
             element={
-              <ProtectedRoute data-oid="9jnl980">
-                <Settings data-oid="ghrqrf3" />
+              <ProtectedRoute data-oid="b-toc:q">
+                <Settings data-oid="0p1rv5." />
               </ProtectedRoute>
             }
-            data-oid="7f1i.s7"
+            data-oid="uo6_bof"
           />
         </Routes>
       </Box>

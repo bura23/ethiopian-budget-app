@@ -99,35 +99,35 @@ const TransactionAnalytics: React.FC<TransactionAnalyticsProps> = ({
   };
 
   return (
-    <Box data-oid="8fsb537">
-      <Grid templateColumns="repeat(3, 1fr)" gap={6} mb={8} data-oid="q681ixz">
-        <Stat bg="white" p={4} borderRadius="lg" shadow="sm" data-oid="njjn3zd">
-          <StatLabel data-oid="0-vx9n5">Total Income</StatLabel>
-          <StatNumber color="green.500" data-oid="q8ogvtc">
+    <Box data-oid="wx7uz7t">
+      <Grid templateColumns="repeat(3, 1fr)" gap={6} mb={8} data-oid="gp5kovf">
+        <Stat bg="white" p={4} borderRadius="lg" shadow="sm" data-oid="-bqbcr:">
+          <StatLabel data-oid="58ghlbq">Total Income</StatLabel>
+          <StatNumber color="green.500" data-oid="bra6dbg">
             {formatETB(totalIncome)}
           </StatNumber>
-          <StatHelpText data-oid="jnk049q">All time income</StatHelpText>
+          <StatHelpText data-oid="z1wgik:">All time income</StatHelpText>
         </Stat>
-        <Stat bg="white" p={4} borderRadius="lg" shadow="sm" data-oid="4ru_sx5">
-          <StatLabel data-oid="203::2j">Total Expenses</StatLabel>
-          <StatNumber color="red.500" data-oid="8kdui64">
+        <Stat bg="white" p={4} borderRadius="lg" shadow="sm" data-oid="8r1v.wv">
+          <StatLabel data-oid="sb4mkxl">Total Expenses</StatLabel>
+          <StatNumber color="red.500" data-oid="7nlbivf">
             {formatETB(totalExpenses)}
           </StatNumber>
-          <StatHelpText data-oid="w-vb3g0">All time expenses</StatHelpText>
+          <StatHelpText data-oid="t1geraz">All time expenses</StatHelpText>
         </Stat>
-        <Stat bg="white" p={4} borderRadius="lg" shadow="sm" data-oid="t7zfynn">
-          <StatLabel data-oid="1:z5m_o">Current Balance</StatLabel>
+        <Stat bg="white" p={4} borderRadius="lg" shadow="sm" data-oid="tddxoqu">
+          <StatLabel data-oid="j50b8r_">Current Balance</StatLabel>
           <StatNumber
             color={balance >= 0 ? "green.500" : "red.500"}
-            data-oid="98s3_sh"
+            data-oid="d2vso.4"
           >
             {formatETB(balance)}
           </StatNumber>
-          <StatHelpText data-oid="us1xcn1">Net balance</StatHelpText>
+          <StatHelpText data-oid="tv9cmam">Net balance</StatHelpText>
         </Stat>
       </Grid>
-      <Box bg="white" p={6} borderRadius="lg" shadow="sm" data-oid="hzv-m0c">
-        <Line options={chartOptions} data={chartData} data-oid="54f53ax" />
+      <Box bg="white" p={6} borderRadius="lg" shadow="sm" data-oid="51aavvo">
+        <Line options={chartOptions} data={chartData} data-oid="_-x8lyc" />
       </Box>
     </Box>
   );

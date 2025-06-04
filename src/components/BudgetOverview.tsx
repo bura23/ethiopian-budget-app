@@ -33,48 +33,48 @@ const BudgetOverview: React.FC<BudgetOverviewProps> = ({
   const spentPercentage = (totalExpenses / totalBudget) * 100;
 
   return (
-    <Box p={6} bg="white" borderRadius="lg" shadow="sm" data-oid="as7mq96">
-      <Text fontSize="2xl" fontWeight="bold" mb={6} data-oid="m_j_aq.">
+    <Box p={6} bg="white" borderRadius="lg" shadow="sm" data-oid="0yzowdq">
+      <Text fontSize="2xl" fontWeight="bold" mb={6} data-oid="k:jfd.p">
         Budget Overview
       </Text>
-      <Grid templateColumns="repeat(3, 1fr)" gap={6} data-oid="_uxya8b">
-        <Stat data-oid="f0avyyf">
-          <StatLabel data-oid="kwpm136">Total Budget</StatLabel>
-          <StatNumber data-oid=".8908v-">{formatETB(totalBudget)}</StatNumber>
-          <StatHelpText data-oid="yq0s9-3">Monthly Budget</StatHelpText>
+      <Grid templateColumns="repeat(3, 1fr)" gap={6} data-oid="iub1vx7">
+        <Stat data-oid="lnfk-ud">
+          <StatLabel data-oid="uh7lbol">Total Budget</StatLabel>
+          <StatNumber data-oid="d2b6.2b">{formatETB(totalBudget)}</StatNumber>
+          <StatHelpText data-oid="lzc5euu">Monthly Budget</StatHelpText>
         </Stat>
-        <Stat data-oid="1l05m9-">
-          <StatLabel data-oid="nz9clfv">Total Expenses</StatLabel>
+        <Stat data-oid="md.x.pr">
+          <StatLabel data-oid="6_5.gp1">Total Expenses</StatLabel>
           <StatNumber
             color={spentPercentage > 100 ? "red.500" : "gray.700"}
-            data-oid="dkt0lnr"
+            data-oid="34phora"
           >
             {formatETB(totalExpenses)}
           </StatNumber>
-          <StatHelpText data-oid="r3ejobt">
+          <StatHelpText data-oid="yv_fs.t">
             {spentPercentage.toFixed(1)}% spent
           </StatHelpText>
         </Stat>
-        <Stat data-oid="qy_f2o.">
-          <StatLabel data-oid="vnd:152">Remaining</StatLabel>
+        <Stat data-oid="puzsei:">
+          <StatLabel data-oid="w29wdpr">Remaining</StatLabel>
           <StatNumber
             color={remaining < 0 ? "red.500" : "green.500"}
-            data-oid="phhbgwd"
+            data-oid="x8n-m3c"
           >
             {formatETB(remaining)}
           </StatNumber>
-          <StatHelpText data-oid="gvz8kh7">
+          <StatHelpText data-oid="k-1x_-z">
             {remaining < 0 ? "Over budget" : "Available to spend"}
           </StatHelpText>
         </Stat>
       </Grid>
-      <Box mt={6} data-oid="upv.7a4">
+      <Box mt={6} data-oid="oar3b_9">
         <Progress
           value={spentPercentage}
           colorScheme={spentPercentage > 100 ? "red" : "teal"}
           size="lg"
           borderRadius="full"
-          data-oid="wwb622c"
+          data-oid="_klvd84"
         />
       </Box>
     </Box>

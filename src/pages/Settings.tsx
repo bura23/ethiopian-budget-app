@@ -90,34 +90,34 @@ const Settings = () => {
   };
 
   return (
-    <Container maxW="container.lg" py={8} data-oid="28xvq79">
-      <VStack spacing={8} align="stretch" data-oid="dpjh_0o">
-        <Heading data-oid="c54rvow">Profile Settings</Heading>
+    <Container maxW="container.lg" py={8} data-oid="d.b1qjv">
+      <VStack spacing={8} align="stretch" data-oid="s9knsk6">
+        <Heading data-oid="1iwp.i-">Profile Settings</Heading>
 
         <Box
           bg={bgColor}
           p={6}
           borderRadius="xl"
           shadow="md"
-          data-oid="1v11u7g"
+          data-oid="povw2su"
         >
-          <VStack spacing={6} align="stretch" data-oid="3a6rxef">
-            <Divider data-oid="q4zzxkj" />
+          <VStack spacing={6} align="stretch" data-oid="g8hc.by">
+            <Divider data-oid="7kpo_5:" />
 
-            <HStack spacing={8} data-oid="yn.hdv3">
-              <VStack data-oid="1vi1:rb">
+            <HStack spacing={8} data-oid="jf.wmrz">
+              <VStack data-oid="8oneur6">
                 <Avatar
                   size="2xl"
                   name={user?.name}
                   src={user?.photo_url}
-                  data-oid="4n0eqls"
+                  data-oid="xuq_jyn"
                 />
 
                 <Button
-                  leftIcon={<FiUpload data-oid="nu875-x" />}
+                  leftIcon={<FiUpload data-oid="w5z0c49" />}
                   onClick={() => fileInputRef.current?.click()}
                   size="sm"
-                  data-oid="4rl3mud"
+                  data-oid="e_0ho9k"
                 >
                   Upload Photo
                 </Button>
@@ -127,30 +127,30 @@ const Settings = () => {
                   hidden
                   accept="image/*"
                   onChange={handlePhotoUpload}
-                  data-oid="l0-c3vc"
+                  data-oid="c57ctb:"
                 />
               </VStack>
 
-              <VStack spacing={4} flex={1} data-oid="aps2z08">
-                <FormControl data-oid="z35:w20">
-                  <FormLabel data-oid="eyctq18">Name</FormLabel>
+              <VStack spacing={4} flex={1} data-oid="j23j93v">
+                <FormControl data-oid="8swh463">
+                  <FormLabel data-oid="g6:-j3a">Name</FormLabel>
                   <Input
                     value={profileData.name}
                     onChange={(e) =>
                       setProfileData({ ...profileData, name: e.target.value })
                     }
-                    data-oid="1lnap4o"
+                    data-oid="d2d6b3j"
                   />
                 </FormControl>
 
-                <FormControl data-oid="j4uq82m">
-                  <FormLabel data-oid="aa5.0om">Email</FormLabel>
+                <FormControl data-oid="8yw-18e">
+                  <FormLabel data-oid="va1k:g1">Email</FormLabel>
                   <Input
                     value={profileData.email}
                     onChange={(e) =>
                       setProfileData({ ...profileData, email: e.target.value })
                     }
-                    data-oid="oov_hd8"
+                    data-oid="70d1t4-"
                   />
                 </FormControl>
 
@@ -159,7 +159,7 @@ const Settings = () => {
                   alignSelf="flex-start"
                   onClick={handleProfileUpdate}
                   isLoading={isLoading}
-                  data-oid="03w48x4"
+                  data-oid="h4nftia"
                 >
                   Save Changes
                 </Button>
@@ -168,20 +168,20 @@ const Settings = () => {
           </VStack>
         </Box>
 
-        <Divider data-oid="._yabmn" />
+        <Divider data-oid="weonf3-" />
 
         <Box
           bg={bgColor}
           p={6}
           borderRadius="xl"
           shadow="md"
-          data-oid="b0w-1b5"
+          data-oid="qqzly2f"
         >
-          <VStack spacing={4} align="stretch" data-oid="z35.w3y">
-            <Heading size="md" data-oid="m0_y2nl">
+          <VStack spacing={4} align="stretch" data-oid="nd_:p4g">
+            <Heading size="md" data-oid="03w-4-x">
               Preferences
             </Heading>
-            <Text color="gray.500" data-oid="wwj3wsx">
+            <Text color="gray.500" data-oid="8e:tk4h">
               Additional preferences and settings can be configured here in
               future updates.
             </Text>

@@ -62,23 +62,23 @@ const StatCard = ({ label, value, trend, trendValue, icon: Icon }: any) => {
       transition={{ duration: 0.2 }}
       position="relative"
       overflow="hidden"
-      data-oid=".ltp6x_"
+      data-oid="k2numog"
     >
-      <Flex justify="space-between" align="start" data-oid=":5hyzlm">
-        <Stat data-oid="42oxq45">
-          <StatLabel fontSize="sm" color={textColor} mb={1} data-oid="xa0p0j3">
+      <Flex justify="space-between" align="start" data-oid="63w0y_j">
+        <Stat data-oid="c6_8ru4">
+          <StatLabel fontSize="sm" color={textColor} mb={1} data-oid="6p:cpsa">
             {label}
           </StatLabel>
           <StatNumber
             fontSize="3xl"
             fontWeight="bold"
             mb={2}
-            data-oid="egbj_j."
+            data-oid="p_735rf"
           >
             ETB {parseInt(value).toLocaleString()}
           </StatNumber>
-          <StatHelpText mb={0} data-oid="xl27.0r">
-            <StatArrow type={trend} data-oid="sve5af5" />
+          <StatHelpText mb={0} data-oid="xn4c8-g">
+            <StatArrow type={trend} data-oid="wq::e6h" />
             {trendValue}%
           </StatHelpText>
         </Stat>
@@ -87,9 +87,9 @@ const StatCard = ({ label, value, trend, trendValue, icon: Icon }: any) => {
           borderRadius="xl"
           bg={trend === "increase" ? "green.100" : "red.100"}
           color={trend === "increase" ? "green.500" : "red.500"}
-          data-oid=".9r.42j"
+          data-oid="_lhhgv7"
         >
-          <Icon size={24} data-oid="g:nsyt7" />
+          <Icon size={24} data-oid="nf823d1" />
         </Box>
       </Flex>
     </MotionBox>
@@ -109,14 +109,14 @@ const BudgetProgressCard = ({ category, amount, total }: any) => {
       boxShadow="lg"
       whileHover={{ y: -5 }}
       transition={{ duration: 0.2 }}
-      data-oid="4_8pjwb"
+      data-oid="b77r752"
     >
-      <Flex justify="space-between" mb={2} data-oid="x015ao2">
+      <Flex justify="space-between" mb={2} data-oid="wj8:ggz">
         <Text
           fontSize="lg"
           fontWeight="bold"
           color={textColor}
-          data-oid="87v1jod"
+          data-oid="b52i2k6"
         >
           {category}
         </Text>
@@ -129,12 +129,12 @@ const BudgetProgressCard = ({ category, amount, total }: any) => {
                 ? "yellow.500"
                 : "teal.500"
           }
-          data-oid="_jr2gu7"
+          data-oid="49ucm0o"
         >
           {((amount / total) * 100).toFixed(1)}%
         </Text>
       </Flex>
-      <Text fontSize="sm" color={textColor} mb={2} data-oid="qmwxkhd">
+      <Text fontSize="sm" color={textColor} mb={2} data-oid="6pjcuio">
         ETB {amount.toLocaleString()} spent of ETB {total.toLocaleString()}
       </Text>
       <Progress
@@ -146,10 +146,10 @@ const BudgetProgressCard = ({ category, amount, total }: any) => {
         size="sm"
         hasStripe
         isAnimated
-        data-oid="wkt6a0y"
+        data-oid="_lf123c"
       />
 
-      <Text fontSize="xs" color={textColor} mt={2} data-oid="6bqtre7">
+      <Text fontSize="xs" color={textColor} mt={2} data-oid="w9ofmk9">
         ETB {(total - amount).toLocaleString()} remaining
       </Text>
     </MotionBox>
@@ -220,14 +220,14 @@ const Dashboard = () => {
   ];
 
   return (
-    <Container maxW="container.xl" py={6} data-oid="i_y2.lc">
-      <Flex justify="space-between" align="center" mb={8} data-oid="4abji6d">
-        <Heading data-oid="6y74u0a">Dashboard</Heading>
+    <Container maxW="container.xl" py={6} data-oid="khectw-">
+      <Flex justify="space-between" align="center" mb={8} data-oid="8zn4sw1">
+        <Heading data-oid=":oi48pg">Dashboard</Heading>
         <Button
-          leftIcon={<FiPlus data-oid="38wb:x1" />}
+          leftIcon={<FiPlus data-oid="b0q93.u" />}
           colorScheme="teal"
           onClick={onOpen}
-          data-oid="_cazlu2"
+          data-oid="z:05khx"
         >
           Add Transaction
         </Button>
@@ -237,40 +237,40 @@ const Dashboard = () => {
         columns={{ base: 1, md: 2 }}
         spacing={6}
         mb={8}
-        data-oid="vx4qq1d"
+        data-oid="hj.-foc"
       >
         {stats.map((stat, index) => (
-          <StatCard key={index} {...stat} data-oid="e9jl.wj" />
+          <StatCard key={index} {...stat} data-oid="iac3ciy" />
         ))}
       </SimpleGrid>
 
       <Grid
         templateColumns={{ base: "1fr", lg: "2fr 1fr" }}
         gap={6}
-        data-oid="srjx2w0"
+        data-oid="0-5q7:b"
       >
-        <GridItem data-oid="c1yx7og">
-          <Heading size="md" mb={6} data-oid="bgd0ypa">
+        <GridItem data-oid="1w2zvno">
+          <Heading size="md" mb={6} data-oid="lbc3oyt">
             Budget Overview
           </Heading>
           <SimpleGrid
             columns={{ base: 1, md: 2 }}
             spacing={6}
-            data-oid="680k_7s"
+            data-oid="2d7_.bz"
           >
             {budgets.map((budget, index) => (
-              <BudgetProgressCard key={index} {...budget} data-oid="-v43yas" />
+              <BudgetProgressCard key={index} {...budget} data-oid="12mmzj4" />
             ))}
           </SimpleGrid>
         </GridItem>
-        <GridItem data-oid="32coz_h">
+        <GridItem data-oid="exomhrw">
           <AIInsights
             financialData={{
               expenses: budgets,
               income: stats[0].value,
               savings: stats[0].value - stats[1].value,
             }}
-            data-oid="gvcypmd"
+            data-oid="yp5y4pd"
           />
         </GridItem>
       </Grid>
@@ -279,7 +279,7 @@ const Dashboard = () => {
         isOpen={isOpen}
         onClose={onClose}
         onSubmit={handleTransactionSubmit}
-        data-oid="fi0wfzk"
+        data-oid=":6aky6_"
       />
     </Container>
   );

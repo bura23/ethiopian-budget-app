@@ -1,15 +1,21 @@
 import {
-  Theme,
+  Box,
   Container,
   Heading,
-  Box,
   Text,
   Flex,
-  Card,
-} from "@radix-ui/themes";
-import * as Tabs from "@radix-ui/react-tabs";
-import * as Select from "@radix-ui/react-select";
-import styled from "styled-components";
+  SimpleGrid,
+  useColorModeValue,
+  VStack,
+  HStack,
+  Tabs,
+  TabList,
+  TabPanels,
+  Tab,
+  TabPanel,
+  Select,
+  Badge,
+} from "@chakra-ui/react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -21,8 +27,9 @@ import {
   Tooltip,
   Legend,
   ArcElement,
+  Filler,
 } from "chart.js";
-import type { ChartData } from "chart.js";
+import type { ChartData, ChartOptions } from "chart.js";
 import { Line, Bar, Doughnut } from "react-chartjs-2";
 import { useState, useEffect } from "react";
 import {
@@ -41,6 +48,7 @@ ChartJS.register(
   Title,
   Tooltip,
   Legend,
+  Filler,
 );
 
 interface ApiResponse<T> {
@@ -71,42 +79,6 @@ interface SavingsData {
   data: number[];
 }
 
-interface StyledProps {
-  isPositive: boolean;
-}
-
-const StyledCard = styled(Card)`
-  padding: 1.5rem;
-  border-radius: 8px;
-  background: var(--color-background);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-`;
-
-const StatCard = styled(StyledCard)`
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-`;
-
-const StatValue = styled.div`
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: var(--color-primary);
-`;
-
-const StatChange = styled.div<StyledProps>`
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-  color: ${(props: StyledProps) =>
-    props.isPositive ? "var(--color-success)" : "var(--color-error)"};
-  font-size: 0.875rem;
-
-  &::before {
-    content: "${(props: StyledProps) => (props.isPositive ? "↑" : "↓")}";
-  }
-`;
-
 const Reports = () => {
   const [timeRange, setTimeRange] = useState("month");
   const [isLoading, setIsLoading] = useState(true);
@@ -132,6 +104,10 @@ const Reports = () => {
     datasets: [],
   });
 
+  const bgColor = useColorModeValue("white", "gray.800");
+  const cardBg = useColorModeValue("white", "gray.700");
+  const borderColor = useColorModeValue("gray.200", "gray.600");
+
   useEffect(() => {
     loadData();
   }, [timeRange]);
@@ -143,9 +119,11 @@ const Reports = () => {
       const statsPromise = getFinancialStats(timeRange) as Promise<
         ApiResponse<StatsData>
       >;
+
       const categoryPromise = getCategoryBreakdown(timeRange) as Promise<
         ApiResponse<CategoryData[]>
       >;
+
       const savingsTrendPromise = getSavingsTrend(timeRange) as Promise<
         ApiResponse<SavingsData>
       >;
@@ -181,14 +159,20 @@ const Reports = () => {
             {
               label: "Income",
               data: statsData.incomeData,
-              borderColor: "rgb(34, 197, 94)",
-              backgroundColor: "rgba(34, 197, 94, 0.5)",
+              backgroundColor: "rgba(16, 185, 129, 0.8)",
+              borderColor: "#10b981",
+              borderWidth: 2,
+              borderRadius: 8,
+              borderSkipped: false,
             },
             {
               label: "Expenses",
               data: statsData.expenseData,
-              borderColor: "rgb(239, 68, 68)",
-              backgroundColor: "rgba(239, 68, 68, 0.5)",
+              backgroundColor: "rgba(239, 68, 68, 0.8)",
+              borderColor: "#ef4444",
+              borderWidth: 2,
+              borderRadius: 8,
+              borderSkipped: false,
             },
           ],
         });
@@ -208,22 +192,21 @@ const Reports = () => {
             {
               data: validCategories.map((cat) => cat.percentage),
               backgroundColor: [
-                "rgba(34, 197, 94, 0.6)",
-                "rgba(239, 68, 68, 0.6)",
-                "rgba(59, 130, 246, 0.6)",
-                "rgba(249, 115, 22, 0.6)",
-                "rgba(168, 85, 247, 0.6)",
+                "#667eea",
+                "#764ba2",
+                "#f093fb",
+                "#f5576c",
+                "#4facfe",
+                "#00f2fe",
+                "#43e97b",
+                "#38f9d7",
+                "#ffecd2",
+                "#fcb69f",
               ],
 
-              borderColor: [
-                "rgb(34, 197, 94)",
-                "rgb(239, 68, 68)",
-                "rgb(59, 130, 246)",
-                "rgb(249, 115, 22)",
-                "rgb(168, 85, 247)",
-              ],
-
-              borderWidth: 1,
+              borderWidth: 0,
+              hoverBorderWidth: 3,
+              hoverBorderColor: "#ffffff",
             },
           ],
         });
@@ -240,9 +223,16 @@ const Reports = () => {
             {
               label: "Savings",
               data: savingsTrend.data,
-              borderColor: "rgb(59, 130, 246)",
-              backgroundColor: "rgba(59, 130, 246, 0.5)",
+              borderColor: "#667eea",
+              backgroundColor: "rgba(102, 126, 234, 0.1)",
+              borderWidth: 3,
+              fill: true,
               tension: 0.4,
+              pointBackgroundColor: "#667eea",
+              pointBorderColor: "#ffffff",
+              pointBorderWidth: 2,
+              pointRadius: 6,
+              pointHoverRadius: 8,
             },
           ],
         });
@@ -257,176 +247,505 @@ const Reports = () => {
     }
   };
 
+  const chartOptions: ChartOptions<any> = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        position: "top" as const,
+        labels: {
+          usePointStyle: true,
+          padding: 20,
+          font: {
+            size: 12,
+            weight: "normal",
+          },
+        },
+      },
+      tooltip: {
+        backgroundColor: "rgba(0, 0, 0, 0.8)",
+        titleColor: "#ffffff",
+        bodyColor: "#ffffff",
+        borderColor: "rgba(255, 255, 255, 0.1)",
+        borderWidth: 1,
+        cornerRadius: 8,
+        displayColors: true,
+        callbacks: {
+          label: (context: any) => {
+            const label = context.dataset.label || "";
+            const value = context.parsed.y || context.parsed;
+            return `${label}: ETB ${value.toLocaleString()}`;
+          },
+        },
+      },
+    },
+    scales: {
+      x: {
+        grid: {
+          display: false,
+        },
+        ticks: {
+          font: {
+            size: 11,
+          },
+          color: "#64748b",
+        },
+      },
+      y: {
+        grid: {
+          color: "rgba(0, 0, 0, 0.05)",
+        },
+        ticks: {
+          font: {
+            size: 11,
+          },
+          color: "#64748b",
+          callback: (value: any) => `ETB ${value}`,
+        },
+      },
+    },
+  };
+
+  const doughnutOptions: ChartOptions<"doughnut"> = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        position: "right" as const,
+        labels: {
+          usePointStyle: true,
+          padding: 20,
+          font: {
+            size: 12,
+            weight: "normal",
+          },
+        },
+      },
+      tooltip: {
+        backgroundColor: "rgba(0, 0, 0, 0.8)",
+        titleColor: "#ffffff",
+        bodyColor: "#ffffff",
+        borderColor: "rgba(255, 255, 255, 0.1)",
+        borderWidth: 1,
+        cornerRadius: 8,
+        callbacks: {
+          label: (context: any) => {
+            const label = context.label || "";
+            const value = context.parsed;
+            return `${label}: ${value.toFixed(1)}%`;
+          },
+        },
+      },
+    },
+    cutout: "60%",
+  };
+
+  const lineOptions: ChartOptions<"line"> = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        position: "top" as const,
+        labels: {
+          usePointStyle: true,
+          padding: 20,
+          font: {
+            size: 12,
+            weight: "normal",
+          },
+        },
+      },
+      tooltip: {
+        backgroundColor: "rgba(0, 0, 0, 0.8)",
+        titleColor: "#ffffff",
+        bodyColor: "#ffffff",
+        borderColor: "rgba(255, 255, 255, 0.1)",
+        borderWidth: 1,
+        cornerRadius: 8,
+        callbacks: {
+          label: (context: any) => {
+            const value = context.parsed.y;
+            return `Savings: ETB ${value.toLocaleString()}`;
+          },
+        },
+      },
+    },
+    scales: {
+      x: {
+        grid: {
+          display: false,
+        },
+        ticks: {
+          font: {
+            size: 11,
+          },
+          color: "#64748b",
+        },
+      },
+      y: {
+        grid: {
+          color: "rgba(0, 0, 0, 0.05)",
+        },
+        ticks: {
+          font: {
+            size: 11,
+          },
+          color: "#64748b",
+          callback: (value: any) => `ETB ${value}`,
+        },
+      },
+    },
+  };
+
   if (isLoading) {
     return (
-      <Theme data-oid="o5dw4gd">
-        <Container size="4" data-oid="iv00cgk">
-          <Flex direction="column" gap="4" py="6" data-oid="g42515s">
-            <Heading data-oid="io.q:db">Financial Reports</Heading>
-            <Flex justify="center" align="center" py="9" data-oid="3fyqro_">
-              <Text data-oid="3-1.i:4">Loading reports...</Text>
-            </Flex>
+      <Container maxW="container.xl" py={8} data-oid="ozmrted">
+        <VStack spacing={8} align="stretch" data-oid="lcvet4:">
+          <Heading
+            size="2xl"
+            bgGradient="linear(to-r, teal.400, blue.500)"
+            bgClip="text"
+            textAlign="center"
+            data-oid=".dgevou"
+          >
+            Financial Reports
+          </Heading>
+          <Flex justify="center" align="center" py={20} data-oid="g067teu">
+            <Box
+              p={8}
+              borderRadius="lg"
+              bg={cardBg}
+              shadow="lg"
+              textAlign="center"
+              data-oid="u7qio_y"
+            >
+              <Text fontSize="lg" color="gray.500" data-oid="jsz8kim">
+                Loading reports...
+              </Text>
+            </Box>
           </Flex>
-        </Container>
-      </Theme>
+        </VStack>
+      </Container>
     );
   }
 
   if (error) {
     return (
-      <Theme data-oid="83_51do">
-        <Container size="4" data-oid="7136j2-">
-          <Flex direction="column" gap="4" py="6" data-oid="1:5gsck">
-            <Heading data-oid="532_2b9">Financial Reports</Heading>
-            <Box
-              style={{
-                background: "var(--red-3)",
-                padding: "1rem",
-                borderRadius: "6px",
-              }}
-              data-oid="cmjf62l"
+      <Container maxW="container.xl" py={8} data-oid="iadrgak">
+        <VStack spacing={8} align="stretch" data-oid="vvmq4wk">
+          <Heading
+            size="2xl"
+            bgGradient="linear(to-r, teal.400, blue.500)"
+            bgClip="text"
+            textAlign="center"
+            data-oid="bj9x10s"
+          >
+            Financial Reports
+          </Heading>
+          <Box
+            p={6}
+            borderRadius="lg"
+            bg="red.50"
+            border="1px"
+            borderColor="red.200"
+            data-oid="bz:6t7q"
+          >
+            <Text
+              color="red.600"
+              fontSize="lg"
+              fontWeight="medium"
+              data-oid="4hgv_ew"
             >
-              <Text color="red" data-oid=":f5p9ab">
-                {error}
-              </Text>
-            </Box>
-          </Flex>
-        </Container>
-      </Theme>
+              {error}
+            </Text>
+          </Box>
+        </VStack>
+      </Container>
     );
   }
 
-  const chartOptions = {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      legend: {
-        position: "bottom" as const,
-      },
-    },
-  };
-
   return (
-    <Theme data-oid="ix6bk0c">
-      <Container size="4" data-oid="u0_e2y0">
-        <Flex direction="column" gap="6" py="6" data-oid="1vq-nqp">
-          <Flex justify="between" align="center" data-oid="wxu4ntr">
-            <Heading data-oid="pq:t9nr">Financial Reports</Heading>
-            <Select.Root
-              value={timeRange}
-              onValueChange={setTimeRange}
-              data-oid=":7ads__"
-            >
-              <Select.Trigger data-oid="tsdl565">
-                <Select.Value data-oid="4c2-p5o" />
-              </Select.Trigger>
-              <Select.Content data-oid="khe5wjd">
-                <Select.Item value="week" data-oid="z_7nvmr">
-                  This Week
-                </Select.Item>
-                <Select.Item value="month" data-oid="473o9s1">
-                  This Month
-                </Select.Item>
-                <Select.Item value="year" data-oid="lmj.17p">
-                  This Year
-                </Select.Item>
-              </Select.Content>
-            </Select.Root>
-          </Flex>
+    <Container maxW="container.xl" py={8} data-oid="juvns.4">
+      <VStack spacing={8} align="stretch" data-oid="h0owzin">
+        <Flex
+          justify="space-between"
+          align="center"
+          wrap="wrap"
+          gap={4}
+          data-oid="006.r92"
+        >
+          <Heading
+            size="2xl"
+            bgGradient="linear(to-r, teal.400, blue.500)"
+            bgClip="text"
+            data-oid="17gca2t"
+          >
+            Financial Reports
+          </Heading>
+          <Select
+            value={timeRange}
+            onChange={(e) => setTimeRange(e.target.value)}
+            width="200px"
+            bg={cardBg}
+            borderColor={borderColor}
+            _hover={{ borderColor: "teal.400" }}
+            data-oid="6i6c01_"
+          >
+            <option value="week" data-oid="bftizgv">
+              This Week
+            </option>
+            <option value="month" data-oid="2.759sm">
+              This Month
+            </option>
+            <option value="year" data-oid="dm.-99u">
+              This Year
+            </option>
+          </Select>
+        </Flex>
 
-          <Flex gap="4" wrap="wrap" data-oid=":hozqo5">
-            <StatCard style={{ flex: 1 }} data-oid="50ndsho">
-              <Text size="2" color="gray" data-oid="o3ryhoy">
+        <SimpleGrid
+          columns={{ base: 1, md: 2, lg: 3 }}
+          spacing={6}
+          data-oid="h5loyad"
+        >
+          <Box
+            p={6}
+            borderRadius="2xl"
+            bg="linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
+            color="white"
+            shadow="xl"
+            position="relative"
+            overflow="hidden"
+            _hover={{ transform: "translateY(-4px)" }}
+            transition="all 0.3s ease"
+            data-oid="we21ub-"
+          >
+            <Box
+              position="absolute"
+              top="-10"
+              right="-10"
+              w="20"
+              h="20"
+              bg="whiteAlpha.200"
+              borderRadius="full"
+              data-oid="pbjwi07"
+            />
+
+            <VStack
+              align="start"
+              spacing={3}
+              position="relative"
+              zIndex={1}
+              data-oid="wvb9_ep"
+            >
+              <Text
+                fontSize="sm"
+                color="whiteAlpha.800"
+                fontWeight="medium"
+                data-oid="29qrtco"
+              >
                 Total Income
               </Text>
-              <StatValue data-oid="36t2:yu">
+              <Text fontSize="3xl" fontWeight="bold" data-oid="k52lif1">
                 ETB {stats.totalIncome.toLocaleString()}
-              </StatValue>
-              <StatChange
-                isPositive={stats.incomeChange >= 0}
-                data-oid="n33vtrb"
-              >
-                {Math.abs(stats.incomeChange).toFixed(2)}%
-              </StatChange>
-            </StatCard>
+              </Text>
+              <HStack data-oid="pqwpa.q">
+                <Badge
+                  colorScheme={stats.incomeChange >= 0 ? "green" : "red"}
+                  fontSize="xs"
+                  borderRadius="full"
+                  px={2}
+                  data-oid="q1l:frp"
+                >
+                  {stats.incomeChange >= 0 ? "↗" : "↘"}{" "}
+                  {Math.abs(stats.incomeChange).toFixed(1)}%
+                </Badge>
+              </HStack>
+            </VStack>
+          </Box>
 
-            <StatCard style={{ flex: 1 }} data-oid="knn0ds2">
-              <Text size="2" color="gray" data-oid="hap0h3f">
+          <Box
+            p={6}
+            borderRadius="2xl"
+            bg="linear-gradient(135deg, #f093fb 0%, #f5576c 100%)"
+            color="white"
+            shadow="xl"
+            position="relative"
+            overflow="hidden"
+            _hover={{ transform: "translateY(-4px)" }}
+            transition="all 0.3s ease"
+            data-oid="qnyxa81"
+          >
+            <Box
+              position="absolute"
+              top="-10"
+              right="-10"
+              w="20"
+              h="20"
+              bg="whiteAlpha.200"
+              borderRadius="full"
+              data-oid="tac8unc"
+            />
+
+            <VStack
+              align="start"
+              spacing={3}
+              position="relative"
+              zIndex={1}
+              data-oid="1bbgj_s"
+            >
+              <Text
+                fontSize="sm"
+                color="whiteAlpha.800"
+                fontWeight="medium"
+                data-oid="zzwwfz_"
+              >
                 Total Expenses
               </Text>
-              <StatValue data-oid="trzy3ka">
+              <Text fontSize="3xl" fontWeight="bold" data-oid="_5:t.ll">
                 ETB {stats.totalExpenses.toLocaleString()}
-              </StatValue>
-              <StatChange
-                isPositive={stats.expenseChange <= 0}
-                data-oid="h-f1tpn"
-              >
-                {Math.abs(stats.expenseChange).toFixed(2)}%
-              </StatChange>
-            </StatCard>
+              </Text>
+              <HStack data-oid="19auk8n">
+                <Badge
+                  colorScheme={stats.expenseChange <= 0 ? "green" : "red"}
+                  fontSize="xs"
+                  borderRadius="full"
+                  px={2}
+                  data-oid="kpf.n-p"
+                >
+                  {stats.expenseChange <= 0 ? "↗" : "↘"}{" "}
+                  {Math.abs(stats.expenseChange).toFixed(1)}%
+                </Badge>
+              </HStack>
+            </VStack>
+          </Box>
 
-            <StatCard style={{ flex: 1 }} data-oid="l0rtjam">
-              <Text size="2" color="gray" data-oid="1g7x81b">
+          <Box
+            p={6}
+            borderRadius="2xl"
+            bg="linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)"
+            color="white"
+            shadow="xl"
+            position="relative"
+            overflow="hidden"
+            _hover={{ transform: "translateY(-4px)" }}
+            transition="all 0.3s ease"
+            data-oid="9xwe-m5"
+          >
+            <Box
+              position="absolute"
+              top="-10"
+              right="-10"
+              w="20"
+              h="20"
+              bg="whiteAlpha.200"
+              borderRadius="full"
+              data-oid="gr_dzhm"
+            />
+
+            <VStack
+              align="start"
+              spacing={3}
+              position="relative"
+              zIndex={1}
+              data-oid="n9vjcp_"
+            >
+              <Text
+                fontSize="sm"
+                color="whiteAlpha.800"
+                fontWeight="medium"
+                data-oid="tu4-npv"
+              >
                 Net Savings
               </Text>
-              <StatValue data-oid="-unrebh">
+              <Text fontSize="3xl" fontWeight="bold" data-oid="7z-084h">
                 ETB {stats.netSavings.toLocaleString()}
-              </StatValue>
-              <StatChange
-                isPositive={stats.savingsChange >= 0}
-                data-oid="nm8m5es"
+              </Text>
+              <HStack data-oid="zg3ucvo">
+                <Badge
+                  colorScheme={stats.savingsChange >= 0 ? "green" : "red"}
+                  fontSize="xs"
+                  borderRadius="full"
+                  px={2}
+                  data-oid="bx.gw80"
+                >
+                  {stats.savingsChange >= 0 ? "↗" : "↘"}{" "}
+                  {Math.abs(stats.savingsChange).toFixed(1)}%
+                </Badge>
+              </HStack>
+            </VStack>
+          </Box>
+        </SimpleGrid>
+
+        <Box
+          bg={cardBg}
+          borderRadius="2xl"
+          shadow="xl"
+          overflow="hidden"
+          border="1px"
+          borderColor={borderColor}
+          data-oid=":87toxi"
+        >
+          <Tabs colorScheme="teal" variant="enclosed" data-oid="lsahe7.">
+            <TabList bg="gray.50" px={4} data-oid="5nfjbty">
+              <Tab
+                fontWeight="medium"
+                _selected={{ bg: "teal.500", color: "white" }}
+                data-oid="xn3t1wf"
               >
-                {Math.abs(stats.savingsChange).toFixed(2)}%
-              </StatChange>
-            </StatCard>
-          </Flex>
-
-          <Tabs.Root defaultValue="income-expenses" data-oid="1b.0zut">
-            <Tabs.List data-oid="luktv41">
-              <Tabs.Trigger value="income-expenses" data-oid="gtun2jo">
                 Income vs Expenses
-              </Tabs.Trigger>
-              <Tabs.Trigger value="categories" data-oid="vx2w50:">
+              </Tab>
+              <Tab
+                fontWeight="medium"
+                _selected={{ bg: "teal.500", color: "white" }}
+                data-oid="94hnop7"
+              >
                 Expense Categories
-              </Tabs.Trigger>
-              <Tabs.Trigger value="savings" data-oid="s1auvkt">
+              </Tab>
+              <Tab
+                fontWeight="medium"
+                _selected={{ bg: "teal.500", color: "white" }}
+                data-oid="4iqfx.t"
+              >
                 Savings Trend
-              </Tabs.Trigger>
-            </Tabs.List>
+              </Tab>
+            </TabList>
 
-            <Tabs.Content value="income-expenses" data-oid="klwy032">
-              <StyledCard style={{ height: "400px" }} data-oid="htdoki-">
-                <Bar
-                  data={monthlyData}
-                  options={chartOptions}
-                  data-oid="6baw3j:"
-                />
-              </StyledCard>
-            </Tabs.Content>
+            <TabPanels data-oid="j1vm5ws">
+              <TabPanel p={6} data-oid="e73d8_5">
+                <Box h="400px" position="relative" data-oid="cfquouh">
+                  <Bar
+                    data={monthlyData}
+                    options={chartOptions}
+                    data-oid="dfyfg8j"
+                  />
+                </Box>
+              </TabPanel>
 
-            <Tabs.Content value="categories" data-oid="sj.lr-1">
-              <StyledCard style={{ height: "400px" }} data-oid="e43rw8o">
-                <Doughnut
-                  data={categoryData}
-                  options={chartOptions}
-                  data-oid="zvv.gw."
-                />
-              </StyledCard>
-            </Tabs.Content>
+              <TabPanel p={6} data-oid="w-eln-r">
+                <Box h="400px" position="relative" data-oid="v0g.l0e">
+                  <Doughnut
+                    data={categoryData}
+                    options={doughnutOptions}
+                    data-oid="60ktf7d"
+                  />
+                </Box>
+              </TabPanel>
 
-            <Tabs.Content value="savings" data-oid="-i9ayuv">
-              <StyledCard style={{ height: "400px" }} data-oid="6jkz_lg">
-                <Line
-                  data={savingsData}
-                  options={chartOptions}
-                  data-oid="vjye9a1"
-                />
-              </StyledCard>
-            </Tabs.Content>
-          </Tabs.Root>
-        </Flex>
-      </Container>
-    </Theme>
+              <TabPanel p={6} data-oid="3zu2bbt">
+                <Box h="400px" position="relative" data-oid=".eeqlpb">
+                  <Line
+                    data={savingsData}
+                    options={lineOptions}
+                    data-oid="kbyqtdv"
+                  />
+                </Box>
+              </TabPanel>
+            </TabPanels>
+          </Tabs>
+        </Box>
+      </VStack>
+    </Container>
   );
 };
 

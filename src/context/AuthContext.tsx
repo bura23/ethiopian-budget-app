@@ -103,7 +103,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   return (
     <AuthContext.Provider
       value={{ user, isAuthenticated, login, register, logout, updateProfile }}
-      data-oid="essd40x"
+      data-oid="9e8-z_r"
     >
       {children}
     </AuthContext.Provider>

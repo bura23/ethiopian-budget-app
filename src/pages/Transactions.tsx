@@ -142,73 +142,73 @@ const Transactions = () => {
   };
 
   return (
-    <Container maxW="container.xl" py={6} data-oid="ioc:455">
-      <Box mb={6} data-oid="5hrco2a">
-        <HStack justify="space-between" mb={6} data-oid="mijs7w5">
-          <Heading data-oid="c1y6-8u">Transactions</Heading>
+    <Container maxW="container.xl" py={6} data-oid="z..j1qo">
+      <Box mb={6} data-oid="yswdm:o">
+        <HStack justify="space-between" mb={6} data-oid="s.49oeh">
+          <Heading data-oid="by93ijx">Transactions</Heading>
           <Button
-            leftIcon={<AddIcon data-oid="ie1_-xw" />}
+            leftIcon={<AddIcon data-oid="5inw09x" />}
             colorScheme="teal"
             onClick={handleAddNew}
-            data-oid="cthuc:_"
+            data-oid="caq_zuc"
           >
             Add Transaction
           </Button>
         </HStack>
       </Box>
 
-      <Box overflowX="auto" data-oid=":wmudpp">
-        <Table variant="simple" data-oid="qhuri7p">
-          <Thead data-oid="4s-myo9">
-            <Tr data-oid="v1rrtzt">
-              <Th data-oid="3_oy-s4">Date</Th>
-              <Th data-oid="o7hg4im">Description</Th>
-              <Th data-oid="nvwinbr">Category</Th>
-              <Th isNumeric data-oid="s:5ik:h">
+      <Box overflowX="auto" data-oid="kq8n6o5">
+        <Table variant="simple" data-oid="v71kb2l">
+          <Thead data-oid=":c39b.t">
+            <Tr data-oid="nc7vule">
+              <Th data-oid="bmevoia">Date</Th>
+              <Th data-oid="8yyjrul">Description</Th>
+              <Th data-oid="4o0e1c:">Category</Th>
+              <Th isNumeric data-oid="84:drlf">
                 Amount (ETB)
               </Th>
-              <Th data-oid="r23d50m">Type</Th>
-              <Th data-oid="faor2i6">Actions</Th>
+              <Th data-oid="n8o0q-s">Type</Th>
+              <Th data-oid="soogep6">Actions</Th>
             </Tr>
           </Thead>
-          <Tbody data-oid="bq9qgsf">
+          <Tbody data-oid="g0ism9-">
             {filteredTransactions.map((transaction) => (
-              <Tr key={transaction.id} data-oid="d8g58-c">
-                <Td data-oid="pbb7pr1">
+              <Tr key={transaction.id} data-oid=".pu54yz">
+                <Td data-oid="r0yh1yd">
                   {new Date(transaction.date).toLocaleDateString()}
                 </Td>
-                <Td data-oid="020j:kj">{transaction.description}</Td>
-                <Td data-oid="9rlg10o">{transaction.category}</Td>
-                <Td isNumeric data-oid="hsycdl_">
+                <Td data-oid=":vzqf7a">{transaction.description}</Td>
+                <Td data-oid="mkk:09d">{transaction.category}</Td>
+                <Td isNumeric data-oid="u7-1se7">
                   {transaction.amount.toLocaleString()}
                 </Td>
-                <Td data-oid="7e4sy11">
+                <Td data-oid="no3bnsd">
                   <Badge
                     colorScheme={
                       transaction.type === "income" ? "green" : "red"
                     }
-                    data-oid="fhhjv5h"
+                    data-oid="79j4oad"
                   >
                     {transaction.type}
                   </Badge>
                 </Td>
-                <Td data-oid="wccz-i9">
-                  <HStack spacing={2} data-oid="_rvs_ed">
+                <Td data-oid="xeq1oph">
+                  <HStack spacing={2} data-oid="nc_5p00">
                     <IconButton
                       aria-label="Edit transaction"
-                      icon={<EditIcon data-oid="0-_6py_" />}
+                      icon={<EditIcon data-oid="uhpar8y" />}
                       size="sm"
                       onClick={() => handleEdit(transaction)}
-                      data-oid="0or3yak"
+                      data-oid="49mzy_9"
                     />
 
                     <IconButton
                       aria-label="Delete transaction"
-                      icon={<DeleteIcon data-oid="m:azbgt" />}
+                      icon={<DeleteIcon data-oid="6:1htl2" />}
                       size="sm"
                       colorScheme="red"
                       onClick={() => handleDelete(transaction.id)}
-                      data-oid="g3ty3t9"
+                      data-oid="rgu.2mq"
                     />
                   </HStack>
                 </Td>
@@ -226,7 +226,7 @@ const Transactions = () => {
         }}
         transaction={selectedTransaction}
         onSubmit={handleAddTransaction}
-        data-oid="to22590"
+        data-oid="q580x4e"
       />
     </Container>
   );

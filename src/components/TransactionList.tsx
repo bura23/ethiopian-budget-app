@@ -65,74 +65,74 @@ const TransactionList: React.FC<TransactionListProps> = ({
       bg="white"
       borderRadius="lg"
       shadow="sm"
-      data-oid="2vc2mla"
+      data-oid="al5ks33"
     >
       {transactions.length === 0 ? (
-        <Text p={6} textAlign="center" color="gray.500" data-oid="ao8u1rn">
+        <Text p={6} textAlign="center" color="gray.500" data-oid="3928lx-">
           No transactions found
         </Text>
       ) : (
-        <Table variant="simple" w="100%" data-oid="2nnyoao">
-          <Thead data-oid="iq44xpa">
-            <Tr data-oid="c6n058n">
-              <Th data-oid="dke_wy.">Date</Th>
-              <Th data-oid="ou-l91u">Description</Th>
-              <Th data-oid="q3lfy:3">Category</Th>
-              <Th data-oid="680r3kh">Type</Th>
-              <Th isNumeric data-oid="o0h7z7b">
+        <Table variant="simple" w="100%" data-oid="e-sb65g">
+          <Thead data-oid="h59lyh0">
+            <Tr data-oid="y9r2j:x">
+              <Th data-oid="4yo:6_b">Date</Th>
+              <Th data-oid="xtm.yp4">Description</Th>
+              <Th data-oid="ff31avm">Category</Th>
+              <Th data-oid="9j7hqr.">Type</Th>
+              <Th isNumeric data-oid="iq2kl7o">
                 Amount
               </Th>
-              <Th data-oid="bjwcx1u">Actions</Th>
+              <Th data-oid="ih6jzgp">Actions</Th>
             </Tr>
           </Thead>
-          <Tbody data-oid="nn3ta37">
+          <Tbody data-oid="c49ajwo">
             {transactions.map((transaction) => (
-              <Tr key={transaction.id} data-oid="uyqrl2h">
-                <Td data-oid="40-yi.g">
+              <Tr key={transaction.id} data-oid="j449dl-">
+                <Td data-oid="m1wvznu">
                   {new Date(transaction.date).toLocaleDateString("am-ET")}
                 </Td>
-                <Td data-oid="69wp38q">{transaction.description}</Td>
-                <Td data-oid="xo:2mp-">{transaction.categoryId}</Td>
-                <Td data-oid="8jtb-mb">
+                <Td data-oid="amx4k2l">{transaction.description}</Td>
+                <Td data-oid="68.58q5">{transaction.categoryId}</Td>
+                <Td data-oid="ogcl5hu">
                   <Badge
                     colorScheme={
                       transaction.type === "INCOME" ? "green" : "red"
                     }
                     borderRadius="full"
                     px={2}
-                    data-oid="p17vsf6"
+                    data-oid=".02riv_"
                   >
                     {transaction.type}
                   </Badge>
                 </Td>
-                <Td isNumeric data-oid="v3lu_v5">
+                <Td isNumeric data-oid="j.z4gvg">
                   <Text
                     color={
                       transaction.type === "INCOME" ? "green.500" : "red.500"
                     }
                     fontWeight="medium"
-                    data-oid="-xnjk0d"
+                    data-oid="qv7d9g1"
                   >
                     {formatETB(transaction.amount)}
                   </Text>
                 </Td>
-                <Td data-oid="u7q8wpy">
+                <Td data-oid=".:rc27r">
                   <IconButton
                     aria-label="Edit transaction"
-                    icon={<FiEdit2 data-oid="zj:d:uv" />}
+                    icon={<FiEdit2 data-oid="0:h_a85" />}
                     size="sm"
                     mr={2}
                     onClick={() => handleEdit(transaction)}
-                    data-oid="3vez2od"
+                    data-oid="qpgo2_0"
                   />
 
                   <IconButton
                     aria-label="Delete transaction"
-                    icon={<FiTrash2 data-oid="bsyb2a9" />}
+                    icon={<FiTrash2 data-oid="9p3_eez" />}
                     size="sm"
                     colorScheme="red"
                     onClick={() => onDelete(transaction.id)}
-                    data-oid="qneo905"
+                    data-oid="kyuzr5a"
                   />
                 </Td>
               </Tr>
@@ -141,17 +141,17 @@ const TransactionList: React.FC<TransactionListProps> = ({
         </Table>
       )}
 
-      <Modal isOpen={isOpen} onClose={onClose} data-oid="q:sd.b9">
-        <ModalOverlay data-oid="1rg5lx1" />
-        <ModalContent data-oid="139jtng">
-          <ModalHeader data-oid=":ftj93z">Edit Transaction</ModalHeader>
-          <ModalCloseButton data-oid="x.x6c:m" />
-          <ModalBody pb={6} data-oid="2abq7-k">
+      <Modal isOpen={isOpen} onClose={onClose} data-oid="ntexihk">
+        <ModalOverlay data-oid="l3jac1j" />
+        <ModalContent data-oid="gm_7r97">
+          <ModalHeader data-oid="ir5-9i8">Edit Transaction</ModalHeader>
+          <ModalCloseButton data-oid="1e-vu4x" />
+          <ModalBody pb={6} data-oid="0ze2xa6">
             {editingTransaction && (
-              <form onSubmit={handleUpdate} data-oid=":dbo2-f">
-                <VStack spacing={4} data-oid="94lcmlv">
-                  <FormControl data-oid="ia9vjo-">
-                    <FormLabel data-oid="9ppheqd">Amount (ETB)</FormLabel>
+              <form onSubmit={handleUpdate} data-oid="xwpcvd3">
+                <VStack spacing={4} data-oid="cffa5n6">
+                  <FormControl data-oid="-o0w-c-">
+                    <FormLabel data-oid="g25jr-k">Amount (ETB)</FormLabel>
                     <NumberInput
                       value={editingTransaction.amount}
                       onChange={(value) =>
@@ -160,14 +160,14 @@ const TransactionList: React.FC<TransactionListProps> = ({
                           amount: parseFloat(value) || 0,
                         })
                       }
-                      data-oid="5z.mo7b"
+                      data-oid="w1wn4ee"
                     >
-                      <NumberInputField data-oid="wdvx.61" />
+                      <NumberInputField data-oid="jem3grc" />
                     </NumberInput>
                   </FormControl>
 
-                  <FormControl data-oid="jnbl-ho">
-                    <FormLabel data-oid="kcm-369">Type</FormLabel>
+                  <FormControl data-oid="xv..xb3">
+                    <FormLabel data-oid="9yhj9zt">Type</FormLabel>
                     <Select
                       value={editingTransaction.type}
                       onChange={(e) =>
@@ -176,19 +176,19 @@ const TransactionList: React.FC<TransactionListProps> = ({
                           type: e.target.value as TransactionType,
                         })
                       }
-                      data-oid="p__3s4s"
+                      data-oid="mgut0p6"
                     >
-                      <option value="EXPENSE" data-oid="ii.k8ua">
+                      <option value="EXPENSE" data-oid="rnm0vkf">
                         Expense
                       </option>
-                      <option value="INCOME" data-oid="ke.83hg">
+                      <option value="INCOME" data-oid="b8mt8ak">
                         Income
                       </option>
                     </Select>
                   </FormControl>
 
-                  <FormControl data-oid="47zczz.">
-                    <FormLabel data-oid="lb.n8tg">Category</FormLabel>
+                  <FormControl data-oid="2don7nw">
+                    <FormLabel data-oid="2ftok6r">Category</FormLabel>
                     <Select
                       value={editingTransaction.categoryId}
                       onChange={(e) =>
@@ -197,28 +197,28 @@ const TransactionList: React.FC<TransactionListProps> = ({
                           categoryId: e.target.value,
                         })
                       }
-                      data-oid="o0zstp:"
+                      data-oid="_uwr.si"
                     >
-                      <option value="groceries" data-oid="797c3co">
+                      <option value="groceries" data-oid="ue8mhck">
                         Groceries
                       </option>
-                      <option value="transport" data-oid="r5ht8:7">
+                      <option value="transport" data-oid="opjef1o">
                         Transport
                       </option>
-                      <option value="utilities" data-oid="6h6.k6t">
+                      <option value="utilities" data-oid="70xlxja">
                         Utilities
                       </option>
-                      <option value="entertainment" data-oid="rxhb40g">
+                      <option value="entertainment" data-oid="8n.n3zg">
                         Entertainment
                       </option>
-                      <option value="salary" data-oid="24-gz5_">
+                      <option value="salary" data-oid="bx4f3y2">
                         Salary
                       </option>
                     </Select>
                   </FormControl>
 
-                  <FormControl data-oid="3o001:s">
-                    <FormLabel data-oid="f:j7qd9">Description</FormLabel>
+                  <FormControl data-oid="loi921_">
+                    <FormLabel data-oid="t9vodxu">Description</FormLabel>
                     <Input
                       value={editingTransaction.description}
                       onChange={(e) =>
@@ -227,12 +227,12 @@ const TransactionList: React.FC<TransactionListProps> = ({
                           description: e.target.value,
                         })
                       }
-                      data-oid="qh7bibx"
+                      data-oid="eo5-y8d"
                     />
                   </FormControl>
 
-                  <FormControl data-oid="2tnn_fx">
-                    <FormLabel data-oid="pk_od:0">Date</FormLabel>
+                  <FormControl data-oid="hwa3r3j">
+                    <FormLabel data-oid="cktw81h">Date</FormLabel>
                     <Input
                       type="date"
                       value={
@@ -246,7 +246,7 @@ const TransactionList: React.FC<TransactionListProps> = ({
                           date: new Date(e.target.value),
                         })
                       }
-                      data-oid="9w-sd77"
+                      data-oid="rfrdxq3"
                     />
                   </FormControl>
 
@@ -254,7 +254,7 @@ const TransactionList: React.FC<TransactionListProps> = ({
                     type="submit"
                     colorScheme="blue"
                     width="full"
-                    data-oid="vt.:mfo"
+                    data-oid="w7lm.pu"
                   >
                     Update Transaction
                   </Button>

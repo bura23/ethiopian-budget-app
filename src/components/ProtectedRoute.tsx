@@ -15,7 +15,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
         to="/login"
         state={{ from: location }}
         replace
-        data-oid=".3jbsmh"
+        data-oid="spkt.dk"
       />
     );
   }

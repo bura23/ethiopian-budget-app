@@ -37,18 +37,18 @@ export default function Account() {
   }
 
   return (
-    <Container maxW="container.md" py={8} data-oid="4a5dyg2">
-      <VStack spacing={6} align="stretch" data-oid="xtiwmdu">
-        <Box data-oid="6zsluav">
-          <Heading size="lg" mb={2} data-oid="hvraayn">
+    <Container maxW="container.md" py={8} data-oid="6a1oyio">
+      <VStack spacing={6} align="stretch" data-oid="n.aoe0j">
+        <Box data-oid="u77b17:">
+          <Heading size="lg" mb={2} data-oid="n_5329f">
             Account Settings
           </Heading>
-          <Text color="gray.600" data-oid="b8z33-1">
+          <Text color="gray.600" data-oid="v47g9xb">
             Manage your profile and account preferences
           </Text>
         </Box>
 
-        <Divider data-oid="6w2tjxi" />
+        <Divider data-oid="t0.4ufx" />
 
         <Box
           bg="white"
@@ -57,34 +57,34 @@ export default function Account() {
           boxShadow="sm"
           border="1px"
           borderColor="gray.100"
-          data-oid="if7fk.f"
+          data-oid="lssk-hp"
         >
-          <VStack spacing={4} align="stretch" data-oid="32c-jd0">
-            <HStack spacing={4} data-oid="ws63xwa">
+          <VStack spacing={4} align="stretch" data-oid="ia2ma5v">
+            <HStack spacing={4} data-oid="dsjo-g8">
               <Avatar
                 size="xl"
                 name={userProfile.name}
                 src={userProfile.picture}
-                data-oid="180b_zm"
+                data-oid="pwbf:4d"
               />
 
-              <VStack align="start" spacing={1} data-oid="ucywqrz">
-                <Heading size="md" data-oid="l46nuo:">
+              <VStack align="start" spacing={1} data-oid="34kgtu:">
+                <Heading size="md" data-oid="agtlj1o">
                   {userProfile.name}
                 </Heading>
-                <Text color="gray.600" data-oid="yqdfqoc">
+                <Text color="gray.600" data-oid=".ka96tb">
                   {userProfile.email}
                 </Text>
               </VStack>
             </HStack>
 
-            <Divider data-oid="7wz5r.o" />
+            <Divider data-oid="4jzfqmg" />
 
             <Button
               colorScheme="red"
               variant="outline"
               onClick={handleLogout}
-              data-oid="qsyu90:"
+              data-oid="kgc5:tr"
             >
               Sign Out
             </Button>

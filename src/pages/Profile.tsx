@@ -53,45 +53,45 @@ export default function Profile() {
   };
 
   return (
-    <Container maxW="container.sm" py={8} data-oid="t0kzhr3">
-      <VStack spacing={8} align="stretch" data-oid="r--v-wi">
-        <Heading size="lg" data-oid="ashgsom">
+    <Container maxW="container.sm" py={8} data-oid="-e87qst">
+      <VStack spacing={8} align="stretch" data-oid="n_rp2_t">
+        <Heading size="lg" data-oid="xvpk-3a">
           Profile Settings
         </Heading>
 
-        <Box textAlign="center" data-oid="4fzk4ys">
+        <Box textAlign="center" data-oid="avv0-ox">
           <Avatar
             size="2xl"
             name={user?.name}
             src={user?.photo_url}
             mb={4}
-            data-oid="ol39a6h"
+            data-oid="gcb0j8x"
           />
 
-          <Text fontSize="lg" fontWeight="medium" data-oid="ejnvzw-">
+          <Text fontSize="lg" fontWeight="medium" data-oid="hz9yvf5">
             {user?.email}
           </Text>
         </Box>
 
-        <Box as="form" onSubmit={handleSubmit} data-oid="tpodqe-">
-          <VStack spacing={4} data-oid="ple7avp">
-            <FormControl data-oid="ts_49eo">
-              <FormLabel data-oid="u_9q7gq">Name</FormLabel>
+        <Box as="form" onSubmit={handleSubmit} data-oid="nccwro0">
+          <VStack spacing={4} data-oid=":.feq05">
+            <FormControl data-oid="iy1zq8b">
+              <FormLabel data-oid="2d7k781">Name</FormLabel>
               <Input
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Enter your name"
-                data-oid="2ylxf:g"
+                data-oid="ytppl:s"
               />
             </FormControl>
 
-            <FormControl data-oid="lx5nes_">
-              <FormLabel data-oid="dsgqj8a">Profile Photo URL</FormLabel>
+            <FormControl data-oid="olifksh">
+              <FormLabel data-oid="v25:.:2">Profile Photo URL</FormLabel>
               <Input
                 value={photoUrl}
                 onChange={(e) => setPhotoUrl(e.target.value)}
                 placeholder="Enter photo URL"
-                data-oid="9cz2mxs"
+                data-oid=".mv:z65"
               />
             </FormControl>
 
@@ -101,7 +101,7 @@ export default function Profile() {
               size="lg"
               width="100%"
               isLoading={isLoading}
-              data-oid="mlsbooc"
+              data-oid="ldskhzs"
             >
               Save Changes
             </Button>

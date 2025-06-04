@@ -122,29 +122,29 @@ const Settings = () => {
   };
 
   return (
-    <Theme data-oid="dfb:zq.">
-      <Container size="4" data-oid="lwczq80">
-        <Flex direction="column" gap="6" py="6" data-oid="2_zzr.h">
-          <Heading data-oid="daux31-">Profile Settings</Heading>
+    <Theme data-oid="n4-o-sd">
+      <Container size="4" data-oid="s6n9v3t">
+        <Flex direction="column" gap="6" py="6" data-oid="zvvqhuk">
+          <Heading data-oid="ziajlwm">Profile Settings</Heading>
 
-          <StyledCard data-oid="g259p5f">
-            <Flex direction="column" gap="6" data-oid="5_mdd_8">
-              <Flex gap="6" align="start" data-oid="hixi6wd">
-                <PhotoUploadContainer data-oid="mg-uke5">
+          <StyledCard data-oid="9x:130v">
+            <Flex direction="column" gap="6" data-oid="zpu4wby">
+              <Flex gap="6" align="start" data-oid="zuty09d">
+                <PhotoUploadContainer data-oid="pk3r9ia">
                   <Avatar
                     size="8"
                     fallback={user?.name?.charAt(0) || "U"}
                     src={user?.photo_url}
-                    data-oid="7adfxnf"
+                    data-oid="4udltf0"
                   />
 
                   <Button
                     onClick={() => fileInputRef.current?.click()}
                     size="2"
                     variant="outline"
-                    data-oid="-k54lt3"
+                    data-oid="d8h1lsa"
                   >
-                    <UploadIcon data-oid="wyf5d8n" />
+                    <UploadIcon data-oid="pq6:z33" />
                     Upload Photo
                   </Button>
                   <HiddenFileInput
@@ -152,7 +152,7 @@ const Settings = () => {
                     ref={fileInputRef}
                     accept="image/*"
                     onChange={handlePhotoUpload}
-                    data-oid="nh3a12q"
+                    data-oid="4s278mf"
                   />
                 </PhotoUploadContainer>
 
@@ -160,10 +160,10 @@ const Settings = () => {
                   direction="column"
                   gap="4"
                   style={{ flex: 1 }}
-                  data-oid="38x4-:."
+                  data-oid="bslykxs"
                 >
-                  <FormGroup data-oid="l4h:fny">
-                    <FormLabel htmlFor="name" data-oid="m7_dto9">
+                  <FormGroup data-oid="02q8h-j">
+                    <FormLabel htmlFor="name" data-oid="9hfz1s5">
                       Name
                     </FormLabel>
                     <FormInput
@@ -173,12 +173,12 @@ const Settings = () => {
                       onChange={(e) =>
                         setProfileData({ ...profileData, name: e.target.value })
                       }
-                      data-oid="gy.pyet"
+                      data-oid="phw:zfo"
                     />
                   </FormGroup>
 
-                  <FormGroup data-oid="zb.sspg">
-                    <FormLabel htmlFor="email" data-oid="i16f3xd">
+                  <FormGroup data-oid="t-97_w4">
+                    <FormLabel htmlFor="email" data-oid="smij95f">
                       Email
                     </FormLabel>
                     <FormInput
@@ -191,7 +191,7 @@ const Settings = () => {
                           email: e.target.value,
                         })
                       }
-                      data-oid="-goexi-"
+                      data-oid="qrtchbm"
                     />
                   </FormGroup>
 
@@ -199,7 +199,7 @@ const Settings = () => {
                     onClick={handleProfileUpdate}
                     disabled={isLoading}
                     style={{ alignSelf: "flex-start" }}
-                    data-oid="8o6:q2y"
+                    data-oid="wn-hk9z"
                   >
                     {isLoading ? "Saving..." : "Save Changes"}
                   </Button>
@@ -208,7 +208,7 @@ const Settings = () => {
                     <Text
                       size="2"
                       color={message.includes("success") ? "green" : "red"}
-                      data-oid="lf622a2"
+                      data-oid="qi4955x"
                     >
                       {message}
                     </Text>
@@ -218,12 +218,12 @@ const Settings = () => {
             </Flex>
           </StyledCard>
 
-          <StyledCard data-oid="t-e3ii9">
-            <Flex direction="column" gap="4" data-oid="7.d8uti">
-              <Heading size="4" data-oid="-cygqih">
+          <StyledCard data-oid="mcp74-3">
+            <Flex direction="column" gap="4" data-oid="rnln21r">
+              <Heading size="4" data-oid="3f-f-:r">
                 Preferences
               </Heading>
-              <Text color="gray" data-oid=":plba7h">
+              <Text color="gray" data-oid="0rm5xuz">
                 Additional preferences and settings can be configured here in
                 future updates.
               </Text>

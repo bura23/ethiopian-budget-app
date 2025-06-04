@@ -44,10 +44,10 @@ const Register: React.FC = () => {
   };
 
   return (
-    <Box minH="100vh" bg="gray.50" py={20} data-oid="1zqh6t_">
-      <Container maxW="lg" data-oid="i1u_3y1">
-        <VStack spacing={8} data-oid="dqq37bu">
-          <Heading color="teal.600" data-oid="ni.2cgj">
+    <Box minH="100vh" bg="gray.50" py={20} data-oid="fm6ajyx">
+      <Container maxW="lg" data-oid="ys-664m">
+        <VStack spacing={8} data-oid="h1suzu_">
+          <Heading color="teal.600" data-oid="bsk7c7.">
             Create Account
           </Heading>
           <Box
@@ -58,28 +58,28 @@ const Register: React.FC = () => {
             borderRadius="lg"
             boxShadow="lg"
             bg="white"
-            data-oid="eyz6vku"
+            data-oid="audbgto"
           >
             <VStack
               as="form"
               spacing={6}
               onSubmit={handleSubmit}
-              data-oid="grmelec"
+              data-oid="4-slzzr"
             >
-              <FormControl isRequired data-oid="13jbv06">
-                <FormLabel data-oid=":qk5.-u">Name</FormLabel>
+              <FormControl isRequired data-oid="xqsgl0m">
+                <FormLabel data-oid="49gq_5.">Name</FormLabel>
                 <Input
                   name="name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="Enter your name"
                   size="lg"
-                  data-oid="zqj:gw7"
+                  data-oid="4kkgsw1"
                 />
               </FormControl>
 
-              <FormControl isRequired data-oid="ek6bves">
-                <FormLabel data-oid="6-bgi99">Email</FormLabel>
+              <FormControl isRequired data-oid="xylo-ww">
+                <FormLabel data-oid="i.0sehu">Email</FormLabel>
                 <Input
                   name="email"
                   type="email"
@@ -87,12 +87,12 @@ const Register: React.FC = () => {
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your email"
                   size="lg"
-                  data-oid=":f7iqqu"
+                  data-oid="sqwukns"
                 />
               </FormControl>
 
-              <FormControl isRequired data-oid="g0b_tn4">
-                <FormLabel data-oid="ogv43jg">Password</FormLabel>
+              <FormControl isRequired data-oid="9ey.xq0">
+                <FormLabel data-oid="jt.hk2u">Password</FormLabel>
                 <Input
                   name="password"
                   type="password"
@@ -100,7 +100,7 @@ const Register: React.FC = () => {
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Enter your password"
                   size="lg"
-                  data-oid="bmirwy0"
+                  data-oid=":zs042k"
                 />
               </FormControl>
 
@@ -110,16 +110,16 @@ const Register: React.FC = () => {
                 size="lg"
                 width="full"
                 isLoading={isLoading}
-                data-oid="u-rslfh"
+                data-oid="rturck6"
               >
                 Register
               </Button>
             </VStack>
           </Box>
-          <Text textAlign="center" data-oid="zjl_pke">
+          <Text textAlign="center" data-oid=":qtw:k1">
             Already have an account?{" "}
-            <Link to="/login" data-oid="n2wwla.">
-              <Button variant="link" colorScheme="blue" data-oid="zptau1d">
+            <Link to="/login" data-oid="t8jyemf">
+              <Button variant="link" colorScheme="blue" data-oid="04vyv77">
                 Login
               </Button>
             </Link>
