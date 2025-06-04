@@ -1,0 +1,21 @@
+:root {
+  --color-background: var(--gray-1);
+  --color-primary: var(--blue-9);
+  --color-success: var(--green-9);
+  --color-error: var(--red-9);
+  --color-text: var(--gray-12);
+  --color-text-secondary: var(--gray-11);
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--color-text);
+  background-color: var(--color-background);
+}
+
+* {
+  box-sizing: border-box;
+} 

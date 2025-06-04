@@ -1,0 +1,88 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: #1a202c;
+  background-color: #f7fafc;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: #319795;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #2C7A7B;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: #f7fafc;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #f7fafc;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+button:hover {
+  border-color: #319795;
+  background-color: #E6FFFA;
+}
+
+button:focus,
+button:focus-visible {
+  outline: 2px solid #319795;
+  outline-offset: 2px;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* Hanko styles */
+hanko-auth, hanko-profile {
+  /* Color customization */
+  --color-primary: #319795;
+  --color-bg-primary: white;
+  --color-bg-secondary: #f7fafc;
+  --color-text-primary: #1a202c;
+  --color-text-secondary: #4a5568;
+  --color-error: #e53e3e;
+  --color-link: #319795;
+
+  /* Border customization */
+  --border-radius-small: 0.375rem;
+  --border-radius-medium: 0.5rem;
+  --border-radius-large: 0.75rem;
+
+  /* Font customization */
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+/* Container styles */
+hanko-auth {
+  display: block;
+  width: 100%;
+  min-width: 364px;
+  margin: 0 auto;
+}
