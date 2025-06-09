@@ -38,6 +38,8 @@ import {
   getSavingsTrend,
 } from "../services/api";
 import { useAuth } from "../context/AuthContext";
+import { FiTrendingUp, FiTrendingDown } from "react-icons/fi";
+import React from "react";
 
 ChartJS.register(
   CategoryScale,
@@ -105,6 +107,7 @@ const Reports = () => {
     labels: [],
     datasets: [],
   });
+  const [lastMonthStats, setLastMonthStats] = useState<StatsData | null>(null);
 
   const bgColor = useColorModeValue("white", "gray.800");
   const cardBg = useColorModeValue("white", "gray.700");
@@ -112,6 +115,7 @@ const Reports = () => {
 
   useEffect(() => {
     loadData();
+    loadLastMonthStats();
   }, [timeRange, reportsRefreshTrigger]);
 
   const loadData = async () => {
@@ -246,6 +250,20 @@ const Reports = () => {
       );
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const loadLastMonthStats = async () => {
+    try {
+      // Always fetch last month's stats for comparison
+      const lastMonthResponse = await getFinancialStats("lastMonth") as ApiResponse<StatsData>;
+      if (lastMonthResponse.success && lastMonthResponse.data) {
+        setLastMonthStats(lastMonthResponse.data);
+      } else {
+        setLastMonthStats(null);
+      }
+    } catch (e) {
+      setLastMonthStats(null);
     }
   };
 
@@ -505,21 +523,24 @@ const Reports = () => {
           </Select>
         </Flex>
 
+        {/* Stat Cards at the Top */}
         <SimpleGrid
-          columns={{ base: 1, md: 2, lg: 3 }}
+          columns={{ base: 1, md: 3 }}
           spacing={6}
           data-oid="nge_zxm"
         >
           <Box
             p={6}
             borderRadius="2xl"
-            bg="linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
-            color="white"
+            bg="white"
+            color="gray.800"
             shadow="xl"
             position="relative"
             overflow="hidden"
             _hover={{ transform: "translateY(-4px)" }}
             transition="all 0.3s ease"
+            border="1px"
+            borderColor="gray.200"
             data-oid="dof8u_u"
           >
             <Box
@@ -532,7 +553,6 @@ const Reports = () => {
               borderRadius="full"
               data-oid="ms90v5k"
             />
-
             <VStack
               align="start"
               spacing={3}
@@ -542,13 +562,13 @@ const Reports = () => {
             >
               <Text
                 fontSize="sm"
-                color="whiteAlpha.800"
+                color="black"
                 fontWeight="medium"
                 data-oid="o45ymw6"
               >
                 Total Income
               </Text>
-              <Text fontSize="3xl" fontWeight="bold" data-oid="g..2:ow">
+              <Text fontSize="3xl" fontWeight="bold" color="black" data-oid="g..2:ow">
                 ETB {stats.totalIncome.toLocaleString()}
               </Text>
               <HStack data-oid="xoi66qg">
@@ -559,23 +579,23 @@ const Reports = () => {
                   px={2}
                   data-oid="_e54gxq"
                 >
-                  {stats.incomeChange >= 0 ? "↗" : "↘"}{" "}
-                  {Math.abs(stats.incomeChange).toFixed(1)}%
+                  {stats.incomeChange >= 0 ? "↗" : "↘"} {Math.abs(stats.incomeChange).toFixed(1)}%
                 </Badge>
               </HStack>
             </VStack>
           </Box>
-
           <Box
             p={6}
             borderRadius="2xl"
-            bg="linear-gradient(135deg, #f093fb 0%, #f5576c 100%)"
-            color="white"
+            bg="white"
+            color="gray.800"
             shadow="xl"
             position="relative"
             overflow="hidden"
             _hover={{ transform: "translateY(-4px)" }}
             transition="all 0.3s ease"
+            border="1px"
+            borderColor="gray.200"
             data-oid="a5irfnq"
           >
             <Box
@@ -588,7 +608,6 @@ const Reports = () => {
               borderRadius="full"
               data-oid="lyw4u7l"
             />
-
             <VStack
               align="start"
               spacing={3}
@@ -598,13 +617,13 @@ const Reports = () => {
             >
               <Text
                 fontSize="sm"
-                color="whiteAlpha.800"
+                color="black"
                 fontWeight="medium"
                 data-oid="1ez1:v6"
               >
                 Total Expenses
               </Text>
-              <Text fontSize="3xl" fontWeight="bold" data-oid="tc58jro">
+              <Text fontSize="3xl" fontWeight="bold" color="black" data-oid="tc58jro">
                 ETB {stats.totalExpenses.toLocaleString()}
               </Text>
               <HStack data-oid="p4ulzn2">
@@ -615,23 +634,23 @@ const Reports = () => {
                   px={2}
                   data-oid="kem7u1v"
                 >
-                  {stats.expenseChange <= 0 ? "↗" : "↘"}{" "}
-                  {Math.abs(stats.expenseChange).toFixed(1)}%
+                  {stats.expenseChange <= 0 ? "↗" : "↘"} {Math.abs(stats.expenseChange).toFixed(1)}%
                 </Badge>
               </HStack>
             </VStack>
           </Box>
-
           <Box
             p={6}
             borderRadius="2xl"
-            bg="linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)"
-            color="white"
+            bg="white"
+            color="gray.800"
             shadow="xl"
             position="relative"
             overflow="hidden"
             _hover={{ transform: "translateY(-4px)" }}
             transition="all 0.3s ease"
+            border="1px"
+            borderColor="gray.200"
             data-oid="67dzn6c"
           >
             <Box
@@ -644,7 +663,6 @@ const Reports = () => {
               borderRadius="full"
               data-oid="k-paaxg"
             />
-
             <VStack
               align="start"
               spacing={3}
@@ -654,13 +672,13 @@ const Reports = () => {
             >
               <Text
                 fontSize="sm"
-                color="whiteAlpha.800"
+                color="black"
                 fontWeight="medium"
                 data-oid="l8..xbc"
               >
                 Net Savings
               </Text>
-              <Text fontSize="3xl" fontWeight="bold" data-oid="bppi7ay">
+              <Text fontSize="3xl" fontWeight="bold" color="black" data-oid="bppi7ay">
                 ETB {stats.netSavings.toLocaleString()}
               </Text>
               <HStack data-oid="vn7plii">
@@ -671,14 +689,14 @@ const Reports = () => {
                   px={2}
                   data-oid="g1d-tu8"
                 >
-                  {stats.savingsChange >= 0 ? "↗" : "↘"}{" "}
-                  {Math.abs(stats.savingsChange).toFixed(1)}%
+                  {stats.savingsChange >= 0 ? "↗" : "↘"} {Math.abs(stats.savingsChange).toFixed(1)}%
                 </Badge>
               </HStack>
             </VStack>
           </Box>
         </SimpleGrid>
 
+        {/* Main Charts Section */}
         <Box
           bg={cardBg}
           borderRadius="2xl"
@@ -712,7 +730,6 @@ const Reports = () => {
                 Savings Trend
               </Tab>
             </TabList>
-
             <TabPanels data-oid="v9_0usc">
               <TabPanel p={6} data-oid="brpxhhy">
                 <Box h="400px" position="relative" data-oid="zi70fau">
@@ -723,7 +740,6 @@ const Reports = () => {
                   />
                 </Box>
               </TabPanel>
-
               <TabPanel p={6} data-oid="4f8lo21">
                 <Box h="400px" position="relative" data-oid="bsaelbk">
                   <Doughnut
@@ -733,7 +749,6 @@ const Reports = () => {
                   />
                 </Box>
               </TabPanel>
-
               <TabPanel p={6} data-oid="fsiinwd">
                 <Box h="400px" position="relative" data-oid="6wsz0lo">
                   <Line
@@ -746,6 +761,52 @@ const Reports = () => {
             </TabPanels>
           </Tabs>
         </Box>
+
+        {/* Comparison Chart Section moved to the bottom */}
+        {lastMonthStats && (
+          <Box bg="white" borderRadius="2xl" shadow="md" border="1px" borderColor="gray.200" p={6} mt={8}>
+            <Heading size="sm" mb={4} color="teal.600">This Month vs Last Month (Income, Expenses, Savings)</Heading>
+            <Box h="260px" position="relative">
+              <Bar
+                data={{
+                  labels: ["Income", "Expenses", "Savings"],
+                  datasets: [
+                    {
+                      label: "This Month",
+                      data: [stats.totalIncome, stats.totalExpenses, stats.netSavings],
+                      backgroundColor: "rgba(49, 151, 149, 0.8)",
+                      borderRadius: 8,
+                      barPercentage: 0.5,
+                    },
+                    {
+                      label: "Last Month",
+                      data: [lastMonthStats.totalIncome, lastMonthStats.totalExpenses, lastMonthStats.netSavings],
+                      backgroundColor: "rgba(160, 174, 192, 0.7)",
+                      borderRadius: 8,
+                      barPercentage: 0.5,
+                    },
+                  ],
+                }}
+                options={{
+                  responsive: true,
+                  maintainAspectRatio: false,
+                  plugins: {
+                    legend: { position: "top", labels: { usePointStyle: true, font: { size: 12 } } },
+                    tooltip: {
+                      callbacks: {
+                        label: (context) => `ETB ${context.parsed.y.toLocaleString()}`,
+                      },
+                    },
+                  },
+                  scales: {
+                    x: { grid: { display: false }, ticks: { font: { size: 13 } } },
+                    y: { grid: { color: "rgba(0,0,0,0.05)" }, ticks: { font: { size: 12 }, callback: (v) => `ETB ${v}` } },
+                  },
+                }}
+              />
+            </Box>
+          </Box>
+        )}
       </VStack>
     </Container>
   );

@@ -1,21 +1,22 @@
+/* UI Redesign: Modern minimalist base styles for Yene Birr. Inter/Poppins font, neutral palette, and smooth transitions. */
 :root {
-  --color-background: var(--gray-1);
-  --color-primary: var(--blue-9);
-  --color-success: var(--green-9);
-  --color-error: var(--red-9);
-  --color-text: var(--gray-12);
-  --color-text-secondary: var(--gray-11);
+  --color-background: #f7fafc;
+  --color-primary: #319795;
+  --color-accent: #007acc;
+  --color-text: #222;
 }
 
 body {
   margin: 0;
-  font-family: var(--font-sans);
+  font-family: 'Inter', 'Poppins', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: var(--color-text);
   background-color: var(--color-background);
+  transition: background 0.2s, color 0.2s;
 }
 
 * {
   box-sizing: border-box;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
 } 

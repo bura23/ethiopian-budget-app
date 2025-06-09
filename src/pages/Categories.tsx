@@ -28,7 +28,6 @@ import {
 interface Category {
   id: string;
   name: string;
-  budget: number;
   type: "expense" | "income";
 }
 
@@ -45,7 +44,6 @@ const Categories = () => {
   const [newCategory, setNewCategory] = useState({
     name: "",
     type: "expense" as "expense" | "income",
-    budget: 0,
   });
   const toast = useToast();
   const bgColor = useColorModeValue("white", "gray.800");
@@ -93,7 +91,7 @@ const Categories = () => {
       const data = (await createCategory(newCategory)) as ApiResponse<Category>;
       if (data.data) {
         setCategories([...categories, data.data]);
-        setNewCategory({ name: "", type: "expense", budget: 0 });
+        setNewCategory({ name: "", type: "expense" });
         toast({
           title: "Success",
           description: "Category created successfully",
@@ -166,11 +164,8 @@ const Categories = () => {
   const CategoryCard = ({ category }: { category: Category }) => {
     const [editData, setEditData] = useState({
       name: category.name,
-      budget: category.budget,
     });
-
     const isEditing = editingId === category.id;
-
     return (
       <Box
         p={4}
@@ -201,7 +196,6 @@ const Categories = () => {
                     onClick={() => setEditingId(category.id)}
                     data-oid="lhphsrt"
                   />
-
                   <IconButton
                     icon={<FiTrash2 data-oid=":ox5wm." />}
                     aria-label="Delete category"
@@ -223,7 +217,6 @@ const Categories = () => {
                     onClick={() => handleUpdateCategory(category.id, editData)}
                     data-oid="p4c7.8r"
                   />
-
                   <IconButton
                     icon={<FiX data-oid="gr4oi34" />}
                     aria-label="Cancel editing"
@@ -236,7 +229,6 @@ const Categories = () => {
               )}
             </HStack>
           </HStack>
-
           {isEditing ? (
             <VStack spacing={2} data-oid="wutsncx">
               <FormControl data-oid="g:cf:c8">
@@ -252,36 +244,12 @@ const Categories = () => {
                   data-oid="cekt:4q"
                 />
               </FormControl>
-              {category.type === "expense" && (
-                <FormControl data-oid="89wo-vv">
-                  <FormLabel size="sm" data-oid=".55.gj5">
-                    Budget (ETB)
-                  </FormLabel>
-                  <Input
-                    size="sm"
-                    type="number"
-                    value={editData.budget}
-                    onChange={(e) =>
-                      setEditData({
-                        ...editData,
-                        budget: Number(e.target.value),
-                      })
-                    }
-                    data-oid="sbw2k62"
-                  />
-                </FormControl>
-              )}
             </VStack>
           ) : (
             <VStack spacing={1} align="start" data-oid="1ko6su4">
               <Text fontWeight="medium" data-oid="djks:nc">
                 {category.name}
               </Text>
-              {category.type === "expense" && category.budget > 0 && (
-                <Text fontSize="sm" color="gray.500" data-oid="c6:1gkt">
-                  Budget: ETB {category.budget.toLocaleString()}
-                </Text>
-              )}
             </VStack>
           )}
         </VStack>
@@ -322,7 +290,7 @@ const Categories = () => {
               Add New Category
             </Heading>
             <SimpleGrid
-              columns={{ base: 1, md: 4 }}
+              columns={{ base: 1, md: 3 }}
               spacing={4}
               data-oid="s_kn3wa"
             >
@@ -365,23 +333,6 @@ const Categories = () => {
                   </option>
                 </select>
               </FormControl>
-              {newCategory.type === "expense" && (
-                <FormControl data-oid="p-fqiq3">
-                  <FormLabel data-oid="erzqe7n">Budget (ETB)</FormLabel>
-                  <Input
-                    type="number"
-                    value={newCategory.budget}
-                    onChange={(e) =>
-                      setNewCategory({
-                        ...newCategory,
-                        budget: Number(e.target.value),
-                      })
-                    }
-                    placeholder="0"
-                    data-oid="6uxp.l6"
-                  />
-                </FormControl>
-              )}
               <Button
                 leftIcon={<FiPlus data-oid="pvrwlso" />}
                 colorScheme="teal"

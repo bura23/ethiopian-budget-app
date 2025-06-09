@@ -211,41 +211,6 @@ const Navigation: React.FC = () => {
                   data-oid="v2e85dt"
                 />
               </Tooltip>
-
-              <Menu data-oid="0y418ur">
-                <MenuButton
-                  as={Button}
-                  rounded="full"
-                  variant="link"
-                  cursor="pointer"
-                  minW={0}
-                  _hover={{
-                    transform: "translateY(-2px)",
-                  }}
-                  transition="all 0.2s"
-                  data-oid="j:xvu3_"
-                >
-                  <Avatar
-                    size="sm"
-                    name={user?.name}
-                    src={user?.photo_url}
-                    data-oid="krqoy4w"
-                  />
-                </MenuButton>
-                <MenuList rounded="xl" shadow="lg" data-oid="h73tl2d">
-                  <MenuItem
-                    as={RouterLink}
-                    to="/profile"
-                    icon={<FiUser data-oid=".avn5ad" />}
-                    data-oid="exk-1jv"
-                  >
-                    Profile
-                  </MenuItem>
-                  <MenuItem onClick={handleLogout} data-oid="rodfaf4">
-                    Logout
-                  </MenuItem>
-                </MenuList>
-              </Menu>
             </>
           )}
 

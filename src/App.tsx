@@ -10,12 +10,18 @@ import Categories from "./pages/Categories";
 import Reports from "./pages/Reports";
 import Settings from "./pages/Settings";
 import ProtectedRoute from "./components/ProtectedRoute";
+import Footer from "./components/Footer";
+import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
+import Privacy from "./pages/Privacy";
 
 const App: React.FC = () => {
   return (
-    <Box data-oid="aux2yeb">
+    <Box display="flex" flexDirection="column" minH="100vh" data-oid="aux2yeb">
       <Navigation data-oid="6x0m1aa" />
-      <Box p={4} mt={16} data-oid="y2uv4xc">
+      <Box p={4} mt={16} flex="1" data-oid="y2uv4xc">
         <Routes data-oid="xriel40">
           <Route
             path="/"
@@ -30,13 +36,21 @@ const App: React.FC = () => {
           <Route
             path="/login"
             element={<Login data-oid="rpen76p" />}
-            data-oid="4h1jja0"
           />
 
           <Route
             path="/register"
             element={<Register data-oid="1qa2a.g" />}
-            data-oid="af.gl6t"
+          />
+
+          <Route
+            path="/forgot-password"
+            element={<ForgotPassword />}
+          />
+
+          <Route
+            path="/reset-password/:token"
+            element={<ResetPassword />}
           />
 
           <Route
@@ -78,8 +92,13 @@ const App: React.FC = () => {
             }
             data-oid="b_ul4fy"
           />
+
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/privacy" element={<Privacy />} />
         </Routes>
       </Box>
+      <Footer />
     </Box>
   );
 };

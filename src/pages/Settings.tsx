@@ -14,6 +14,11 @@ import {
   useColorModeValue,
   useToast,
   HStack,
+  Flex,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
 } from "@chakra-ui/react";
 import { FiUpload } from "react-icons/fi";
 import { useAuth } from "../context/AuthContext";
@@ -27,7 +32,7 @@ interface ApiResponse<T = any> {
 }
 
 const Settings = () => {
-  const { user, updateProfile } = useAuth();
+  const { user, updateProfile, logout } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
   const [profileData, setProfileData] = useState({
     name: user?.name || "",
@@ -187,6 +192,18 @@ const Settings = () => {
             </Text>
           </VStack>
         </Box>
+
+        <Button
+          colorScheme="red"
+          variant="solid"
+          size="lg"
+          mt={8}
+          onClick={logout}
+          w="full"
+          alignSelf="center"
+        >
+          Logout
+        </Button>
       </VStack>
     </Container>
   );

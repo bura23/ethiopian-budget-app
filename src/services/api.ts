@@ -1,6 +1,9 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5001/api';
+// API URL configuration
+const API_URL = window.location.hostname === 'localhost' 
+  ? 'http://localhost:3000/api'  // Development with PHP backend
+  : '/api';                      // Production
 
 // Create axios instance with default config
 const api = axios.create({
@@ -25,13 +28,22 @@ api.interceptors.request.use((config) => {
 // Add response interceptor for better error handling
 api.interceptors.response.use(
   (response) => response,
-  (error) => {
+  async (error) => {
+    if (error.response?.status === 401) {
+      // Clear invalid token
+      localStorage.removeItem('token');
+      // Only redirect if not on login/register pages
+      if (!window.location.pathname.includes('/login') && !window.location.pathname.includes('/register')) {
+        window.location.href = '/login';
+      }
+    }
+    
     if (error.response) {
       // Server responded with error status
       return Promise.reject(error.response.data);
     } else if (error.request) {
       // Request was made but no response
-      return Promise.reject({ message: 'No response from server. Please try again.' });
+      return Promise.reject({ message: 'No response from server. Please check if backend is running.' });
     } else {
       // Something else happened
       return Promise.reject({ message: error.message });
@@ -183,11 +195,20 @@ export const deleteCategory = async (id: string) => {
 };
 
 // Reports API calls
-export const getFinancialStats = async (timeRange: string) => {
+export interface StatsData {
+  totalIncome: number;
+  totalExpenses: number;
+  netSavings: number;
+  incomeChange: number;
+  expenseChange: number;
+  savingsChange: number;
+}
+
+export const getFinancialStats = async (timeRange: string): Promise<{ success: boolean; data: StatsData; message?: string }> => {
   const response = await api.get('/reports/stats', {
     params: { timeRange }
   });
-  return response.data;
+  return response.data as { success: boolean; data: StatsData; message?: string };
 };
 
 export const getCategoryBreakdown = async (timeRange: string) => {

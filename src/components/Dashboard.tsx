@@ -6,6 +6,11 @@ import {
   Text,
   VStack,
   useColorModeValue,
+  Card,
+  Stat,
+  StatLabel,
+  StatNumber,
+  StatHelpText,
 } from "@chakra-ui/react";
 import { useAuth } from "../context/AuthContext";
 
@@ -24,27 +29,29 @@ const Dashboard: React.FC = () => {
           gap={6}
           data-oid="vj_ujh."
         >
-          <Box
+          <Card
             p={6}
             bg={bgColor}
             borderRadius="lg"
             borderWidth={1}
             borderColor={borderColor}
             data-oid="wpkx_76"
+            _hover={{ transform: "scale(1.05)" }}
           >
             <Heading size="md" mb={4} data-oid="x56569q">
               Recent Transactions
             </Heading>
             <Text data-oid="pfo0s.0">No transactions yet.</Text>
-          </Box>
+          </Card>
 
-          <Box
+          <Card
             p={6}
             bg={bgColor}
             borderRadius="lg"
             borderWidth={1}
             borderColor={borderColor}
             data-oid="s5jlrw."
+            _hover={{ transform: "scale(1.05)" }}
           >
             <Heading size="md" mb={4} data-oid="2oog08l">
               Budget Overview
@@ -52,7 +59,7 @@ const Dashboard: React.FC = () => {
             <Text data-oid=":_oho8:">
               Start by adding your budget categories.
             </Text>
-          </Box>
+          </Card>
         </Grid>
       </VStack>
     </Box>

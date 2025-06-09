@@ -1,54 +1,131 @@
-# React + TypeScript + Vite
+# Ethiopian Budget App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive budget management application built with React and PHP.
 
-Currently, two official plugins are available:
+## 🚀 Quick Start
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Development
 
-## Expanding the ESLint configuration
+1. **Start Backend** (Terminal 1):
+   ```bash
+   cd backend-php
+   php -S localhost:3000 index.php
+   ```
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+2. **Start Frontend** (Terminal 2):
+   ```bash
+   npm run dev
+   ```
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+3. **Access Application**:
+   - Frontend: http://localhost:5173 (or the port shown in terminal)
+   - Backend: http://localhost:3000
+
+## 📁 Project Structure
+
+```
+├── README.md                 # Main project documentation
+├── backend-php/             # PHP backend (cPanel compatible)
+│   ├── index.php           # Main backend server
+│   ├── composer.json       # PHP dependencies
+│   └── .htaccess          # Apache configuration
+├── frontend/               # React frontend source
+├── frontend-production/    # Compiled frontend for deployment
+├── src/                   # Frontend source files
+├── docs/                  # Documentation files
+│   ├── DEPLOYMENT_SUMMARY.md
+│   ├── COMPLETE_DEPLOYMENT_GUIDE.md
+│   └── ... (other guides)
+├── deployment/            # Ready-to-deploy packages
+│   └── frontend-production.zip
+├── package.json           # Node.js dependencies
+└── vite.config.ts        # Build configuration
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🌟 Features
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- **User Authentication** - Secure login/registration
+- **Budget Management** - Track income and expenses
+- **Category System** - Organize transactions
+- **Financial Reports** - Visual insights and statistics
+- **Responsive Design** - Works on desktop and mobile
+- **Real-time Updates** - Live data synchronization
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+## 🛠 Technology Stack
+
+- **Frontend**: React + TypeScript + Vite
+- **Backend**: PHP 8.2+ (cPanel compatible)
+- **Database**: MySQL
+- **Authentication**: JWT tokens
+- **Styling**: Modern CSS with responsive design
+
+## 📦 Deployment
+
+### Vercel (Recommended)
+
+1. **Quick Deploy**:
+   ```bash
+   npm install -g vercel
+   vercel login
+   vercel
+   ```
+
+2. **Or use deploy script**:
+   ```bash
+   node deploy.js
+   ```
+
+### cPanel Hosting
+
+1. **Backend**: Upload `backend-php/` contents to your domain root
+2. **Frontend**: Extract `deployment/frontend-production.zip` to your domain root
+3. **Database**: Import the SQL schema (see docs/)
+
+### Development Dependencies
+
+```bash
+npm install           # Install frontend dependencies
+cd backend-php && composer install  # Install PHP dependencies
 ```
+
+## 📖 Documentation
+
+- [Vercel Deployment Guide](docs/VERCEL_DEPLOYMENT_GUIDE.md) ⭐ **Recommended**
+- [Complete Deployment Guide](docs/COMPLETE_DEPLOYMENT_GUIDE.md)
+- [cPanel Deployment Guide](docs/CPANEL_DEPLOYMENT_GUIDE.md)
+- [Backend Troubleshooting](docs/BACKEND_TROUBLESHOOTING.md)
+- [Frontend Update Guide](docs/FRONTEND_UPDATE_GUIDE.md)
+
+## 🎯 Quick Commands
+
+```bash
+# Development
+npm run dev              # Start frontend development server
+npm run build           # Build frontend for production
+
+# Backend
+cd backend-php && php -S localhost:3000 index.php  # Start PHP server
+
+# Production
+npm run preview         # Preview production build locally
+```
+
+## 📋 Database Setup
+
+See [DEPLOYMENT_SUMMARY.md](docs/DEPLOYMENT_SUMMARY.md) for complete database schema and setup instructions.
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create your feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
+
+## 📞 Support
+
+For deployment help or technical issues, refer to the documentation in the `docs/` folder.
+
+---
+
+*Ready for cPanel deployment* ✅ 

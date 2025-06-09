@@ -15,8 +15,16 @@ import {
   NumberInputField,
   VStack,
   useToast,
+  Spinner,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { getCategories } from "../services/api";
+
+interface Category {
+  id: number;
+  name: string;
+  type: "income" | "expense";
+}
 
 interface TransactionFormProps {
   isOpen: boolean;
@@ -26,7 +34,8 @@ interface TransactionFormProps {
     date: string;
     description: string;
     amount: number;
-    category: string;
+    category_id?: number;
+    categoryId?: number;
     type: "income" | "expense";
   } | null;
   onSubmit: (transaction: any) => void;
@@ -42,15 +51,66 @@ export default function TransactionForm({
     date: transaction?.date || new Date().toISOString().split("T")[0],
     description: transaction?.description || "",
     amount: transaction?.amount || "",
-    category: transaction?.category || "",
+    categoryId: transaction?.category_id || transaction?.categoryId || "",
     type: transaction?.type || "expense",
   });
 
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [isLoadingCategories, setIsLoadingCategories] = useState(false);
   const toast = useToast();
+
+  useEffect(() => {
+    if (isOpen) {
+      loadCategories();
+    }
+  }, [isOpen]);
+
+  useEffect(() => {
+    if (transaction) {
+      setFormData({
+        date: transaction.date || new Date().toISOString().split("T")[0],
+        description: transaction.description || "",
+        amount: transaction.amount || "",
+        categoryId: transaction.category_id || transaction.categoryId || "",
+        type: transaction.type || "expense",
+      });
+    } else {
+      setFormData({
+        date: new Date().toISOString().split("T")[0],
+        description: "",
+        amount: "",
+        categoryId: "",
+        type: "expense",
+      });
+    }
+  }, [transaction]);
+
+  const loadCategories = async () => {
+    try {
+      setIsLoadingCategories(true);
+      const response = await getCategories() as { success: boolean; data?: Category[] };
+      if (response.success) {
+        setCategories(response.data || []);
+      }
+    } catch (error) {
+      console.error('Error loading categories:', error);
+      toast({
+        title: "Error",
+        description: "Failed to load categories",
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      });
+    } finally {
+      setIsLoadingCategories(false);
+    }
+  };
+
+  const filteredCategories = categories.filter(cat => cat.type === formData.type);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.description || !formData.amount || !formData.category) {
+    if (!formData.description || !formData.amount || !formData.categoryId) {
       toast({
         title: "Error",
         description: "Please fill in all required fields",
@@ -65,8 +125,17 @@ export default function TransactionForm({
       ...formData,
       id: transaction?.id,
       amount: Number(formData.amount),
+      categoryId: Number(formData.categoryId),
     });
     onClose();
+  };
+
+  const handleTypeChange = (newType: "income" | "expense") => {
+    setFormData({ 
+      ...formData, 
+      type: newType,
+      categoryId: "" // Reset category when type changes
+    });
   };
 
   return (
@@ -90,6 +159,48 @@ export default function TransactionForm({
                   }
                   data-oid="v50zsc1"
                 />
+              </FormControl>
+
+              <FormControl isRequired data-oid="hoe8my_">
+                <FormLabel data-oid="hatp438">Type</FormLabel>
+                <Select
+                  value={formData.type}
+                  onChange={(e) =>
+                    handleTypeChange(e.target.value as "income" | "expense")
+                  }
+                  data-oid="gtz8be-"
+                >
+                  <option value="income" data-oid="4lzcbwl">
+                    Income
+                  </option>
+                  <option value="expense" data-oid="kx9t1kn">
+                    Expense
+                  </option>
+                </Select>
+              </FormControl>
+
+              <FormControl isRequired data-oid="88:9vk:">
+                <FormLabel data-oid="5obn5ac">Category</FormLabel>
+                <Select
+                  value={formData.categoryId}
+                  onChange={(e) =>
+                    setFormData({ ...formData, categoryId: e.target.value })
+                  }
+                  placeholder="Select category"
+                  data-oid="l7j70uf"
+                  disabled={isLoadingCategories}
+                >
+                  {isLoadingCategories ? (
+                    <option>Loading categories...</option>
+                  ) : (
+                    filteredCategories.map((category) => (
+                      <option key={category.id} value={category.id}>
+                        {category.name}
+                      </option>
+                    ))
+                  )}
+                </Select>
+                {isLoadingCategories && <Spinner size="sm" mt={2} />}
               </FormControl>
 
               <FormControl isRequired data-oid="vr92_.w">
@@ -116,58 +227,6 @@ export default function TransactionForm({
                     data-oid="z4ra.8t"
                   />
                 </NumberInput>
-              </FormControl>
-
-              <FormControl isRequired data-oid="88:9vk:">
-                <FormLabel data-oid="5obn5ac">Category</FormLabel>
-                <Select
-                  value={formData.category}
-                  onChange={(e) =>
-                    setFormData({ ...formData, category: e.target.value })
-                  }
-                  placeholder="Select category"
-                  data-oid="l7j70uf"
-                >
-                  <option value="Food" data-oid="en9hsqe">
-                    Food
-                  </option>
-                  <option value="Transport" data-oid="tdk898f">
-                    Transport
-                  </option>
-                  <option value="Utilities" data-oid="47vngkr">
-                    Utilities
-                  </option>
-                  <option value="Entertainment" data-oid="bvp_qsw">
-                    Entertainment
-                  </option>
-                  <option value="Shopping" data-oid="y_vltts">
-                    Shopping
-                  </option>
-                  <option value="Others" data-oid="rafh6-6">
-                    Others
-                  </option>
-                </Select>
-              </FormControl>
-
-              <FormControl isRequired data-oid="hoe8my_">
-                <FormLabel data-oid="hatp438">Type</FormLabel>
-                <Select
-                  value={formData.type}
-                  onChange={(e) =>
-                    setFormData({
-                      ...formData,
-                      type: e.target.value as "income" | "expense",
-                    })
-                  }
-                  data-oid="gtz8be-"
-                >
-                  <option value="income" data-oid="4lzcbwl">
-                    Income
-                  </option>
-                  <option value="expense" data-oid="kx9t1kn">
-                    Expense
-                  </option>
-                </Select>
               </FormControl>
             </VStack>
           </ModalBody>

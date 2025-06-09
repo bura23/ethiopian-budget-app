@@ -118,6 +118,20 @@ const Login = () => {
                 </InputGroup>
               </FormControl>
 
+              {/* Forgot Password Link */}
+              <Box w="100%" textAlign="right" mb={-2}>
+                <Link
+                  as={RouterLink}
+                  to="/forgot-password"
+                  color="teal.500"
+                  fontWeight="semibold"
+                  fontSize="sm"
+                  data-oid="forgot-pw-link"
+                >
+                  Forgot password?
+                </Link>
+              </Box>
+
               <Button
                 type="submit"
                 colorScheme="teal"

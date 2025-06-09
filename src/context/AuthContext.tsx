@@ -13,6 +13,7 @@ interface AuthResponse {
   success: boolean;
   data?: User;
   user?: User;
+  token?: string;
   message?: string;
 }
 
@@ -36,78 +37,91 @@ interface AuthProviderProps {
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [reportsRefreshTrigger, setReportsRefreshTrigger] = useState(0);
 
+  const refreshReports = () => {
+    setReportsRefreshTrigger(prev => prev + 1);
+  };
+
+  // Check for existing token and fetch user profile on app start
   useEffect(() => {
-    const checkAuthStatus = async () => {
-      const token = localStorage.getItem("token");
+    const initializeAuth = async () => {
+      const token = localStorage.getItem('token');
       if (token) {
         try {
-          const response = (await auth.getProfile()) as AuthResponse;
+          const response = await auth.getProfile() as AuthResponse;
           if (response.success) {
-            const userData = response.data || response.user;
-            if (userData) {
-              setUser(userData);
-              setIsAuthenticated(true);
-            }
+            setUser(response.data || response.user || null);
           } else {
-            localStorage.removeItem("token");
+            // Invalid token, remove it
+            localStorage.removeItem('token');
           }
         } catch (error) {
-          console.error("Auth check failed:", error);
-          localStorage.removeItem("token");
+          console.error('Failed to fetch user profile:', error);
+          // Remove invalid token
+          localStorage.removeItem('token');
         }
       }
       setIsLoading(false);
     };
 
-    checkAuthStatus();
+    initializeAuth();
   }, []);
 
   const login = async (email: string, password: string) => {
     try {
-      const response = (await auth.login({ email, password })) as AuthResponse;
-      if (response.success) {
+      setIsLoading(true);
+      const response = await auth.login({ email, password }) as AuthResponse;
+      
+      if (response.success && response.token) {
+        // Store token in localStorage
+        localStorage.setItem('token', response.token);
+        
+        // Set user data
         const userData = response.data || response.user;
         if (userData) {
           setUser(userData);
-          setIsAuthenticated(true);
         }
       } else {
-        throw new Error(response.message || "Login failed");
+        throw new Error(response.message || 'Login failed');
       }
     } catch (error) {
+      console.error('Login error:', error);
       throw error;
+    } finally {
+      setIsLoading(false);
     }
   };
 
   const register = async (name: string, email: string, password: string) => {
     try {
-      const response = (await auth.register({
-        name,
-        email,
-        password,
-      })) as AuthResponse;
-      if (response.success) {
+      setIsLoading(true);
+      const response = await auth.register({ name, email, password }) as AuthResponse;
+      
+      if (response.success && response.token) {
+        // Store token in localStorage
+        localStorage.setItem('token', response.token);
+        
+        // Set user data
         const userData = response.data || response.user;
         if (userData) {
           setUser(userData);
-          setIsAuthenticated(true);
         }
       } else {
-        throw new Error(response.message || "Registration failed");
+        throw new Error(response.message || 'Registration failed');
       }
     } catch (error) {
+      console.error('Registration error:', error);
       throw error;
+    } finally {
+      setIsLoading(false);
     }
   };
 
   const logout = () => {
+    localStorage.removeItem('token');
     setUser(null);
-    setIsAuthenticated(false);
-    localStorage.removeItem("token");
   };
 
   const updateProfile = (updates: Partial<User>) => {
@@ -116,13 +130,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }
   };
 
-  const refreshReports = () => {
-    setReportsRefreshTrigger((prev) => prev + 1);
-  };
-
-  const value = {
+  const value: AuthContextType = {
     user,
-    isAuthenticated,
+    isAuthenticated: !!user,
     isLoading,
     login,
     register,
@@ -132,11 +142,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     reportsRefreshTrigger,
   };
 
-  return (
-    <AuthContext.Provider value={value} data-oid="9e8-z_r">
-      {children}
-    </AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
 export const useAuth = () => {
