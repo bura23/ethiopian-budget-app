@@ -30,7 +30,7 @@ interface TransactionFormProps {
   isOpen: boolean;
   onClose: () => void;
   transaction?: {
-    id?: string;
+    id?: number;
     date: string;
     description: string;
     amount: number;

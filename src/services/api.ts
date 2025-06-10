@@ -1,13 +1,20 @@
 import axios from 'axios';
 
 // API URL configuration
-const API_URL = window.location.hostname === 'localhost' 
-  ? 'http://localhost:3000/api'  // Development with PHP backend
-  : '/api';                      // Production
+const getApiUrl = () => {
+  if (typeof window === 'undefined') {
+    // Server-side
+    return process.env.NEXT_PUBLIC_API_URL || '/api';
+  }
+  // Client-side
+  return window.location.hostname === 'localhost' 
+    ? 'http://localhost:3000/api'  // Development with PHP backend
+    : '/api';                      // Production
+};
 
 // Create axios instance with default config
 const api = axios.create({
-  baseURL: API_URL,
+  baseURL: getApiUrl(),
   headers: {
     'Content-Type': 'application/json',
   },
@@ -18,9 +25,11 @@ const api = axios.create({
 
 // Add token to requests if available
 api.interceptors.request.use((config) => {
-  const token = localStorage.getItem('token');
-  if (token && config.headers) {
-    config.headers.Authorization = `Bearer ${token}`;
+  if (typeof window !== 'undefined') {
+    const token = localStorage.getItem('token');
+    if (token && config.headers) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
   }
   return config;
 });

@@ -18,6 +18,8 @@ import {
   Spinner,
   VStack,
   Input,
+  InputGroup,
+  InputLeftElement,
   Select,
 } from "@chakra-ui/react";
 import { AddIcon, EditIcon, DeleteIcon, SearchIcon } from "@chakra-ui/icons";
@@ -27,13 +29,14 @@ import { transactions } from "../services/api";
 import { useAuth } from "../context/AuthContext";
 
 interface Transaction {
-  id: string;
+  id: number;
   date: string;
   description: string;
   amount: number;
   type: "income" | "expense";
   category: string;
   category_name?: string;
+  categoryId?: number;
 }
 
 const Transactions = () => {
@@ -85,7 +88,7 @@ const Transactions = () => {
       let response;
       if (selectedTransaction) {
         // Edit existing transaction
-        response = await transactions.update(selectedTransaction.id, {
+        response = await transactions.update(Number(selectedTransaction.id), {
           categoryId: parseInt(transactionData.categoryId),
           amount: transactionData.amount,
           description: transactionData.description,
@@ -137,9 +140,9 @@ const Transactions = () => {
     onOpen();
   };
 
-  const handleDelete = async (id: string) => {
+  const handleDelete = async (id: number) => {
     try {
-      const response = await transactions.delete(parseInt(id));
+      const response = await transactions.delete(id);
       if (response.success) {
         await loadTransactions();
         refreshReports(); // Refresh reports when transaction is deleted
@@ -196,29 +199,27 @@ const Transactions = () => {
         {/* Search and Filter */}
         <HStack spacing={4} mb={4} data-oid="75gs_0d">
           <Box flex="1" data-oid="l6qdrvv">
-            <Input
-              placeholder="Search transactions..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              leftIcon={<SearchIcon data-oid="p_jmlru" />}
-              data-oid="7h13nco"
-            />
+            <InputGroup>
+              <InputLeftElement pointerEvents="none">
+                <SearchIcon color="gray.300" />
+              </InputLeftElement>
+              <Input
+                placeholder="Search transactions..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                data-oid="l6qdrvv"
+              />
+            </InputGroup>
           </Box>
           <Select
             value={filterType}
             onChange={(e) => setFilterType(e.target.value)}
             width="200px"
-            data-oid="opc008-"
+            data-oid="l6qdrvv"
           >
-            <option value="all" data-oid="ylh7z2o">
-              All Types
-            </option>
-            <option value="income" data-oid="3a58fea">
-              Income
-            </option>
-            <option value="expense" data-oid="udt:jjc">
-              Expense
-            </option>
+            <option value="all">All Types</option>
+            <option value="income">Income</option>
+            <option value="expense">Expense</option>
           </Select>
         </HStack>
       </Box>
