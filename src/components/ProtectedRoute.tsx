@@ -1,4 +1,5 @@
-import { Navigate, useLocation } from "react-router-dom";
+import { useEffect } from "react";
+import { useRouter } from "next/router";
 import { useAuth } from "../context/AuthContext";
 
 interface ProtectedRouteProps {
@@ -6,18 +7,21 @@ interface ProtectedRouteProps {
 }
 
 const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
-  const { isAuthenticated } = useAuth();
-  const location = useLocation();
+  const { isAuthenticated, isLoading } = useAuth();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!isLoading && !isAuthenticated) {
+      router.push("/login");
+    }
+  }, [isAuthenticated, isLoading, router]);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   if (!isAuthenticated) {
-    return (
-      <Navigate
-        to="/login"
-        state={{ from: location }}
-        replace
-        data-oid="t:m4t3:"
-      />
-    );
+    return null;
   }
 
   return <>{children}</>;

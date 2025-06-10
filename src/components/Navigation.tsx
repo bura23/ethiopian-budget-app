@@ -32,7 +32,8 @@ import {
   FiFileText,
   FiUser,
 } from "react-icons/fi";
-import { Link as RouterLink, useNavigate, useLocation } from "react-router-dom";
+import NextLink from "next/link";
+import { useRouter } from "next/router";
 import { useAuth } from "../context/AuthContext";
 
 const NavItem = ({ item, isActive }: { item: any; isActive: boolean }) => {
@@ -42,28 +43,28 @@ const NavItem = ({ item, isActive }: { item: any; isActive: boolean }) => {
 
   return (
     <Tooltip label={item.name} placement="bottom" data-oid="1kjil6m">
-      <Link
-        as={RouterLink}
-        to={item.path}
-        p={2}
-        px={4}
-        rounded="full"
-        display="flex"
-        alignItems="center"
-        bg={isActive ? bgColor : "transparent"}
-        color={isActive ? activeColor : undefined}
-        _hover={{
-          textDecoration: "none",
-          color: activeColor,
-          bg: hoverBg,
-          transform: "translateY(-2px)",
-        }}
-        transition="all 0.2s"
-        data-oid="5j8fotn"
-      >
-        <Box as={item.icon} mr={2} data-oid="vhx26lh" />
-        {item.name}
-      </Link>
+      <NextLink href={item.path} passHref>
+        <Link
+          p={2}
+          px={4}
+          rounded="full"
+          display="flex"
+          alignItems="center"
+          bg={isActive ? bgColor : "transparent"}
+          color={isActive ? activeColor : undefined}
+          _hover={{
+            textDecoration: "none",
+            color: activeColor,
+            bg: hoverBg,
+            transform: "translateY(-2px)",
+          }}
+          transition="all 0.2s"
+          data-oid="5j8fotn"
+        >
+          <Box as={item.icon} mr={2} data-oid="vhx26lh" />
+          {item.name}
+        </Link>
+      </NextLink>
     </Tooltip>
   );
 };
@@ -71,8 +72,7 @@ const NavItem = ({ item, isActive }: { item: any; isActive: boolean }) => {
 const Navigation: React.FC = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   const { isAuthenticated, user, logout } = useAuth();
-  const navigate = useNavigate();
-  const location = useLocation();
+  const router = useRouter();
 
   // Move all useColorModeValue calls to the top
   const bgColor = useColorModeValue("white", "gray.800");
@@ -86,13 +86,13 @@ const Navigation: React.FC = () => {
   const hoverBg = useColorModeValue("gray.100", "gray.700");
 
   // Don't show navigation on login and register pages
-  if (location.pathname === "/login" || location.pathname === "/register") {
+  if (router.pathname === "/login" || router.pathname === "/register") {
     return null;
   }
 
   const handleLogout = () => {
     logout();
-    navigate("/login");
+    router.push("/login");
   };
 
   const navItems = [
@@ -126,32 +126,32 @@ const Navigation: React.FC = () => {
         data-oid=".-8r:-v"
       >
         <HStack spacing={8} alignItems="center" data-oid="g-0y-di">
-          <Link
-            as={RouterLink}
-            to="/"
-            display="flex"
-            alignItems="center"
-            _hover={{ textDecoration: "none" }}
-            data-oid="jm_u1ku"
-          >
-            <Image
-              src="/logo.svg"
-              alt="Yene Birr"
-              h="40px"
-              mr={2}
-              fallbackSrc="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' fill='%23319795'/%3E%3Ctext x='20' y='25' text-anchor='middle' fill='white' font-family='Arial' font-size='16' font-weight='bold'%3EYB%3C/text%3E%3C/svg%3E"
-              data-oid="tdudxqn"
-            />
-
-            <Box
-              fontSize="xl"
-              fontWeight="bold"
-              color={logoColor}
-              data-oid="a7xx7a2"
+          <NextLink href="/" passHref>
+            <Link
+              display="flex"
+              alignItems="center"
+              _hover={{ textDecoration: "none" }}
+              data-oid="jm_u1ku"
             >
-              Yene Birr
-            </Box>
-          </Link>
+              <Image
+                src="/logo.svg"
+                alt="Yene Birr"
+                h="40px"
+                mr={2}
+                fallbackSrc="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' fill='%23319795'/%3E%3Ctext x='20' y='25' text-anchor='middle' fill='white' font-family='Arial' font-size='16' font-weight='bold'%3EYB%3C/text%3E%3C/svg%3E"
+                data-oid="tdudxqn"
+              />
+
+              <Box
+                fontSize="xl"
+                fontWeight="bold"
+                color={logoColor}
+                data-oid="a7xx7a2"
+              >
+                Yene Birr
+              </Box>
+            </Link>
+          </NextLink>
 
           {isAuthenticated && (
             <HStack
@@ -164,7 +164,7 @@ const Navigation: React.FC = () => {
                 <NavItem
                   key={item.path}
                   item={item}
-                  isActive={location.pathname === item.path}
+                  isActive={router.pathname === item.path}
                   data-oid="oe7c9.d"
                 />
               ))}
@@ -196,52 +196,55 @@ const Navigation: React.FC = () => {
           {isAuthenticated && (
             <>
               <Tooltip label="Settings" data-oid="n-yk407">
-                <IconButton
-                  as={RouterLink}
-                  to="/settings"
-                  icon={<FiSettings data-oid="clwpiz1" />}
-                  aria-label="Settings"
-                  variant="ghost"
-                  rounded="full"
-                  _hover={{
-                    transform: "translateY(-2px)",
-                    bg: hoverBg,
-                  }}
-                  transition="all 0.2s"
-                  data-oid="v2e85dt"
-                />
+                <NextLink href="/settings" passHref>
+                  <IconButton
+                    as="a"
+                    icon={<FiSettings data-oid="clwpiz1" />}
+                    aria-label="Settings"
+                    variant="ghost"
+                    rounded="full"
+                    _hover={{
+                      transform: "translateY(-2px)",
+                      bg: hoverBg,
+                    }}
+                    transition="all 0.2s"
+                    data-oid="v2e85dt"
+                  />
+                </NextLink>
               </Tooltip>
             </>
           )}
 
           {!isAuthenticated && (
             <HStack spacing={4} data-oid="y5rj.1u">
-              <Button
-                as={RouterLink}
-                to="/login"
-                variant="ghost"
-                rounded="full"
-                _hover={{
-                  transform: "translateY(-2px)",
-                }}
-                transition="all 0.2s"
-                data-oid="og5iygx"
-              >
-                Login
-              </Button>
-              <Button
-                as={RouterLink}
-                to="/register"
-                colorScheme="teal"
-                rounded="full"
-                _hover={{
-                  transform: "translateY(-2px)",
-                }}
-                transition="all 0.2s"
-                data-oid="ponf:eh"
-              >
-                Register
-              </Button>
+              <NextLink href="/login" passHref>
+                <Button
+                  as="a"
+                  variant="ghost"
+                  rounded="full"
+                  _hover={{
+                    transform: "translateY(-2px)",
+                  }}
+                  transition="all 0.2s"
+                  data-oid="og5iygx"
+                >
+                  Login
+                </Button>
+              </NextLink>
+              <NextLink href="/register" passHref>
+                <Button
+                  as="a"
+                  colorScheme="teal"
+                  rounded="full"
+                  _hover={{
+                    transform: "translateY(-2px)",
+                  }}
+                  transition="all 0.2s"
+                  data-oid="ponf:eh"
+                >
+                  Register
+                </Button>
+              </NextLink>
             </HStack>
           )}
         </HStack>
