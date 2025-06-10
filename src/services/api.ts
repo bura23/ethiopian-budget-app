@@ -72,6 +72,16 @@ export const auth = {
     const response = await api.put('/auth/profile', data);
     return response.data;
   },
+
+  forgotPassword: async (data: { email: string }) => {
+    const response = await api.post('/auth/forgot-password', data);
+    return response.data;
+  },
+
+  resetPassword: async (data: { token: string; password: string }) => {
+    const response = await api.post('/auth/reset-password', data);
+    return response.data;
+  },
 };
 
 // Categories API
