@@ -63,7 +63,6 @@ ethiopian-budget-app/
    ```
    NEXT_PUBLIC_API_URL=your_api_url
    NEXT_PUBLIC_GEMINI_API_KEY=your_gemini_api_key
-   NEXT_PUBLIC_HANKO_API_URL=your_hanko_api_url
    ```
 
 4. Start the development server:

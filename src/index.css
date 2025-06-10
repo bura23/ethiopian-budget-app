@@ -58,31 +58,3 @@ button:focus-visible {
   width: 100%;
   min-height: 100vh;
 }
-
-/* Hanko styles */
-hanko-auth, hanko-profile {
-  /* Color customization */
-  --color-primary: #319795;
-  --color-bg-primary: white;
-  --color-bg-secondary: #f7fafc;
-  --color-text-primary: #1a202c;
-  --color-text-secondary: #4a5568;
-  --color-error: #e53e3e;
-  --color-link: #319795;
-
-  /* Border customization */
-  --border-radius-small: 0.375rem;
-  --border-radius-medium: 0.5rem;
-  --border-radius-large: 0.75rem;
-
-  /* Font customization */
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-}
-
-/* Container styles */
-hanko-auth {
-  display: block;
-  width: 100%;
-  min-width: 364px;
-  margin: 0 auto;
-}
