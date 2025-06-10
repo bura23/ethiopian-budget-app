@@ -1,51 +1,54 @@
-import { useState } from "react";
+import { useRouter } from "next/router";
+import Link from "next/link";
 import {
   Box,
   Button,
   FormControl,
   FormLabel,
   Input,
-  VStack,
-  Heading,
+  Stack,
   Text,
-  useToast,
-  Container,
   useColorModeValue,
+  Container,
+  Heading,
+  FormErrorMessage,
+  useToast,
 } from "@chakra-ui/react";
-import { Link as RouterLink } from "react-router-dom";
+import { useState } from "react";
+import { auth } from "../services/api";
 
-const ForgotPassword = () => {
+export default function ForgotPassword() {
   const [email, setEmail] = useState("");
+  const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [success, setSuccess] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const router = useRouter();
   const toast = useToast();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError("");
     setIsLoading(true);
-    setSuccess(false);
+
     try {
-      const res = await fetch("/api/auth/forgot-password", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
-      });
-      const data = await res.json();
-      if (data.success) {
-        setSuccess(true);
-      } else {
+      const response = await auth.forgotPassword({ email });
+      if (response.success) {
+        setIsSuccess(true);
         toast({
-          title: "Error",
-          description: data.message || "Failed to send reset email",
-          status: "error",
+          title: "Reset email sent",
+          description: "Please check your email for password reset instructions",
+          status: "success",
           duration: 5000,
           isClosable: true,
         });
+      } else {
+        throw new Error(response.message || "Failed to send reset email");
       }
-    } catch (error) {
+    } catch (err) {
+      setError(err.message || "Failed to send reset email");
       toast({
         title: "Error",
-        description: "Failed to send reset email",
+        description: err.message || "Failed to send reset email",
         status: "error",
         duration: 5000,
         isClosable: true,
@@ -55,56 +58,77 @@ const ForgotPassword = () => {
     }
   };
 
-  return (
-    <Container maxW="container.sm" py={10}>
-      <Box
-        p={8}
-        borderWidth={1}
-        borderRadius="lg"
-        boxShadow="lg"
-        bg={useColorModeValue("white", "gray.700")}
-      >
-        <VStack spacing={8}>
-          <Heading size="lg">Forgot Password</Heading>
-          {success ? (
-            <Text color="teal.500" fontWeight="semibold" textAlign="center">
-              If an account with that email exists, a reset link has been sent.<br />
-              Please check your email.
+  if (isSuccess) {
+    return (
+      <Container maxW="lg" py={{ base: "12", md: "24" }} px={{ base: "0", sm: "8" }}>
+        <Stack spacing="8">
+          <Stack spacing="6" textAlign="center">
+            <Heading size={{ base: "xs", md: "sm" }}>Check your email</Heading>
+            <Text color="fg.muted">
+              We've sent password reset instructions to your email address.
             </Text>
-          ) : (
-            <Box w="100%" as="form" onSubmit={handleSubmit}>
-              <VStack spacing={4}>
-                <FormControl isRequired>
-                  <FormLabel>Email</FormLabel>
-                  <Input
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Enter your email"
-                    size="lg"
-                  />
-                </FormControl>
+            <Link href="/login">
+              <Text as="span" color="teal.500" cursor="pointer">
+                Back to login
+              </Text>
+            </Link>
+          </Stack>
+        </Stack>
+      </Container>
+    );
+  }
+
+  return (
+    <Container maxW="lg" py={{ base: "12", md: "24" }} px={{ base: "0", sm: "8" }}>
+      <Stack spacing="8">
+        <Stack spacing="6">
+          <Stack spacing={{ base: "2", md: "3" }} textAlign="center">
+            <Heading size={{ base: "xs", md: "sm" }}>Forgot your password?</Heading>
+            <Text color="fg.muted">
+              Enter your email address and we'll send you instructions to reset your password.
+            </Text>
+          </Stack>
+        </Stack>
+        <Box
+          py={{ base: "0", sm: "8" }}
+          px={{ base: "4", sm: "10" }}
+          bg={useColorModeValue("white", "gray.800")}
+          boxShadow={{ base: "none", sm: "md" }}
+          borderRadius={{ base: "none", sm: "xl" }}
+        >
+          <form onSubmit={handleSubmit}>
+            <Stack spacing="6">
+              <FormControl isInvalid={!!error}>
+                <FormLabel htmlFor="email">Email address</FormLabel>
+                <Input
+                  id="email"
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+                <FormErrorMessage>{error}</FormErrorMessage>
+              </FormControl>
+              <Stack spacing="6">
                 <Button
                   type="submit"
                   colorScheme="teal"
                   size="lg"
-                  width="100%"
+                  fontSize="md"
                   isLoading={isLoading}
                 >
-                  Send Reset Link
+                  Send reset instructions
                 </Button>
-              </VStack>
-            </Box>
-          )}
-          <Text fontSize="md">
-            <RouterLink to="/login" style={{ color: "#319795", fontWeight: 600 }}>
-              Back to Login
-            </RouterLink>
-          </Text>
-        </VStack>
-      </Box>
+                <Link href="/login">
+                  <Text color="teal.500" align="center" cursor="pointer">
+                    Back to login
+                  </Text>
+                </Link>
+              </Stack>
+            </Stack>
+          </form>
+        </Box>
+      </Stack>
     </Container>
   );
-};
-
-export default ForgotPassword; 
+} 

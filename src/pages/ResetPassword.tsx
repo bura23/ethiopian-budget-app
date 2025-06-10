@@ -1,73 +1,70 @@
-import { useState } from "react";
+import { useRouter } from "next/router";
+import Link from "next/link";
 import {
   Box,
   Button,
   FormControl,
   FormLabel,
   Input,
-  VStack,
-  Heading,
+  Stack,
   Text,
-  useToast,
-  Container,
   useColorModeValue,
+  Container,
+  Heading,
+  FormErrorMessage,
+  useToast,
 } from "@chakra-ui/react";
-import { useParams, Link as RouterLink, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { auth } from "../services/api";
 
-const ResetPassword = () => {
-  const { token } = useParams();
+export default function ResetPassword() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [success, setSuccess] = useState(false);
+  const router = useRouter();
+  const { token } = router.query;
   const toast = useToast();
-  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (password.length < 6) {
-      toast({
-        title: "Password too short",
-        description: "Password must be at least 6 characters.",
-        status: "error",
-        duration: 4000,
-        isClosable: true,
-      });
-      return;
-    }
+    setError("");
+
     if (password !== confirmPassword) {
-      toast({
-        title: "Passwords do not match",
-        status: "error",
-        duration: 4000,
-        isClosable: true,
-      });
+      setError("Passwords do not match");
       return;
     }
+
+    if (!token) {
+      setError("Invalid reset token");
+      return;
+    }
+
     setIsLoading(true);
+
     try {
-      const res = await fetch("/api/auth/reset-password", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ token, password }),
+      const response = await auth.resetPassword({
+        token: token as string,
+        password,
       });
-      const data = await res.json();
-      if (data.success) {
-        setSuccess(true);
-        setTimeout(() => navigate("/login"), 3000);
-      } else {
+
+      if (response.success) {
         toast({
-          title: "Error",
-          description: data.message || "Failed to reset password",
-          status: "error",
+          title: "Password reset successful",
+          description: "You can now log in with your new password",
+          status: "success",
           duration: 5000,
           isClosable: true,
         });
+        router.push("/login");
+      } else {
+        throw new Error(response.message || "Failed to reset password");
       }
-    } catch (error) {
+    } catch (err) {
+      setError(err.message || "Failed to reset password");
       toast({
         title: "Error",
-        description: "Failed to reset password",
+        description: err.message || "Failed to reset password",
         status: "error",
         duration: 5000,
         isClosable: true,
@@ -78,64 +75,68 @@ const ResetPassword = () => {
   };
 
   return (
-    <Container maxW="container.sm" py={10}>
-      <Box
-        p={8}
-        borderWidth={1}
-        borderRadius="lg"
-        boxShadow="lg"
-        bg={useColorModeValue("white", "gray.700")}
-      >
-        <VStack spacing={8}>
-          <Heading size="lg">Reset Password</Heading>
-          {success ? (
-            <Text color="teal.500" fontWeight="semibold" textAlign="center">
-              Password reset successful!<br />Redirecting to login...
+    <Container maxW="lg" py={{ base: "12", md: "24" }} px={{ base: "0", sm: "8" }}>
+      <Stack spacing="8">
+        <Stack spacing="6">
+          <Stack spacing={{ base: "2", md: "3" }} textAlign="center">
+            <Heading size={{ base: "xs", md: "sm" }}>Reset your password</Heading>
+            <Text color="fg.muted">
+              Enter your new password below
             </Text>
-          ) : (
-            <Box w="100%" as="form" onSubmit={handleSubmit}>
-              <VStack spacing={4}>
-                <FormControl isRequired>
-                  <FormLabel>New Password</FormLabel>
+          </Stack>
+        </Stack>
+        <Box
+          py={{ base: "0", sm: "8" }}
+          px={{ base: "4", sm: "10" }}
+          bg={useColorModeValue("white", "gray.800")}
+          boxShadow={{ base: "none", sm: "md" }}
+          borderRadius={{ base: "none", sm: "xl" }}
+        >
+          <form onSubmit={handleSubmit}>
+            <Stack spacing="6">
+              <Stack spacing="5">
+                <FormControl isInvalid={!!error}>
+                  <FormLabel htmlFor="password">New Password</FormLabel>
                   <Input
+                    id="password"
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    placeholder="Enter new password"
-                    size="lg"
+                    required
                   />
                 </FormControl>
-                <FormControl isRequired>
-                  <FormLabel>Confirm Password</FormLabel>
+                <FormControl isInvalid={!!error}>
+                  <FormLabel htmlFor="confirmPassword">Confirm New Password</FormLabel>
                   <Input
+                    id="confirmPassword"
                     type="password"
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
-                    placeholder="Confirm new password"
-                    size="lg"
+                    required
                   />
+                  <FormErrorMessage>{error}</FormErrorMessage>
                 </FormControl>
+              </Stack>
+              <Stack spacing="6">
                 <Button
                   type="submit"
                   colorScheme="teal"
                   size="lg"
-                  width="100%"
+                  fontSize="md"
                   isLoading={isLoading}
                 >
                   Reset Password
                 </Button>
-              </VStack>
-            </Box>
-          )}
-          <Text fontSize="md">
-            <RouterLink to="/login" style={{ color: "#319795", fontWeight: 600 }}>
-              Back to Login
-            </RouterLink>
-          </Text>
-        </VStack>
-      </Box>
+                <Link href="/login">
+                  <Text color="teal.500" align="center" cursor="pointer">
+                    Back to login
+                  </Text>
+                </Link>
+              </Stack>
+            </Stack>
+          </form>
+        </Box>
+      </Stack>
     </Container>
   );
-};
-
-export default ResetPassword; 
+} 

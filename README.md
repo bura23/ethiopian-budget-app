@@ -1,6 +1,96 @@
 # Ethiopian Budget App
 
-A modern, responsive budget management application built with React and PHP.
+A modern budget tracking application built with Next.js and TypeScript, designed specifically for Ethiopian users.
+
+## Features
+
+- User authentication and authorization
+- Budget tracking and management
+- Transaction history
+- Category-based expense tracking
+- Reports and analytics
+- Dark mode support
+- Responsive design
+
+## Tech Stack
+
+- **Frontend**: Next.js + TypeScript + Chakra UI
+- **Authentication**: JWT + bcrypt
+- **State Management**: React Context
+- **Styling**: Chakra UI + Emotion
+- **Charts**: Chart.js + React Chart.js 2
+- **Icons**: Chakra Icons + React Icons
+- **Form Handling**: React Hook Form
+- **API Client**: Axios
+- **Development**: ESLint + TypeScript
+
+## Project Structure
+
+```
+ethiopian-budget-app/
+├── public/             # Static assets
+├── src/
+│   ├── components/     # Reusable components
+│   ├── config/        # Configuration files
+│   ├── context/       # React Context providers
+│   ├── hooks/         # Custom React hooks
+│   ├── pages/         # Next.js pages
+│   ├── services/      # API services
+│   ├── styles/        # Global styles
+│   ├── theme/         # Theme configuration
+│   ├── types/         # TypeScript types
+│   └── utils/         # Utility functions
+├── .env.local         # Environment variables
+├── next.config.js     # Next.js configuration
+├── package.json       # Dependencies and scripts
+└── tsconfig.json      # TypeScript configuration
+```
+
+## Getting Started
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/ethiopian-budget-app.git
+   cd ethiopian-budget-app
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Create a `.env.local` file in the root directory and add your environment variables:
+   ```
+   NEXT_PUBLIC_API_URL=your_api_url
+   NEXT_PUBLIC_GEMINI_API_KEY=your_gemini_api_key
+   NEXT_PUBLIC_HANKO_API_URL=your_hanko_api_url
+   ```
+
+4. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+5. Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## Available Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm start` - Start production server
+- `npm run lint` - Run ESLint
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 🚀 Quick Start
 

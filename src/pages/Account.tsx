@@ -9,12 +9,35 @@ import {
   Avatar,
   HStack,
 } from "@chakra-ui/react";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/router";
 import { jwtDecode } from "jwt-decode";
 import type { UserProfile } from "../config/oauth";
+import { useEffect } from "react";
 
 export default function Account() {
-  const navigate = useNavigate();
+  const router = useRouter();
+
+  useEffect(() => {
+    const token = localStorage.getItem("auth_token");
+    let userProfile: UserProfile | null = null;
+
+    if (token) {
+      try {
+        userProfile = jwtDecode<UserProfile>(token);
+      } catch (error) {
+        console.error("Error decoding token:", error);
+        router.push("/login");
+      }
+    } else {
+      router.push("/login");
+    }
+  }, [router]);
+
+  const handleLogout = () => {
+    localStorage.removeItem("auth_token");
+    router.push("/login");
+  };
+
   const token = localStorage.getItem("auth_token");
   let userProfile: UserProfile | null = null;
 
@@ -23,32 +46,27 @@ export default function Account() {
       userProfile = jwtDecode<UserProfile>(token);
     } catch (error) {
       console.error("Error decoding token:", error);
+      return null;
     }
   }
 
-  const handleLogout = () => {
-    localStorage.removeItem("auth_token");
-    navigate("/login");
-  };
-
   if (!userProfile) {
-    navigate("/login");
     return null;
   }
 
   return (
-    <Container maxW="container.md" py={8} data-oid="v::xwbi">
-      <VStack spacing={6} align="stretch" data-oid=".cg9_6:">
-        <Box data-oid="6-ehaxk">
-          <Heading size="lg" mb={2} data-oid="ljjymu3">
+    <Container maxW="container.md" py={8}>
+      <VStack spacing={6} align="stretch">
+        <Box>
+          <Heading size="lg" mb={2}>
             Account Settings
           </Heading>
-          <Text color="gray.600" data-oid="z4.vrh.">
+          <Text color="gray.600">
             Manage your profile and account preferences
           </Text>
         </Box>
 
-        <Divider data-oid="jaftzgs" />
+        <Divider />
 
         <Box
           bg="white"
@@ -57,34 +75,31 @@ export default function Account() {
           boxShadow="sm"
           border="1px"
           borderColor="gray.100"
-          data-oid="h0x8vsn"
         >
-          <VStack spacing={4} align="stretch" data-oid="5rc-ecb">
-            <HStack spacing={4} data-oid="m0:dkyu">
+          <VStack spacing={4} align="stretch">
+            <HStack spacing={4}>
               <Avatar
                 size="xl"
                 name={userProfile.name}
                 src={userProfile.picture}
-                data-oid="4m4gvin"
               />
 
-              <VStack align="start" spacing={1} data-oid="02-lx6_">
-                <Heading size="md" data-oid="0iz.9k-">
+              <VStack align="start" spacing={1}>
+                <Heading size="md">
                   {userProfile.name}
                 </Heading>
-                <Text color="gray.600" data-oid="d056o7h">
+                <Text color="gray.600">
                   {userProfile.email}
                 </Text>
               </VStack>
             </HStack>
 
-            <Divider data-oid="4:22yoh" />
+            <Divider />
 
             <Button
               colorScheme="red"
               variant="outline"
               onClick={handleLogout}
-              data-oid="pt43fkb"
             >
               Sign Out
             </Button>

@@ -1,6 +1,6 @@
 import { Hanko } from "@teamhanko/hanko-frontend-sdk"
 
-const HANKO_API_URL = import.meta.env.VITE_HANKO_API_URL || ""
+const HANKO_API_URL = process.env.NEXT_PUBLIC_HANKO_API_URL || ""
 
 let hankoInstance: Hanko | null = null
 
